@@ -18,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@RestController(value="/product")
+@RestController
+@RequestMapping(value = "/product")
 public class ProductController {
 
     private ProductService productService = new ProductService_impl();

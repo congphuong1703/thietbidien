@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@RestController(value = "/user")
+@RestController
+@RequestMapping(value = "/user")
 public class UserController extends HttpServlet {
 
     private UserDao userDao = new UserDao_impl();

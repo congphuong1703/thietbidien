@@ -7,16 +7,10 @@ import com.haluonghoai.thietbidien_v3.Models.JsonResult;
 import com.haluonghoai.thietbidien_v3.Models.Supplier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
-@RestController(value = "/supplier")
+@RestController
+@RequestMapping(value = "/supplier")
 public class SupplierController {
 
     private SupplierDao supplierDao = new SupplierDap_impl();

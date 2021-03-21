@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@RestController(value = "/order")
+@RestController
+@RequestMapping(value = "/order")
 public class OrderController {
 
     private OrderDao orderDao = new OrderDao_impl();
