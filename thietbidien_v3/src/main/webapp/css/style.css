@@ -1,0 +1,59 @@
+*{
+    font-size: 15px;
+}
+.table-data {
+    margin-top: 10px;
+}
+
+.nav-item.active a{
+    color: #ffc700 !important;
+}
+
+th {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+td {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+main{
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: white;
+}
+.hienthi{
+    font-size: 15px;
+    color: black;
+    text-align: left;
+}
+.search{
+    display: flex;
+    text-align: right;
+    justify-content: flex-end;
+}
+.chi-tiet{
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: white;
+    padding-top: 90px;
+    color: black;
+}
+.tieu-de{
+    text-align: center;
+    color: rgb(3, 58, 95);
+    margin-bottom: 30px;
+}
+.profile_info{
+    color: red;
+    background-color: #0b2e13;
+}
+.side-menu li a{
+    color: red;
+}
+
+.main_menu_side{
+    color : blue;
+}
