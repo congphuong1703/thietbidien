@@ -9,58 +9,58 @@
     </definition>
     <definition name="quan-ly-danh-muc" extends="layout">
         <put-attribute name="title" value="Quản lý danh mục sản phẩm"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/quan_ly_danh_muc.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/quan_ly_danh_muc.jsp"/>
     </definition>
     <definition name="quan-ly-don-hang" extends="layout">
         <put-attribute name="title" value="Quản lý đơn hàng"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/quan_ly_don_hang.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/quan_ly_don_hang.jsp"/>
     </definition>
     <definition name="chi-tiet-don-hang" template="/WEB-INF/jsp/layout.jsp">
         <put-attribute name="title" value="Chi tiết đơn hàng"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/chi_tiet_don_hang.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/chi_tiet_don_hang.jsp"/>
     </definition>
     <definition name="quan-ly-san-pham" template="/WEB-INF/jsp/layout.jsp">
         <put-attribute name="title" value="Quản lý sản phẩm"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/quan_ly_san_pham.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/quan_ly_san_pham.jsp"/>
     </definition>
     <definition name="quan-ly-nha-cung-cap" template="/WEB-INF/jsp/layout.jsp">
         <put-attribute name="title" value="Quản lý nhà cung cấp"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/quan_ly_nha_cung_cap.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/quan_ly_nha_cung_cap.jsp"/>
     </definition>
     <definition name="quan-ly-khach-hang" template="/WEB-INF/jsp/layout.jsp">
         <put-attribute name="title" value="Quản lý khách hàng"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/quan_ly_khach_hang.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/quan_ly_khach_hang.jsp"/>
     </definition>
     <definition name="them-phieu-nhap" template="/WEB-INF/jsp/layout.jsp">
         <put-attribute name="title" value="Thêm phiếu nhập hàng"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/them_phieu_nhap.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/them_phieu_nhap.jsp"/>
     </definition>
     <definition name="danh-sach-phieu-nhap" template="/WEB-INF/jsp/layout.jsp">
         <put-attribute name="title" value="Danh sách phiếu nhập"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/danh_sach_phieu_nhap.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/danh_sach_phieu_nhap.jsp"/>
     </definition>
     <definition name="quan-ly-nguoi-dung" template="/WEB-INF/jsp/layout.jsp">
         <put-attribute name="title" value="Quản lý người dùng"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/quan_ly_nguoi_dung.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/quan_ly_nguoi_dung.jsp"/>
     </definition>
     <definition name="thong-ke-doanh-thu" template="/WEB-INF/jsp/layout.jsp">
         <put-attribute name="title" value="Thống kê doanh thu"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/thong_ke_doanh_thu.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/thong_ke_doanh_thu.jsp"/>
     </definition>
     <definition name="thong-ke-hang-hoa" template="/WEB-INF/jsp/layout.jsp">
         <put-attribute name="title" value="Thống kê hàng hóa"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/thong_ke_hang_hoa.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/thong_ke_hang_hoa.jsp"/>
     </definition>
     <definition name="thong-ke-chi-phi-nhap" template="/WEB-INF/jsp/layout.jsp">
         <put-attribute name="title" value="Thống kê chi phí nhập hàng"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/thong_ke_chi_phi_nhap.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/thong_ke_chi_phi_nhap.jsp"/>
     </definition>
     <definition name="thong-ke-loi-nhuan" template="/WEB-INF/jsp/layout.jsp">
         <put-attribute name="title" value="Thống kê lợi nhuận"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/thong_ke_loi_nhuan.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/thong_ke_loi_nhuan.jsp"/>
     </definition>
     <definition name="chi-tiet-phieu-nhap" template="/WEB-INF/jsp/layout.jsp">
         <put-attribute name="title" value="Chi tiết phiếu nhập"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/chi_tiet_phieu_nhap.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/chi_tiet_phieu_nhap.jsp"/>
     </definition>
 </tiles-definitions>

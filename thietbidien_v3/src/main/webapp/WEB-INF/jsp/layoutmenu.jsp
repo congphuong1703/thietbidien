@@ -1,243 +1,154 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="utf-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="frm" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Admin
+  Date: 30-Jan-21
+  Time: 11:59 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
-<link rel="Shortcut Icon" href="hinh/iconhome.ico" type="image/x-icon" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="vi">
 <head>
-    <!-- vô hiệu hóa btn back trên trình duyệt -->
-    <script>
-        history.pushState(null, null, location.href);
-        window.onpopstate = function() {
-            history.go(1);
-        };
-    </script>
-
-    <input id="changeURL" type="hidden" value="${changeURL}">
-    <script>
-        function hideParamURL() {
-            history.pushState(null, "", document.getElementById("changeURL").value);
-        }
-        hideParamURL();
-    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>${tenToChuc }</title>
-
-    <!-- Bootstrap core CSS -->
-
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css"
-          rel="stylesheet" type="text/css">
-    <script src="/js/tether.min.js"></script>
-    <!-- Custom styles for this template -->
-    <link href="css/sb-admin.css" rel="stylesheet">
-
-    <link href="css/csscommon.css" rel="stylesheet">
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
+    <link href="/css/custom.scss" rel="stylesheet" type="text/css" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"  />
 </head>
-<div id="getFullSize"
-     style="height: 100%; width: 100%; position: fixed; top: 0; left: 0; pointer-events: none;"></div>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="layout.jsp" class="site_title"><span>QUANG PHÚC</span></a>
+                </div>
 
-<body id="page-top" style="font-family: Arial">
-<div id="loading"
-     style="width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 9999; display: none;">
-    <div style="width: 100%; height: 100%; background: azure; opacity: 1;"></div>
-    <img src="/hinh/loading.gif"
-         style="position: absolute; margin: auto; top: 0; left: 0; right: 0; bottom: 0;">
-</div>
+                <div class="clearfix"></div>
 
-<div class="check-device"
-     style="display: none; text-align: center; overflow: hidden;">
-    <div
-            style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-        <p class="csstextcanhbao">Please rotate the device horizontally.</p>
-        <img src="/hinh/rotate-screen.gif">
-    </div>
-</div>
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="admin/images/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span>Welcome,</span>
+                        <h2>John Doe</h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
 
-<!-- Navigation -->
-<nav id="mainNav"
-     class="navbar static-top navbar-toggleable-md navbar-inverse bg-inverse">
-    <button class="navbar-toggler navbar-toggler-right" type="button"
-            data-toggle="collapse" data-target="#navbarExample"
-            aria-controls="navbarExample" aria-expanded="false"
-            aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand csstexttochuc" href="#"><span
-            style="text-transform: uppercase; font-family: inherit;">${tenToChuc }</span></a>
-    <div class="collapse navbar-collapse" id="navbarExample">
-        <ul id="menuUl" class="sidebar-nav navbar-nav">
+                <br />
 
-            <li class="nav-item ${activedptp }"><a class="nav-link"
-                                                   href="dptp" style="text-shadow: 0px 0px 1px #888888;"><i
-                    class="fa fa-pencil-square-o"></i> Check-in / Check-out</a></li>
-            <li class="nav-item ${activedv }"><a class="nav-link"
-                                                 href="pddv" style="text-shadow: 0px 0px 1px #888888;"><i
-                    class="fa fa-shopping-cart"></i> Service</a></li>
-            <li class="nav-item ${activethuchi }"><a class="nav-link"
-                                                     href="thuchi" style="text-shadow: 0px 0px 1px #888888;"><i
-                    class="fa fa-money"></i> Budget</a></li>
-            <li class="nav-item"><a
-                    class="nav-link nav-link-collapse collapsed${chamshowtktt }"
-                    data-toggle="collapse" href="#collapseComponents"
-                    style="text-shadow: 0px 0px 1px #888888;"><i
-                    class="fa fa-search"></i> Look for information</a>
-                <ul class="sidebar-second-level collapse${chamshowtktt }"
-                    id="collapseComponents">
-                    <li class="nav-item ${activettkh }"><a href="ttkh">Customer
-                        information</a></li>
-                    <li class="nav-item ${activettp }"><a href="ttp">Room
-                        information</a></li>
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <ul class="nav side-menu">
+                            <li><a href="quan-ly-danh-muc.tiles"><i class="fa fa-edit"></i> Quản lý danh mục sản phẩm <span class="fa fa-chevron-down"></span></a></li>
+                            <li><a href="quan-ly-san-pham.tiles"><i class="fa fa-gift"></i> Quản lý sản phẩm <span class="fa fa-chevron-down"></span></a></li>
+                            <li><a href="quan-ly-don-hang.tiles"><i class="fa fa-shopping-bag"></i> Quản lý đơn hàng <span class="fa fa-chevron-down"></span></a></li>
+                            <li><a href="quan-ly-nha-cung-cap.tiles"><i class="fa fa-truck"></i> Quản lý nhà cung cấp <span class="fa fa-chevron-down"></span></a></li>
+                            <li><a href="quan-ly-khach-hang.tiles"><i class="fa fa-male"></i> Danh sách khách hàng <span class="fa fa-chevron-down"></span></a></li>
+                            <li><a><i class="fa fa-clipboard"></i> Quản lý phiếu nhập <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="them-phieu-nhap.tiles">Thêm phiếu nhập</a></li>
+                                    <li><a href="danh-sach-phieu-nhap.tiles">Danh sách phiếu nhập</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="quan-ly-nguoi-dung.tiles"><i class="fa fa-male"></i> Quản lý người dùng <span class="fa fa-chevron-down"></span></a></li>
+                            <li><a><i class="far fa-chart-bar"></i> Thống kê <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="thong-ke-doanh-thu.tiles">Thống kê doanh thu</a></li>
+                                    <li><a href="thong-ke-hang-hoa.tiles">Thống kê hàng hóa</a></li>
+                                    <li><a href="thong-ke-chi-phi-nhap.tiles">Thống kê chi phí nhập hàng</a></li>
+                                    <li><a href="thong-ke-loi-nhuan.tiles">Thống kê lợi nhuận </a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
 
-                </ul></li>
-            <li class="nav-item"><a
-                    class="nav-link nav-link-collapse collapsed${chamshowtkvbc }"
-                    data-toggle="collapse" href="#collapseMulti1"
-                    style="text-shadow: 0px 0px 1px #888888;"><i
-                    class="fa fa-calendar-check-o"></i> Statistics & Reports</a>
-                <ul class="sidebar-second-level collapse${chamshowtkvbc }"
-                    id="collapseMulti1">
-                    <li class="nav-item ${activelsdtp }"><a href="lsdtp">Check-in
-                        / check-out history</a></li>
-                    <li class="nav-item ${activelsdv }"><a href="lsdv">Service
-                        history</a></li>
-                    <li class="nav-item ${activettdt }"><a href="tkdt">Revenue
-                        statistics</a></li>
-                    <c:if test="${not empty ancaidai }">
-                        <li class="nav-item ${activelsdn }"><a href="lsdn">Login
-                            history</a></li>
-                    </c:if>
-                </ul></li>
+                </div>
+                <!-- /sidebar menu -->
 
-            <c:if test="${not empty ancaidai }">
-                <li class="nav-item"><a
-                        class="nav-link nav-link-collapse collapsed${chamshowcd }"
-                        data-toggle="collapse" href="#collapseMulti"
-                        style="text-shadow: 0px 0px 1px #888888;"><i
-                        class="fa fa-fw fa-wrench"></i> Settings</a>
-                    <ul class="sidebar-second-level collapse${chamshowcd }"
-                        id="collapseMulti">
-
-                        <li class="nav-item"><a
-                                class="nav-link nav-link-collapse collapsed${chamshowqltk }"
-                                data-toggle="collapse" href="#collapseMulti10"><i
-                                class="fa fa-fw fa-sitemap"></i> Account management</a>
-                            <ul class="sidebar-second-level collapse${chamshowqltk }"
-                                id="collapseMulti10">
-                                <li class="nav-item ${activedstk }"><a href="qltk">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List
-                                    of accounts</a></li>
-                                <li class="nav-item ${activettk }"><a href="addtk">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;More
-                                    account</a></li>
-                            </ul></li>
-
-                        <li class="nav-item"><a
-                                class="nav-link nav-link-collapse collapsed${chamshowqllp }"
-                                data-toggle="collapse" href="#collapseMulti11"><i
-                                class="fa fa-fw fa-sitemap"></i> Manage room types</a>
-                            <ul class="sidebar-second-level collapse${chamshowqllp }"
-                                id="collapseMulti11">
-                                <li class="nav-item ${activedslp }"><a href="qllp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Room
-                                    type list</a></li>
-                                <li class="nav-item ${activetlp }"><a href="addlp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add
-                                    room type</a></li>
-                            </ul></li>
-
-                        <li class="nav-item"><a
-                                class="nav-link nav-link-collapse collapsed${chamshowqlp }"
-                                data-toggle="collapse" href="#collapseMulti12"><i
-                                class="fa fa-fw fa-sitemap"></i> Room manager</a>
-                            <ul class="sidebar-second-level collapse${chamshowqlp }"
-                                id="collapseMulti12">
-                                <li class="nav-item ${activedsp }"><a href="quanlyphong">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Room
-                                    list</a></li>
-                                <li class="nav-item ${activetp }"><a href="addqlp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add
-                                    room</a></li>
-                            </ul></li>
-
-                        <li class="nav-item"><a
-                                class="nav-link nav-link-collapse collapsed${chamshowdv }"
-                                data-toggle="collapse" href="#collapseMulti13"><i
-                                class="fa fa-fw fa-sitemap"></i> Service management </a>
-                            <ul class="sidebar-second-level collapse${chamshowdv }"
-                                id="collapseMulti13">
-                                <li class="nav-item ${activedsdv }"><a href="dsqldv">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Service
-                                    list</a></li>
-                                <li class="nav-item ${activetdv }"><a href="themdsqldv">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add
-                                    service</a></li>
-                            </ul></li>
-
-                        <li class="nav-item ${activets }" style="cursor: pointer;"><a
-                                href="qlts"><i class="fa fa-fw fa-sitemap"></i> Advanced
-                            management</a>
-                    </ul></li>
-
-
-            </c:if>
-        </ul>
-
-        <ul class="navbar-nav ml-auto">
-            <li class="dropdown user user-menu" style="margin-right: 35px;">
-                <a href="#" class="dropdown-toggle customUser"
-                   data-toggle="dropdown" aria-expanded="false"> <img
-                        src="hinh/iconuser.png" width="30px" height="30px" /> <span
-                        class="hidden-xs">Welcome ${nguoidung }</span>
-                </a>
-
-                <ul class="dropdown-menu">
-
-                    <li class="user-body">
-                        <div style="text-align: center;">
-
-                            <a class="hoverUser" href="doimatkhau">Change Password</a>
-                        </div>
-
-                        <div style="text-align: center;">
-                            <a class="hoverUser" href="dangxuat">Log-Out</a>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</nav>
-<div class="content-wrapper py-3 content-custom">
-    <div class="container">
-        <div class="container">
-            <div class="titleCommon1" align="center">
-                <span class="titleCommon">${titlepage }</span>
+                <!-- /menu footer buttons -->
+                <div class="sidebar-footer hidden-small">
+                    <a data-toggle="tooltip" data-placement="top" title="Settings">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Lock">
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="admin/view/login.jsp">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <!-- /menu footer buttons -->
             </div>
         </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <div class="nav toggle">
+                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                </div>
+                <nav class="nav navbar-nav">
+                    <ul class=" navbar-right">
+                        <li class="nav-item dropdown open" style="padding-left: 15px;">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                <img src="admin/images/img.jpg" alt="">John Doe
+                            </a>
+                            <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item"  href="javascript:;">Help</a>
+                                <a class="dropdown-item"  href="admin/view/login.jsp"><i class="fa fa-sign-out-alt"></i> Log Out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <jsp:include page="${param.layoutmenu }"></jsp:include>
+        </div>
+        <footer>
+            <div class="clearfix"></div>
+        </footer>
     </div>
-    <div class="container">
-        <!-- Breadcrumbs -->
-        <!-- Noi dung trong nay-->
-
-        <jsp:include page="${param.layoutmenu }"></jsp:include>
-
-    </div>
-    <!-- /.container-fluid -->
-
 </div>
-<!-- /.content-wrapper -->
-<script type="text/javascript" src="/js/layout.js"></script>
-<script type="text/javascript" src="/js/common.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<%--<!-- Bootstrap -->--%>
+<%--<script src="vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>--%>
+<%--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>--%>
+<%--<!-- FastClick -->--%>
+<%--<script src="vendors/fastclick/lib/fastclick.js"></script>--%>
+<%--<!-- NProgress -->--%>
+<%--<script src="vendors/nprogress/nprogress.js"></script>--%>
+<%--<!-- Chart.js -->--%>
+<%--<script src="vendors/Chart.js/dist/Chart.min.js"></script>--%>
+<%--<!-- jQuery Sparklines -->--%>
+<%--<script src="vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>--%>
+<%--<!-- Flot -->--%>
+<%--<script src="vendors/Flot/jquery.flot.js"></script>--%>
+<%--<script src="vendors/Flot/jquery.flot.pie.js"></script>--%>
+<%--<script src="vendors/Flot/jquery.flot.time.js"></script>--%>
+<%--<script src="vendors/Flot/jquery.flot.stack.js"></script>--%>
+<%--<script src="vendors/Flot/jquery.flot.resize.js"></script>--%>
+<%--<!-- Flot plugins -->--%>
+<%--<script src="vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>--%>
+<%--<script src="vendors/flot-spline/js/jquery.flot.spline.min.js"></script>--%>
+<%--<script src="vendors/flot.curvedlines/curvedLines.js"></script>--%>
+<%--<!-- DateJS -->--%>
+<%--<script src="vendors/DateJS/build/date.js"></script>--%>
+<%--<!-- bootstrap-daterangepicker -->--%>
+<%--<script src="vendors/moment/min/moment.min.js"></script>--%>
+<%--<script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>--%>
+
+<!-- Custom Theme Scripts -->
+<%--<script src="admin/js/custom.min.js"></script>--%>
 </body>
 </html>
