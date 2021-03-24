@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.ws.rs.QueryParam;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
-@RequestMapping("/product")
 public class ProductController {
 
     @ModelAttribute(name = "changeURL")
@@ -24,7 +25,7 @@ public class ProductController {
 
     ProductDao productDao = new ProductDao_impl();
 
-    @GetMapping
+    @RequestMapping("/product")
     public String go(Model model) {
         try {
             model.addAttribute("products", productDao.findAll());
@@ -34,13 +35,13 @@ public class ProductController {
         return "quan_ly_san_pham";
     }
 
-    @GetMapping(value = "/search")
+    @GetMapping(value = "/product/search")
     public String findByName(Model model, @QueryParam("code") String code,
                              @QueryParam("name") String name,
                              @QueryParam("price") int price,
                              @QueryParam("status") String status) {
         try {
-            model.addAttribute("orders", productDao.search(code, name, price, status == "1" ? true : false));
+            model.addAttribute("products", productDao.search(code, name, price, status == "1" ? true : false));
         } catch (Exception e) {
             e.printStackTrace();
         }

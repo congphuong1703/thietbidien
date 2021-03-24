@@ -48,10 +48,10 @@
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <ul class="nav side-menu">
-                            <li><a href="quan-ly-danh-muc.tiles"><i class="fa fa-edit"></i> Quản lý danh mục sản phẩm <span class="fa fa-chevron-down"></span></a></li>
-                            <li><a href="quan-ly-san-pham.tiles"><i class="fa fa-gift"></i> Quản lý sản phẩm <span class="fa fa-chevron-down"></span></a></li>
-                            <li><a href="quan-ly-don-hang.tiles"><i class="fa fa-shopping-bag"></i> Quản lý đơn hàng <span class="fa fa-chevron-down"></span></a></li>
-                            <li><a href="quan-ly-nha-cung-cap.tiles"><i class="fa fa-truck"></i> Quản lý nhà cung cấp <span class="fa fa-chevron-down"></span></a></li>
+                            <li><a href="/category"><i class="fa fa-edit"></i> Quản lý danh mục sản phẩm <span class="fa fa-chevron-down"></span></a></li>
+                            <li><a href="/product"><i class="fa fa-gift"></i> Quản lý sản phẩm <span class="fa fa-chevron-down"></span></a></li>
+                            <li><a href="/order"><i class="fa fa-shopping-bag"></i> Quản lý đơn hàng <span class="fa fa-chevron-down"></span></a></li>
+                            <li><a href="/supplier"><i class="fa fa-truck"></i> Quản lý nhà cung cấp <span class="fa fa-chevron-down"></span></a></li>
                             <li><a href="quan-ly-khach-hang.tiles"><i class="fa fa-male"></i> Danh sách khách hàng <span class="fa fa-chevron-down"></span></a></li>
                             <li><a><i class="fa fa-clipboard"></i> Quản lý phiếu nhập <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">

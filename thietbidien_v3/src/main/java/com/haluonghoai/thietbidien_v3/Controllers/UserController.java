@@ -4,6 +4,7 @@ import com.haluonghoai.thietbidien_v3.DAO.UserDao;
 import com.haluonghoai.thietbidien_v3.DAO.imp.UserDao_impl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 

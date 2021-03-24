@@ -53,11 +53,11 @@
                     </select>
                 </div>
                 <div class="col-md-4 mt-1 search">
-                    <form:form action="/search" method="get">
+                    <form action="/order/findById">
                         <input type="search" name="id" type="number" id="search-by-id" class="form-control" value=""
                                style="width:200px;">
-                        <button type="button" class="btn btn-primary">Tìm kiếm</button>
-                    </form:form>
+                        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -88,9 +88,14 @@
                                     <td>${order.timecreate}</td>
                                     <td class="text-center">
                                             ${order.idOrderstatus}
-                                        <span class="badge badge-success">Xác nhận</span></td>
-                                    <td>${order.payments}</td>
-                                    <td class="text-center"><span class="badge badge-success">Đã thanh toán</span></td>
+<%--                                        <span class="badge badge-success">Xác nhận</span></td>--%>
+                                    <c:if test="${order.payments == true}">
+                                        <td class="text-center"><span class="badge badge-success">Đã thanh toán</span>
+                                        </td>
+                                    </c:if><c:if test="${order.payments == false}">
+                                    <td class="text-center"><span class="badge badge-success">Chưa thanh toán</span>
+                                    </td>
+                                </c:if>
                                     <td>
                                         <a href="/orderDetail?id=${order.id}" class="btn btn-info">Xem chi tiết</a>
                                     </td>
@@ -123,4 +128,4 @@
         </div>
     </div>
 </main>
-<script src="/js/order-manager.js" charset="utf-8"></script>
+<script src="/js/order-management.js" charset="utf-8"></script>

@@ -4,11 +4,13 @@ import com.haluonghoai.thietbidien_v3.DAO.SupplierDao;
 import com.haluonghoai.thietbidien_v3.DAO.imp.SupplierDap_impl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
+@RequestMapping("/supplier")
 public class SupplierController {
 
     @ModelAttribute(name = "changeURL")
@@ -18,7 +20,7 @@ public class SupplierController {
 
     SupplierDao supplierDao = new SupplierDap_impl();
 
-    @RequestMapping("/supplier")
+    @GetMapping
     public String go(ModelMap model) {
         try {
             model.addAttribute("suppliers", supplierDao.findAll());

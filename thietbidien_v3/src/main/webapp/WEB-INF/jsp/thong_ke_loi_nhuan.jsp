@@ -72,6 +72,6 @@
         </div>
     </div><br>
     <div class="tong-chi-phi text-center" style="color: brown; font-size: 18px;">
-        <label for="">Tổng lợi nhuận:</label>&nbsp;&nbsp;<span>20000000</span>
+        <label >Tổng lợi nhuận:</label>&nbsp;&nbsp;<span>20000000</span>
     </div>
 </main>

@@ -16,7 +16,7 @@ public class UserDao_impl implements UserDao {
     @Override
     public User getObject(ResultSet resultSet) throws SQLException {
         User user = null;
-        user = new User(resultSet.getInt("iManguoidung"),resultSet.getString("sHoten"),resultSet.getString("sEmail"),resultSet.getString("sDiachi"),resultSet.getString("sSodienthoai"),resultSet.getString("dNgaysinh"),resultSet.getString("sMatkhau"),resultSet.getInt("iMaquyen"));
+        user = new User(resultSet.getInt("iManguoidung"), resultSet.getString("sHoten"), resultSet.getString("sEmail"), resultSet.getString("sDiachi"), resultSet.getString("sSodienthoai"), resultSet.getString("dNgaysinh"), resultSet.getString("sMatkhau"), resultSet.getInt("iMaquyen"));
         return user;
     }
 
@@ -25,18 +25,32 @@ public class UserDao_impl implements UserDao {
         return null;
     }
 
+    public User login(String username, String password) throws SQLException, ClassNotFoundException {
+        User user = null;
+        myConnection.connectDb();
+        String sql = "select * from tblNguoiDung where sEmail = ? and sMatkhau =  ?" ;
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, password);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            user = getObject(resultSet);
+        }
+        return user;
+    }
+
     @Override
     public List<User> findAll() throws SQLException, ClassNotFoundException {
         List<User> list = new ArrayList<>();
         String sql = "{call sp_select_nguoidung}";
         Connection connection = myConnection.connectDb();
-        CallableStatement sttm = connection.prepareCall(sql, ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+        CallableStatement sttm = connection.prepareCall(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet resultSet = sttm.executeQuery();
-        if(resultSet.first()){
-            do{
+        if (resultSet.first()) {
+            do {
                 User user = getObject(resultSet);
-                if(user != null) list.add(user);
-            }while(resultSet.next());
+                if (user != null) list.add(user);
+            } while (resultSet.next());
         }
         return list;
     }
@@ -47,8 +61,8 @@ public class UserDao_impl implements UserDao {
         String sql = "select * from tblNguoiDung where iManguoidung = ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
         preparedStatement.setInt(1, id);
-        ResultSet resultSet =  preparedStatement.executeQuery();
-        if(resultSet.first()) {
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
             user = getObject(resultSet);
         }
         return user;
@@ -59,17 +73,17 @@ public class UserDao_impl implements UserDao {
         User newUser = null;
         String sql = "insert tblNguoiDung values (?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
-        preparedStatement.setString(1,user.getName());
-        preparedStatement.setString(2,user.getEmail());
-        preparedStatement.setString(3,user.getAdress());
-        preparedStatement.setString(4,user.getPhonenumber());
-        preparedStatement.setString(5,user.getDateOfBirth());
-        preparedStatement.setString(6,user.getPass());
-        preparedStatement.setInt(7,user.getIdQuyen());
+        preparedStatement.setString(1, user.getName());
+        preparedStatement.setString(2, user.getEmail());
+        preparedStatement.setString(3, user.getAdress());
+        preparedStatement.setString(4, user.getPhonenumber());
+        preparedStatement.setString(5, user.getDateOfBirth());
+        preparedStatement.setString(6, user.getPass());
+        preparedStatement.setInt(7, user.getIdQuyen());
         int rs = preparedStatement.executeUpdate();
-        if(rs > 0) {
+        if (rs > 0) {
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            if(resultSet.first()) {
+            if (resultSet.first()) {
                 newUser = findById((int) resultSet.getLong(1));
             }
         }
@@ -82,15 +96,15 @@ public class UserDao_impl implements UserDao {
         String sql = "update tblNguoiDung set sHoten = ?,sEmail=?,sDiachi=?,sSodienthoai=?,dNgaysinh=?,sMatkhau=?,iMaquyen=? where iManguoidung = ?";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
         preparedStatement.setString(1, user.getName());
-        preparedStatement.setString(2,user.getEmail());
-        preparedStatement.setString(3,user.getAdress());
-        preparedStatement.setString(4,user.getPhonenumber());
-        preparedStatement.setString(5,user.getDateOfBirth());
-        preparedStatement.setString(6,user.getPass());
-        preparedStatement.setInt(7,user.getIdQuyen());
-        preparedStatement.setInt(8,user.getId());
+        preparedStatement.setString(2, user.getEmail());
+        preparedStatement.setString(3, user.getAdress());
+        preparedStatement.setString(4, user.getPhonenumber());
+        preparedStatement.setString(5, user.getDateOfBirth());
+        preparedStatement.setString(6, user.getPass());
+        preparedStatement.setInt(7, user.getIdQuyen());
+        preparedStatement.setInt(8, user.getId());
         int rs = preparedStatement.executeUpdate();
-        if(rs > 0) result = true;
+        if (rs > 0) result = true;
         return result;
     }
 
@@ -99,9 +113,9 @@ public class UserDao_impl implements UserDao {
         boolean result = false;
         String sql = "delete from tblNguoiDung where iManguoidung = ?";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
-        preparedStatement.setInt(1,id);
+        preparedStatement.setInt(1, id);
         int rs = preparedStatement.executeUpdate();
-        if(rs > 0) result = true;
+        if (rs > 0) result = true;
         return result;
     }
 

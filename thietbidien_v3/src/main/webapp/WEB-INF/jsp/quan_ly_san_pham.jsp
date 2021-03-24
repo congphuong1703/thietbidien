@@ -25,7 +25,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Mã sản phẩm</label>
-                                <input type="text" class="form-control" id="input-ten" placeholder="Nhập mã sản phẩm">
+                                <input type="text" class="form-control"  placeholder="Nhập mã sản phẩm">
                                 <div class="invalid-feedback">
                                     Error!
                                 </div>
@@ -34,7 +34,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
-                                <input type="text" class="form-control" id="input-ten" placeholder="Nhập tên sản phẩm">
+                                <input type="text" class="form-control" placeholder="Nhập tên sản phẩm">
                                 <div class="invalid-feedback">
                                     Error!
                                 </div>
@@ -52,7 +52,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Giá bán</label>
-                                <input type="text" class="form-control" id="input-ten" placeholder="Nhập giá bán">
+                                <input type="text" class="form-control"  placeholder="Nhập giá bán">
                                 <div class="invalid-feedback">
                                     Error!
                                 </div>
@@ -61,7 +61,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Số lượng</label>
-                                <input type="number" class="form-control" id="input-ten" placeholder="Nhập Số lượng">
+                                <input type="number" class="form-control" placeholder="Nhập Số lượng">
                                 <div class="invalid-feedback">
                                     Error!
                                 </div>
@@ -70,7 +70,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Bảo hành</label>
-                                <input type="number" class="form-control" id="input-ten"
+                                <input type="number" class="form-control"
                                        placeholder="Nhập số tháng bảo hành">
                                 <div class="invalid-feedback">
                                     Error!
@@ -98,7 +98,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Mô tả</label>
-                                <textarea class="form-control is-invalid" id="textarea-gioi-thieu"
+                                <textarea class="form-control is-invalid"
                                           rows="3"></textarea>
                                 <div class="invalid-feedback">
                                     Error!
@@ -120,7 +120,7 @@
                         <div class="col-md-12">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="checkbox-het-hang">
-                                <label class="form-check-label" for="defaultCheck1">
+                                <label class="form-check-label" >
                                     Hết hàng
                                 </label>
                             </div>
@@ -139,7 +139,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận thao tác</h5>
+                    <h5 class="modal-title" id="exampleModalLabel1">Xác nhận thao tác</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -209,7 +209,7 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <form:form action="/findById" method="get">
+                                <form action="/product/search">
                                     <td><input type="text" name="code" class="form-control" id="input-search-ma"></td>
                                     <td><input type="text" name="name" class="form-control" id="input-search-ten"></td>
                                     <td><input type="number" name="price" class="form-control" id="input-search-gia">
@@ -228,15 +228,15 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" id="btn-tim-kiem">
+                                        <button type="submit" class="btn btn-primary" id="btn-tim-kiem">
                                             <i class="fas fa-search"></i> Tìm kiếm
                                         </button>
                                     </td>
-                                </form:form>
+                                </form>
                             </tr>
                             </thead>
                             <tbody id="tbody-san-pham">
-                            <c:forEach items="products" var="product">
+                            <c:forEach items="${products}" var="product">
                                 <tr>
                                     <td>${product.image}</td>
                                     <td>${product.id}</td>

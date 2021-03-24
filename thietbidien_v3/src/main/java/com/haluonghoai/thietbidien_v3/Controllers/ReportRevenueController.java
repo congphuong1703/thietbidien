@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/reportRevenue")
 public class ReportRevenueController {
 
     @ModelAttribute(name = "changeURL")
@@ -13,7 +14,6 @@ public class ReportRevenueController {
         return "thong_ke_doanh_thu";
     }
 
-    @RequestMapping("/reportRevenue")
     public String go(ModelMap model) {
         return "thong_ke_doanh_thu";
     }

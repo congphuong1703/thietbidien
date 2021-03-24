@@ -6,10 +6,12 @@ import com.haluonghoai.thietbidien_v3.Models.Receipt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/receipt")
 public class ReceiptController {
 
     @ModelAttribute(name = "changeURL")
@@ -19,7 +21,7 @@ public class ReceiptController {
 
     ReceiptDao receiptDao = new ReceiptDao_impl();
 
-    @RequestMapping("/receipt")
+    @GetMapping
     public String go(Model model) {
         try {
             model.addAttribute("receipts", receiptDao.findAll());
