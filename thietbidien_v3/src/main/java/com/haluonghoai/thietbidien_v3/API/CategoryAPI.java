@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/category")
+//@RequestMapping(value = "/category")
 public class CategoryAPI {
 
     private CategoryService categoryService = new CategoryService_impl();
@@ -30,7 +30,7 @@ public class CategoryAPI {
         return ResponseEntity.ok(rs);
     }
 
-    @GetMapping(value = "/find-all")
+    @GetMapping(value = "/category/find-all")
     public ResponseEntity<String> findAll() {
         String res = "";
         try {

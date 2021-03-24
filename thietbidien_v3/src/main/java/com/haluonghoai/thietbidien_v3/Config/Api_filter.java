@@ -16,7 +16,6 @@ public class Api_filter implements Filter {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        resp.setContentType("application/json;charset=UTF-8");
         try {
             myConnection.connectDb();
         }catch (Exception e) {

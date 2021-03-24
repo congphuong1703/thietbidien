@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1>Quản Lý Đơn Hàng</h1>
+                    <h1>Quản Lý Đơn Hàng 1</h1>
                 </div>
                 <div class="col-12">
                     <hr>

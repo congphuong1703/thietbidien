@@ -27,7 +27,7 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping({"/login","/"})
     public String go(Model model) {
         return "login";
     }
