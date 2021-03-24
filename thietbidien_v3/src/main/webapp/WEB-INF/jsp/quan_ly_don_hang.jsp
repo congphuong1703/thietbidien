@@ -90,9 +90,16 @@
                                             ${order.idOrderstatus}
 <%--                                        <span class="badge badge-success">Xác nhận</span></td>--%>
                                     <c:if test="${order.payments == true}">
-                                        <td class="text-center"><span class="badge badge-success">Đã thanh toán</span>
+                                        <td class="text-center"><span class="badge badge-success">Chuyển khoản</span>
                                         </td>
                                     </c:if><c:if test="${order.payments == false}">
+                                    <td class="text-center"><span class="badge badge-success">Sau khi nhận hàng</span>
+                                    </td>
+                                </c:if>
+                                    <c:if test="${order.statusPaments == true}">
+                                        <td class="text-center"><span class="badge badge-success">Đã thanh toán</span>
+                                        </td>
+                                    </c:if><c:if test="${order.statusPaments == false}">
                                     <td class="text-center"><span class="badge badge-success">Chưa thanh toán</span>
                                     </td>
                                 </c:if>
@@ -128,4 +135,6 @@
         </div>
     </div>
 </main>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="/js/order-management.js" charset="utf-8"></script>
+

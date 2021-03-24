@@ -25,7 +25,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Mã sản phẩm</label>
-                                <input type="text" class="form-control"  placeholder="Nhập mã sản phẩm">
+                                <input type="text" class="form-control" placeholder="Nhập mã sản phẩm">
                                 <div class="invalid-feedback">
                                     Error!
                                 </div>
@@ -52,7 +52,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Giá bán</label>
-                                <input type="text" class="form-control"  placeholder="Nhập giá bán">
+                                <input type="text" class="form-control" placeholder="Nhập giá bán">
                                 <div class="invalid-feedback">
                                     Error!
                                 </div>
@@ -120,7 +120,7 @@
                         <div class="col-md-12">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="checkbox-het-hang">
-                                <label class="form-check-label" >
+                                <label class="form-check-label">
                                     Hết hàng
                                 </label>
                             </div>
@@ -194,16 +194,16 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">Ảnh</th>
-                                <th scope="col">Mã sản phẩm</th>
-                                <th scope="col">Tên sản phẩm</th>
-                                <th scope="col">Giá bán</th>
-                                <th scope="col">Số lượng</th>
-                                <th scope="col">Mô tả</th>
-                                <th scope="col">Thông số kỹ thuật</th>
-                                <th scope="col">Bảo hành</th>
-                                <th scope="col">Đơn vị tính</th>
-                                <th scope="col">Danh mục sản phẩm</th>
+                                <th scope="col-2">Ảnh</th>
+                                <th scope="col-2">Mã sản phẩm</th>
+                                <th scope="col-2">Tên sản phẩm</th>
+                                <th scope="col-2">Giá bán</th>
+                                <th scope="col-2">Số lượng</th>
+                                <th scope="col-2">Mô tả</th>
+                                <th scope="col-2">Thông số kỹ thuật</th>
+                                <th scope="col-2">Bảo hành</th>
+                                <th scope="col-2">Đơn vị tính</th>
+                                <th scope="col-4">Danh mục sản phẩm</th>
                                 <th scope="col" style="width: 150px;">Tình trạng bán</th>
                                 <th scope="col" style="width: 175px;">Hành Động</th>
                             </tr>
@@ -212,7 +212,8 @@
                                 <form action="/product/search">
                                     <td><input type="text" name="code" class="form-control" id="input-search-ma"></td>
                                     <td><input type="text" name="name" class="form-control" id="input-search-ten"></td>
-                                    <td><input type="number" name="price" class="form-control" id="input-search-gia">
+                                    <td><input type="number" name="price" required class="form-control"
+                                               id="input-search-gia">
                                     </td>
                                     <td></td>
                                     <td></td>
@@ -221,8 +222,8 @@
                                     <td></td>
                                     <td></td>
                                     <td>
-                                        <select required name="status" id="select-search-het-hang" class="form-control">
-                                            <option disabled value selected>Tất cả</option>
+                                        <select name="status" id="select-search-het-hang" class="form-control">
+                                            <option disabled value="0   " selected>Tất cả</option>
                                             <option value="1">Còn hàng</option>
                                             <option value="2">Hết hàng</option>
                                         </select>
@@ -270,4 +271,3 @@
         </div>
     </div>
 </main>
-<script src="/js/ajax_quan_ly_danh_muc.js" charset="utf-8"></script>

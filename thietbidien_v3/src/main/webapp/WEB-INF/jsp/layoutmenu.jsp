@@ -120,6 +120,7 @@
         </footer>
     </div>
 </div>
-<script src="/js/jquery.min.js"></script>
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </body>
 </html>

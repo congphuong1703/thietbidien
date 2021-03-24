@@ -41,7 +41,7 @@ public class ProductController {
                              @QueryParam("price") int price,
                              @QueryParam("status") String status) {
         try {
-            model.addAttribute("products", productDao.search(code, name, price, status == "1" ? true : false));
+            model.addAttribute("products", productDao.search(code, name, price , status == "1" ? true : false));
         } catch (Exception e) {
             e.printStackTrace();
         }

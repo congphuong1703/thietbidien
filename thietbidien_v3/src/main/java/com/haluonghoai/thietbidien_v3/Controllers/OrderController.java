@@ -78,7 +78,8 @@ public class OrderController {
     public String findById(@QueryParam("id") int id, Model model) {
         List<Order> orders = new ArrayList<>();
         try {
-            model.addAttribute("orders", orders.add(orderDao.findById(id)));
+            orders.add(orderDao.findById(id));
+            model.addAttribute("orders",orders );
         } catch (Exception e) {
             e.printStackTrace();
         }
