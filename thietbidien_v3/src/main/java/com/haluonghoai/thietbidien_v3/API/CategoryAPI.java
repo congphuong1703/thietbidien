@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/category")
-public class CategoryController {
+public class CategoryAPI {
 
     private CategoryService categoryService = new CategoryService_impl();
 

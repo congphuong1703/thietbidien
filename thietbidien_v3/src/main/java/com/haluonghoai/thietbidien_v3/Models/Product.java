@@ -13,6 +13,7 @@ public class Product {
     private int guarantee;
     private String unit;
     private int categoryId;
+    private int total;
 
     public Product() {
     }
@@ -30,6 +31,14 @@ public class Product {
         this.guarantee = guarantee;
         this.unit = unit;
         this.categoryId = categoryId;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public int getIncreaseId() {

@@ -4,6 +4,7 @@ package com.haluonghoai.thietbidien_v3.DAO.imp;
 import com.haluonghoai.thietbidien_v3.DAO.OrderDao;
 import com.haluonghoai.thietbidien_v3.Models.MyConnection;
 import com.haluonghoai.thietbidien_v3.Models.Order;
+import com.haluonghoai.thietbidien_v3.Models.OrderDetails;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

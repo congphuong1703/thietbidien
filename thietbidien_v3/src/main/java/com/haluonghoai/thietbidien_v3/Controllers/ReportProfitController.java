@@ -1,6 +1,7 @@
 package com.haluonghoai.thietbidien_v3.Controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,7 @@ public class ReportProfitController {
     }
 
     @RequestMapping("/reportProfit")
-    public String go(ModelMap model) {
+    public String go(Model model) {
         return "thong_ke_loi_nhuan";
     }
 

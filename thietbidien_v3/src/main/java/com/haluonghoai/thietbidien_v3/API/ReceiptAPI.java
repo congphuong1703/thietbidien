@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/receipt")
-public class ReceiptController extends HttpServlet {
+public class ReceiptAPI extends HttpServlet {
 
     private ReceiptDao receiptDao = new ReceiptDao_impl();
 

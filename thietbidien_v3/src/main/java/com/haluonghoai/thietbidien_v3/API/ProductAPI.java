@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/product")
-public class ProductController {
+public class ProductAPI {
 
     private ProductService productService = new ProductService_impl();
 

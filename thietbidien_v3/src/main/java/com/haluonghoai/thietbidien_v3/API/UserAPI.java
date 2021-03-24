@@ -1,31 +1,39 @@
 package com.haluonghoai.thietbidien_v3.API;
 
 import com.google.gson.Gson;
-import com.haluonghoai.thietbidien_v3.DAO.SupplierDao;
-import com.haluonghoai.thietbidien_v3.DAO.imp.SupplierDap_impl;
+import com.haluonghoai.thietbidien_v3.DAO.UserDao;
+import com.haluonghoai.thietbidien_v3.DAO.imp.UserDao_impl;
 import com.haluonghoai.thietbidien_v3.Models.JsonResult;
 import com.haluonghoai.thietbidien_v3.Models.Supplier;
+import com.haluonghoai.thietbidien_v3.Models.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/supplier")
-public class SupplierController {
+@RequestMapping(value = "/user")
+public class UserAPI{
 
-    private SupplierDao supplierDao = new SupplierDap_impl();
+    private UserDao userDao = new UserDao_impl();
 
-    private JsonResult jsonResult = new JsonResult();
+    JsonResult jsonResult = new JsonResult();
 
     @PostMapping(value = "/add")
-    public ResponseEntity<String> add(@RequestBody Supplier supplier) {
+    public ResponseEntity<String> add(@RequestBody User user) {
         String rs = "";
         try {
-            Supplier newSupplier = supplierDao.insert(supplier);
-            rs = newSupplier != null ? jsonResult.jsonSuccess(supplier) : jsonResult.jsonSuccess("thêm nhà cung cấp thất bại");
+            User newUser = userDao.insert(user);
+            rs = newUser != null ? jsonResult.jsonSuccess(user) : jsonResult.jsonSuccess("thêm người dùng thất bại");
         } catch (Exception e) {
             e.printStackTrace();
-            rs = jsonResult.jsonFail("upload supplier fail !");
+            rs = jsonResult.jsonFail("upload user fail !");
         }
         return ResponseEntity.ok(rs);
     }
@@ -34,8 +42,8 @@ public class SupplierController {
     public ResponseEntity<String> findAll() {
         String rs = "";
         try {
-            List<Supplier> supplierList = supplierDao.findAll();
-            rs = jsonResult.jsonSuccess(supplierList);
+            List<User> userList = userDao.findAll();
+            rs = jsonResult.jsonSuccess(userList);
         } catch (Exception e) {
             e.printStackTrace();
             rs = jsonResult.jsonFail("find-all-error");
@@ -43,11 +51,12 @@ public class SupplierController {
         return ResponseEntity.ok(rs);
     }
 
+
     @GetMapping(value = "/so-ban-ghi")
     public ResponseEntity<String> countRecord() {
         String rs = "";
         try {
-            int count = supplierDao.count();
+            int count = userDao.count();
             rs = jsonResult.jsonSuccess(count);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -57,13 +66,13 @@ public class SupplierController {
     }
 
     @PutMapping(value = "/update")
-    public ResponseEntity<String> update(@RequestBody Supplier supplier) {
+    public ResponseEntity<String> update(@RequestBody User user) {
         String rs = "";
         try {
-            rs = jsonResult.jsonSuccess(supplierDao.update(supplier));
+            rs = jsonResult.jsonSuccess(userDao.update(user));
         } catch (Exception e) {
             e.printStackTrace();
-            rs = jsonResult.jsonFail("update supplier fail");
+            rs = jsonResult.jsonFail("update user fail");
         }
         return ResponseEntity.ok(rs);
     }
@@ -72,10 +81,10 @@ public class SupplierController {
     public ResponseEntity<String> delete(@RequestParam("id") int id) {
         String rs = "";
         try {
-            rs = jsonResult.jsonSuccess(supplierDao.delete(id));
+            rs = jsonResult.jsonSuccess(userDao.delete(id));
         } catch (Exception ex) {
             ex.printStackTrace();
-            rs = jsonResult.jsonFail("delete supplier fail");
+            rs = jsonResult.jsonFail("delete user fail");
         }
         return ResponseEntity.ok(rs);
     }

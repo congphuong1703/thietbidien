@@ -5,10 +5,13 @@
   Time: 6:43 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <main>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -67,7 +70,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Bảo hành</label>
-                                <input type="number" class="form-control" id="input-ten" placeholder="Nhập số tháng bảo hành">
+                                <input type="number" class="form-control" id="input-ten"
+                                       placeholder="Nhập số tháng bảo hành">
                                 <div class="invalid-feedback">
                                     Error!
                                 </div>
@@ -130,7 +134,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -171,7 +176,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10">
-                    <button id="btn-them" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> Thêm danh mục sản phẩm</button>
+                    <button id="btn-them" type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-plus"></i> Thêm danh mục sản phẩm
+                    </button>
                 </div>
                 <div class="col-md-2 mt-1 hienthi">
                     Hiển thị bản ghi <input type="text" readonly style="width:30px">
@@ -202,51 +209,59 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td><input type="text" class="form-control" id="input-search-ma"></td>
-                                <td><input type="text" class="form-control" id="input-search-ten"></td>
-                                <td><input type="number" class="form-control" id="input-search-gia"></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <select id="select-search-het-hang" class="form-control">
-                                        <option selected value="0">Tất cả</option>
-                                        <option value="false">Còn hàng</option>
-                                        <option value="true">Hết hàng</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" id="btn-tim-kiem" onclick="searchProduct()"><i class="fas fa-search"></i> Tìm kiếm</button>
-                                </td>
+                                <form:form action="/findById" method="get">
+                                    <td><input type="text" name="code" class="form-control" id="input-search-ma"></td>
+                                    <td><input type="text" name="name" class="form-control" id="input-search-ten"></td>
+                                    <td><input type="number" name="price" class="form-control" id="input-search-gia">
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <select required name="status" id="select-search-het-hang" class="form-control">
+                                            <option disabled value selected>Tất cả</option>
+                                            <option value="1">Còn hàng</option>
+                                            <option value="2">Hết hàng</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" id="btn-tim-kiem">
+                                            <i class="fas fa-search"></i> Tìm kiếm
+                                        </button>
+                                    </td>
+                                </form:form>
                             </tr>
                             </thead>
                             <tbody id="tbody-san-pham">
-                            <tr>
-                                <th scope="row">2</th>
-                                <td></td>
-                                <td>SP115</td>
-                                <td>Dây điện Cadivi</td>
-                                <td>50000</td>
-                                <td>50</td>
-                                <td>Dây điện</td>
-                                <td>15A</td>
-                                <td>2</td>
-                                <td>Dây</td>
-                                <td>Dây điện</td>
-                                <td class="text-center"><span class="badge badge-success">Còn bán</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pen"></i>
-                                        Sửa</button>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
-                                        Xóa</button>
-                                </td>
-                            </tr>
-
-
+                            <c:forEach items="products" var="product">
+                                <tr>
+                                    <td>${product.image}</td>
+                                    <td>${product.id}</td>
+                                    <td>${product.name}</td>
+                                    <td>${product.price}</td>
+                                    <td>${product.amount}</td>
+                                    <td>${product.description}</td>
+                                    <td>${product.specification}</td>
+                                    <td>${product.guarantee}</td>
+                                    <td>${product.unit}</td>
+                                    <td>${product.categoryId}</td>
+                                    <td>${product.status}</td>
+                                    <td class="text-center"><span class="badge badge-success">Còn bán</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                data-target="#exampleModal"><i class="fas fa-pen"></i>
+                                            Sửa
+                                        </button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
+                                            Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -255,4 +270,4 @@
         </div>
     </div>
 </main>
-<script src="admin/ajax/ajax_quan_ly_danh_muc.js" charset="utf-8"></script>
+<script src="/js/ajax_quan_ly_danh_muc.js" charset="utf-8"></script>

@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/customer")
-public class CustomerController {
+public class CustomerAPI {
 
     private CustomerDao customerDao = new CustomerDao_impl();
 

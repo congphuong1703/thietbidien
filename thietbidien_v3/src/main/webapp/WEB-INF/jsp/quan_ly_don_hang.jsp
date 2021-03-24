@@ -5,7 +5,9 @@
   Time: 3:09 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <main>
     <!-- Modal -->
     <div class="title-page mt-4">
@@ -35,9 +37,9 @@
                 </div>
                 <div class="col-md-2 mt-1">
                     <select class="form-control select-dsdh-thanh-toan" id="status-payment">
-                        <option value="false">Danh sách đơn hàng theo trạng thái thanh toán</option>
-                        <option value="true">Chưa thanh toán</option>
-                        <option>Đã thanh toán</option>
+                        <option value selected disabled>Danh sách đơn hàng theo trạng thái thanh toán</option>
+                        <option value="false">Chưa thanh toán</option>
+                        <option value="true">Đã thanh toán</option>
                     </select>
                 </div>
                 <div class="col-md-2 mt-1">
@@ -51,8 +53,11 @@
                     </select>
                 </div>
                 <div class="col-md-4 mt-1 search">
-                    <input type="search" name="" id="search-by-id" class="form-control" value="" style="width:200px;">
-                    <button type="button" class="btn btn-primary" onclick="searchById()">Tìm kiếm</button>
+                    <form:form action="/search" method="get">
+                        <input type="search" name="id" type="number" id="search-by-id" class="form-control" value=""
+                               style="width:200px;">
+                        <button type="button" class="btn btn-primary">Tìm kiếm</button>
+                    </form:form>
                 </div>
             </div>
         </div>
@@ -77,32 +82,39 @@
                             </tr>
                             </thead>
                             <tbody id="tbody-san-pham">
-                            <tr>
-                                <td>4</td>
-                                <td>01/02/2020</td>
-                                <td class="text-center"><span class="badge badge-success">Xác nhận</span></td>
-                                <td>Chuyển khoản</td>
-                                <td class="text-center"><span class="badge badge-success">Đã thanh toán</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-info">Xem chi tiết</button>
-                                </td>
-                                <td>
-                                    <select class="form-control select-thanh-toan">
-                                        <option>Chưa thanh toán</option>
-                                        <option>Đã thanh toán</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="form-control select-trang-thai" >
-                                        <option>Chưa xác nhận</option>
-                                        <option>Xác nhận</option>
-                                        <option>Đang giao</option>
-                                        <option>Hoàn thành</option>
-                                        <option>Đã hủy</option>
-                                    </select>
-                                </td>
-                            </tr>
-
+                            <c:forEach items="${orders}" var="order">
+                                <tr>
+                                    <td>${order.id}</td>
+                                    <td>${order.timecreate}</td>
+                                    <td class="text-center">
+                                            ${order.idOrderstatus}
+                                        <span class="badge badge-success">Xác nhận</span></td>
+                                    <td>${order.payments}</td>
+                                    <td class="text-center"><span class="badge badge-success">Đã thanh toán</span></td>
+                                    <td>
+                                        <a href="/orderDetail?id=${order.id}" class="btn btn-info">Xem chi tiết</a>
+                                    </td>
+                                    <td>
+                                        <select class="form-control select-thanh-toan"
+                                                name="${order.id}"
+                                                id="update-payment">
+                                            <option value="0">Chưa thanh toán</option>
+                                            <option value="1">Đã thanh toán</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control select-trang-thai"
+                                                name="${order.id}"
+                                                id="update-order">
+                                            <option value="1">Chưa xác nhận</option>
+                                            <option value="2">Xác nhận</option>
+                                            <option value="3">Đang giao</option>
+                                            <option value="4">Hoàn thành</option>
+                                            <option value="5">Đã hủy</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -111,5 +123,4 @@
         </div>
     </div>
 </main>
-<script src="admin/ajax/quan-ly-don-hang.js" charset="utf-8"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+<script src="/js/order-manager.js" charset="utf-8"></script>

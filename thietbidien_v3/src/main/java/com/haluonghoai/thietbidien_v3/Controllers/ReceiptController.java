@@ -1,6 +1,10 @@
 package com.haluonghoai.thietbidien_v3.Controllers;
 
+import com.haluonghoai.thietbidien_v3.DAO.ReceiptDao;
+import com.haluonghoai.thietbidien_v3.DAO.imp.ReceiptDao_impl;
+import com.haluonghoai.thietbidien_v3.Models.Receipt;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +17,15 @@ public class ReceiptController {
         return "danh_sach_phieu_nhap";
     }
 
+    ReceiptDao receiptDao = new ReceiptDao_impl();
+
     @RequestMapping("/receipt")
-    public String go(ModelMap model) {
+    public String go(Model model) {
+        try {
+            model.addAttribute("receipts", receiptDao.findAll());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "danh_sach_phieu_nhap";
     }
 

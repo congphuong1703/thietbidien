@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/order")
-public class OrderController {
+public class OrderAPI {
 
     private OrderDao orderDao = new OrderDao_impl();
 

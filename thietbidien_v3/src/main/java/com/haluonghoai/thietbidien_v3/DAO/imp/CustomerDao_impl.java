@@ -4,6 +4,7 @@ package com.haluonghoai.thietbidien_v3.DAO.imp;
 import com.haluonghoai.thietbidien_v3.DAO.CustomerDao;
 import com.haluonghoai.thietbidien_v3.Models.Customer;
 import com.haluonghoai.thietbidien_v3.Models.MyConnection;
+import com.haluonghoai.thietbidien_v3.Models.Order;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,10 +12,11 @@ import java.util.List;
 
 public class CustomerDao_impl implements CustomerDao {
     MyConnection myConnection = new MyConnection();
+
     @Override
     public Customer getObject(ResultSet resultSet) throws SQLException {
         Customer customer = null;
-        customer = new Customer(resultSet.getInt("iMakhachhang"),resultSet.getString("sHoten"),resultSet.getString("sEmail"),resultSet.getString("sDiachi"),resultSet.getString("sSodienthoai"),resultSet.getString("sTendangnhap"),resultSet.getString("sMatkhau"));
+        customer = new Customer(resultSet.getInt("iMakhachhang"), resultSet.getString("sHoten"), resultSet.getString("sEmail"), resultSet.getString("sDiachi"), resultSet.getString("sSodienthoai"), resultSet.getString("sTendangnhap"), resultSet.getString("sMatkhau"));
         return customer;
     }
 
@@ -28,20 +30,28 @@ public class CustomerDao_impl implements CustomerDao {
         List<Customer> list = new ArrayList<>();
         String sql = "{call sp_select_khachhang}";
         Connection connection = myConnection.connectDb();
-        CallableStatement sttm = connection.prepareCall(sql, ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+        CallableStatement sttm = connection.prepareCall(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet resultSet = sttm.executeQuery();
-        if(resultSet.first()){
-            do{
+        if (resultSet.first()) {
+            do {
                 Customer customer = getObject(resultSet);
-                if(customer != null) list.add(customer);
-            }while(resultSet.next());
+                if (customer != null) list.add(customer);
+            } while (resultSet.next());
         }
         return list;
     }
 
     @Override
     public Customer findById(int id) throws Exception {
-        return null;
+        Customer customer = null;
+        String sql = "select * from tblKhachHang where iMakhachhang = ?";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            customer = getObject(resultSet);
+        }
+        return customer;
     }
 
     @Override
@@ -75,16 +85,16 @@ public class CustomerDao_impl implements CustomerDao {
         List<Customer> list = new ArrayList<>();
         String sql = "select * from tblKhachhang where sHoten like ? or sEmail = ? or sDiachi = ?, sSodienthoai = ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
-        preparedStatement.setString(1,name);
-        preparedStatement.setString(2,phoneNumber);
-        preparedStatement.setString(3,email);
-        preparedStatement.setString(4,adress);
+        preparedStatement.setString(1, name);
+        preparedStatement.setString(2, phoneNumber);
+        preparedStatement.setString(3, email);
+        preparedStatement.setString(4, adress);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.first()){
-            do{
+        if (resultSet.first()) {
+            do {
                 Customer customer = getObject(resultSet);
-                if(customer != null) list.add(customer);
-            }while(resultSet.next());
+                if (customer != null) list.add(customer);
+            } while (resultSet.next());
         }
         return list;
     }
