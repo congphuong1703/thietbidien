@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
+
 @RequestMapping(value = "/product")
 public class ProductAPI {
 
@@ -29,62 +31,62 @@ public class ProductAPI {
     private JsonResult jsonResult = new JsonResult();
 
     @PostMapping("/add")
-    protected ResponseEntity<String> addProduct(@RequestBody Product product)  {
+    protected ResponseEntity<String> addProduct(@RequestBody Product product) {
         String rs = "";
-        try{
+        try {
             Product productnew = productService.insert(product);
             rs = productnew != null ? jsonResult.jsonSuccess(productnew) : jsonResult.jsonSuccess("Thêm sản phẩm thất bại");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             rs = jsonResult.jsonFail("upload fail");
         }
         return ResponseEntity.ok(rs);
     }
 
-    @GetMapping(value="/find-all")
-    protected ResponseEntity<String> findAll()  {
+    @GetMapping(value = "/find-all")
+    protected ResponseEntity<String> findAll() {
         String rs = "";
-        try{
+        try {
             List<Product> list = productService.findAll();
             rs = jsonResult.jsonSuccess(list);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             rs = jsonResult.jsonFail("find-all-fail");
         }
         return ResponseEntity.ok(rs);
     }
 
-    @GetMapping(value="/so-ban-ghi")
-    protected ResponseEntity<String> countRecord()  {
+    @GetMapping(value = "/so-ban-ghi")
+    protected ResponseEntity<String> countRecord() {
         String rs = "";
-        try{
+        try {
             int sobanghi = productService.count();
             rs = jsonResult.jsonSuccess(sobanghi);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             rs = jsonResult.jsonFail("so-ban-ghi fail");
         }
         return ResponseEntity.ok(rs);
     }
 
-    @GetMapping(value="/search-san-pham")
+    @GetMapping(value = "/search-san-pham")
     protected ResponseEntity<String> searchProduct(@RequestParam("id") String id,
                                                    @RequestParam("name") String name,
                                                    @RequestParam("price") int price,
-                                                   @RequestParam("status") int status)  {
+                                                   @RequestParam("status") int status) {
         String rs = "";
-        try{
-            List<Product> list = productService.search(id,name,price,status == 1 ? true : false);
+        try {
+            List<Product> list = productService.search(id, name, price, status == 1 ? true : false);
             rs = jsonResult.jsonSuccess(list);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             rs = jsonResult.jsonFail("search-san-pham-fail");
         }
         return ResponseEntity.ok(rs);
     }
 
-    @GetMapping(value="/find-by-category")
-    protected ResponseEntity<String> findByCategory(@RequestParam("idCategory") int idCategory)  {
+    @GetMapping(value = "/find-by-category")
+    protected ResponseEntity<String> findByCategory(@RequestParam("idCategory") int idCategory) {
         String rs = "";
         try {
             List<Product> list = productService.findByCategory(idCategory);
@@ -96,21 +98,21 @@ public class ProductAPI {
         return ResponseEntity.ok(rs);
     }
 
-    @GetMapping(value="/search-by-name")
-    protected ResponseEntity<String> searchByName(@RequestParam("name") String name)  {
+    @GetMapping(value = "/search-by-name")
+    protected ResponseEntity<String> searchByName(@RequestParam("name") String name) {
         String rs = "";
-        try{
+        try {
             List<Product> list = productService.searchByName(name);
             rs = jsonResult.jsonSuccess(list);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             rs = jsonResult.jsonFail("search-by-name-fail");
         }
         return ResponseEntity.ok(rs);
     }
 
-    @PutMapping(value="/update")
-    protected ResponseEntity<String> updateProduct(@RequestBody Product product)  {
+    @PutMapping(value = "/update")
+    protected ResponseEntity<String> updateProduct(@RequestBody Product product) {
         String rs = "";
         try {
             rs = jsonResult.jsonSuccess(productService.update(product));
@@ -121,10 +123,10 @@ public class ProductAPI {
         return ResponseEntity.ok(rs);
     }
 
-    @PutMapping(value="/delete")
-    protected ResponseEntity<String> delete(@RequestParam("id") int id)  {
+    @PutMapping(value = "/delete")
+    protected ResponseEntity<String> delete(@RequestParam("id") int id) {
         String rs = "";
-        try{
+        try {
             rs = jsonResult.jsonSuccess(productService.delete(id));
         } catch (Exception ex) {
             ex.printStackTrace();

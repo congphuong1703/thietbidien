@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 //@RequestMapping(value = "/category")
 public class CategoryAPI {
 
@@ -17,7 +18,7 @@ public class CategoryAPI {
 
     private JsonResult jsonResult = new JsonResult();
 
-    @PostMapping("/add")
+    @PostMapping("/category/add")
     public ResponseEntity addCategory(@RequestBody Category category) {
         String rs = "";
         try {

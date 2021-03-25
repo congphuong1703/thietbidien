@@ -1,7 +1,6 @@
 var URLAPI = "http://localhost:8080/api/v1";
 $(document).ready(function () {
-    $('#update-order').change(function () {
-        var id = $("#update-order").attr("name");
+    function updateOrder(id) {
         var status = $("#update-order option:checked").val();
         $.ajax({
             url: URLAPI + "/order/update-by-status-order",
@@ -14,10 +13,10 @@ $(document).ready(function () {
                 alert("Cap nhat trang thai thanh cong")
             }
         })
-    });
+    }
 
-    $('#update-payment').change(function () {
-        var id = $("#update-payment").attr("name");
+
+    function updatePayment(id) {
         var status = $("#update-order option:checked").val();
         var order = new Object;
         order.id = id;
@@ -31,10 +30,12 @@ $(document).ready(function () {
                 alert("Cap nhat trang thai thanh cong")
             }
         })
-    });
+    }
+
+    ;
 
 
-    $('#status-payment').change(function () {
+    $('#status-payment').change(function updateStatusPayment() {
         var status = $('#status-payment option:checked').val();
 
         $.ajax({

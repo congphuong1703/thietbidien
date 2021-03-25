@@ -31,4 +31,9 @@ public class ReceiptController {
         return "danh_sach_phieu_nhap";
     }
 
+    @GetMapping(value = "/add")
+    public String addReceipt(Model model) {
+        return "them_phieu_nhap";
+    }
+
 }

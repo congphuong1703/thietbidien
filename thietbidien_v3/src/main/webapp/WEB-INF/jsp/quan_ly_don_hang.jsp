@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1>Quản Lý Đơn Hàng 1</h1>
+                    <h1>Quản Lý Đơn Hàng</h1>
                 </div>
                 <div class="col-12">
                     <hr>
@@ -71,14 +71,14 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">Mã đơn hàng</th>
-                                <th scope="col">Thời gian đặt</th>
-                                <th scope="col">Trạng thái đơn hàng</th>
-                                <th scope="col">Hình thức thanh toán</th>
-                                <th scope="col">Trạng thái thanh toán</th>
-                                <th scope="col">Chi tiết đơn hàng</th>
-                                <th scope="col">Cập nhật trạng thái thanh toán</th>
-                                <th scope="col">Cập nhật trạng thái đơn hàng</th>
+                                <th class="col-2">Mã đơn hàng</th>
+                                <th class="col-2">Thời gian đặt</th>
+                                <th class="col-2">Trạng thái đơn hàng</th>
+                                <th class="col-2">Hình thức thanh toán</th>
+                                <th class="col-2">Trạng thái thanh toán</th>
+                                <th class="col-2">Chi tiết đơn hàng</th>
+                                <th class="col-2">Cập nhật trạng thái thanh toán</th>
+                                <th class="col-2">Cập nhật trạng thái đơn hàng</th>
                             </tr>
                             </thead>
                             <tbody id="tbody-san-pham">
@@ -87,22 +87,47 @@
                                     <td>${order.id}</td>
                                     <td>${order.timecreate}</td>
                                     <td class="text-center">
-                                            ${order.idOrderstatus}
-<%--                                        <span class="badge badge-success">Xác nhận</span></td>--%>
-                                    <c:if test="${order.payments == true}">
-                                        <td class="text-center"><span class="badge badge-success">Chuyển khoản</span>
-                                        </td>
-                                    </c:if><c:if test="${order.payments == false}">
-                                    <td class="text-center"><span class="badge badge-success">Sau khi nhận hàng</span>
-                                    </td>
-                                </c:if>
-                                    <c:if test="${order.statusPaments == true}">
-                                        <td class="text-center"><span class="badge badge-success">Đã thanh toán</span>
-                                        </td>
-                                    </c:if><c:if test="${order.statusPaments == false}">
-                                    <td class="text-center"><span class="badge badge-success">Chưa thanh toán</span>
-                                    </td>
-                                </c:if>
+                                        <c:choose>
+                                        <c:when test="${order.idOrderstatus == 1}">
+                                        <span class="badge badge-success">Chưa xác nhận</span></td>
+                                    </c:when>
+                                    <c:when test="${order.idOrderstatus == 2}">
+                                        <span class="badge badge-success">Xác nhận</span></td>
+                                    </c:when>
+                                    <c:when test="${order.idOrderstatus == 3}">
+                                        <span class="badge badge-success">Đang giao</span></td>
+                                    </c:when>
+                                    <c:when test="${order.idOrderstatus == 4}">
+                                        <span class="badge badge-success">Hoàn thành</span></td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="badge badge-success">Đã hủy</span></td>
+                                    </c:otherwise>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test="${order.payments == true}">
+                                            <td class="text-center"><span
+                                                    class="badge badge-success">Chuyển khoản</span>
+                                            </td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td class="text-center"><span
+                                                    class="badge badge-success">Sau khi nhận hàng</span>
+                                            </td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test="${order.statusPaments == true}">
+                                            <td class="text-center"><span
+                                                    class="badge badge-success">Đã thanh toán</span>
+                                            </td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td class="text-center"><span
+                                                    class="badge badge-success">Chưa thanh toán</span>
+                                            </td>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <td>
                                         <a href="/orderDetail?id=${order.id}" class="btn btn-info">Xem chi tiết</a>
                                     </td>

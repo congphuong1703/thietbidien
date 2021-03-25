@@ -194,18 +194,18 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col-2">Ảnh</th>
-                                <th scope="col-2">Mã sản phẩm</th>
-                                <th scope="col-2">Tên sản phẩm</th>
-                                <th scope="col-2">Giá bán</th>
-                                <th scope="col-2">Số lượng</th>
-                                <th scope="col-2">Mô tả</th>
-                                <th scope="col-2">Thông số kỹ thuật</th>
-                                <th scope="col-2">Bảo hành</th>
-                                <th scope="col-2">Đơn vị tính</th>
-                                <th scope="col-4">Danh mục sản phẩm</th>
-                                <th scope="col" style="width: 150px;">Tình trạng bán</th>
-                                <th scope="col" style="width: 175px;">Hành Động</th>
+                                <th class="col-2">Ảnh</th>
+                                <th class="col-2">Mã sản phẩm</th>
+                                <th class="col-2">Tên sản phẩm</th>
+                                <th class="col-2">Giá bán</th>
+                                <th class="col-2">Số lượng</th>
+                                <th class="col-2">Mô tả</th>
+                                <th class="col-2">Thông số kỹ thuật</th>
+                                <th class="col-2">Bảo hành</th>
+                                <th class="col-2">Đơn vị tính</th>
+                                <th class="col-4">Danh mục sản phẩm</th>
+                                <th class="col-2" style="width: 150px;">Tình trạng bán</th>
+                                <th class="col-2" style="width: 175px;">Hành Động</th>
                             </tr>
                             <tr>
                                 <td></td>
@@ -223,7 +223,7 @@
                                     <td></td>
                                     <td>
                                         <select name="status" id="select-search-het-hang" class="form-control">
-                                            <option disabled value="0   " selected>Tất cả</option>
+                                            <option disabled value="0" selected>Chọn</option>
                                             <option value="1">Còn hàng</option>
                                             <option value="2">Hết hàng</option>
                                         </select>
@@ -239,7 +239,7 @@
                             <tbody id="tbody-san-pham">
                             <c:forEach items="${products}" var="product">
                                 <tr>
-                                    <td>${product.image}</td>
+                                    <td><img src="http:/localhost:8080/${product.image}"></td>
                                     <td>${product.id}</td>
                                     <td>${product.name}</td>
                                     <td>${product.price}</td>

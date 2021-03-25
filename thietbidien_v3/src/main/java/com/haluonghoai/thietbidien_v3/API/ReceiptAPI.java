@@ -6,10 +6,12 @@ import com.haluonghoai.thietbidien_v3.Models.JsonResult;
 import com.haluonghoai.thietbidien_v3.Models.Receipt;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServlet;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping(value = "/receipt")
 public class ReceiptAPI extends HttpServlet {
 
@@ -18,20 +20,20 @@ public class ReceiptAPI extends HttpServlet {
     private JsonResult jsonResult = new JsonResult();
 
     @PostMapping("/add")
-    protected ResponseEntity<String> addProduct(@RequestBody Receipt receipt)  {
+    protected ResponseEntity<String> addProduct(@RequestBody Receipt receipt) {
         String rs = "";
-        try{
+        try {
             Receipt newReceipt = receiptDao.insert(receipt);
             rs = newReceipt != null ? jsonResult.jsonSuccess(newReceipt) : jsonResult.jsonSuccess("Thêm phiếu nhập thất bại");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             rs = jsonResult.jsonFail("upload fail");
         }
         return ResponseEntity.ok(rs);
     }
 
-    @GetMapping(value="/find-all")
-    protected ResponseEntity<String> findAll()  {
+    @GetMapping(value = "/find-all")
+    protected ResponseEntity<String> findAll() {
         String rs = "";
         try {
             List<Receipt> receiptList = receiptDao.findAll();
@@ -43,36 +45,36 @@ public class ReceiptAPI extends HttpServlet {
         return ResponseEntity.ok(rs);
     }
 
-    @GetMapping(value="/so-ban-ghi")
-    protected ResponseEntity<String> countRecord()  {
+    @GetMapping(value = "/so-ban-ghi")
+    protected ResponseEntity<String> countRecord() {
         String rs = "";
-        try{
+        try {
             int count = receiptDao.count();
             rs = jsonResult.jsonSuccess(count);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             rs = jsonResult.jsonFail("so-ban-ghi-error");
         }
         return ResponseEntity.ok(rs);
     }
 
-    @GetMapping(value="/find-by-id")
-    protected ResponseEntity<String> findById(@RequestParam("id") int id)  {
+    @GetMapping(value = "/find-by-id")
+    protected ResponseEntity<String> findById(@RequestParam("id") int id) {
         String rs = "";
-        try{
+        try {
             rs = jsonResult.jsonSuccess(id);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             rs = jsonResult.jsonFail("find-by-id-fail");
         }
         return ResponseEntity.ok(rs);
     }
 
-    @PutMapping(value="/update")
-    protected ResponseEntity<String> updateProduct(@RequestBody Receipt receipt)  {
+    @PutMapping(value = "/update")
+    protected ResponseEntity<String> updateProduct(@RequestBody Receipt receipt) {
         String rs = "";
         try {
-            rs = jsonResult.jsonSuccess(receiptDao.updateTinhTrang(receipt.getStatusEnter(),receipt.getId()));
+            rs = jsonResult.jsonSuccess(receiptDao.updateTinhTrang(receipt.getStatusEnter(), receipt.getId()));
         } catch (Exception e) {
             e.printStackTrace();
             rs = jsonResult.jsonFail("update receipt fail");

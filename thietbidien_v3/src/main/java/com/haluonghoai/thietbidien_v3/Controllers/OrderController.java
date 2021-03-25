@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,27 +41,28 @@ public class OrderController {
 
     ProductDao productDao = new ProductDao_impl();
 
-    @GetMapping(value="/order/detail")
+    @GetMapping(value = "/order/detail")
     public String orderDetail(Model model, @RequestParam("id") int id) {
-        try {
-            int total = 0;
-            List<Product> products = new ArrayList<>();
-            Order order = orderDao.findById(id);
-            Customer customer = customerDao.findById(order.getIdCustomer());
-            List<OrderDetails> orderDetailsList = orderDetailDao.seeDetails(order.getId());
-            for (OrderDetails orderDetails : orderDetailsList) {
-                Product product = productDao.findById(orderDetails.getIdProduct());
-                total += product.getAmount() * product.getPrice();
-                product.setTotal((int) (product.getAmount() * product.getPrice()));
-                products.add(product);
+            try {
+                int total = 0;
+                List<Product> products = new ArrayList<>();
+                Order order = orderDao.findById(id);
+                Customer customer = customerDao.findById(order.getIdCustomer());
+                List<OrderDetails> orderDetailsList = orderDetailDao.seeDetails(order.getId());
+                for (OrderDetails orderDetails : orderDetailsList) {
+                    Product product = productDao.findById(orderDetails.getIdProduct());
+                    total += product.getAmount() * product.getPrice();
+                    product.setTotal((int) (product.getAmount() * product.getPrice()));
+                    products.add(product);
+                }
+                model.addAttribute("order", order);
+                model.addAttribute("products", products);
+                model.addAttribute("customer", customer);
+                model.addAttribute("total", total);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            model.addAttribute("order", order);
-            model.addAttribute("products", products);
-            model.addAttribute("customer", customer);
-            model.addAttribute("total", total);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         return "chi_tiet_don_hang";
     }
 
@@ -79,7 +81,7 @@ public class OrderController {
         List<Order> orders = new ArrayList<>();
         try {
             orders.add(orderDao.findById(id));
-            model.addAttribute("orders",orders );
+            model.addAttribute("orders", orders);
         } catch (Exception e) {
             e.printStackTrace();
         }

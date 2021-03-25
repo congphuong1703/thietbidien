@@ -16,8 +16,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="/css/custom.scss" rel="stylesheet" type="text/css" />
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"  />
+    <link href="/css/custom.scss" rel="stylesheet" type="text/css"/>
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="/vendor/jquery/jquery.min.js"></script>
 </head>
 <body class="nav-md">
 <div class="container body">
@@ -42,30 +43,38 @@
                 </div>
                 <!-- /menu profile quick info -->
 
-                <br />
+                <br/>
 
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <ul class="nav side-menu">
-                            <li><a href="/category"><i class="fa fa-edit"></i> Quản lý danh mục sản phẩm <span class="fa fa-chevron-down"></span></a></li>
-                            <li><a href="/product"><i class="fa fa-gift"></i> Quản lý sản phẩm <span class="fa fa-chevron-down"></span></a></li>
-                            <li><a href="/order"><i class="fa fa-shopping-bag"></i> Quản lý đơn hàng <span class="fa fa-chevron-down"></span></a></li>
-                            <li><a href="/supplier"><i class="fa fa-truck"></i> Quản lý nhà cung cấp <span class="fa fa-chevron-down"></span></a></li>
-                            <li><a href="quan-ly-khach-hang.tiles"><i class="fa fa-male"></i> Danh sách khách hàng <span class="fa fa-chevron-down"></span></a></li>
-                            <li><a><i class="fa fa-clipboard"></i> Quản lý phiếu nhập <span class="fa fa-chevron-down"></span></a>
+                            <li><a href="/category"><i class="fa fa-edit"></i> Quản lý danh mục sản phẩm <span
+                                    class="fa fa-chevron-down"></span></a></li>
+                            <li><a href="/product"><i class="fa fa-gift"></i> Quản lý sản phẩm <span
+                                    class="fa fa-chevron-down"></span></a></li>
+                            <li><a href="/order"><i class="fa fa-shopping-bag"></i> Quản lý đơn hàng <span
+                                    class="fa fa-chevron-down"></span></a></li>
+                            <li><a href="/supplier"><i class="fa fa-truck"></i> Quản lý nhà cung cấp <span
+                                    class="fa fa-chevron-down"></span></a></li>
+                            <li><a href="/customer"><i class="fa fa-male"></i> Danh sách khách hàng <span
+                                    class="fa fa-chevron-down"></span></a></li>
+                            <li><a><i class="fa fa-clipboard"></i> Quản lý phiếu nhập <span
+                                    class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="them-phieu-nhap.tiles">Thêm phiếu nhập</a></li>
-                                    <li><a href="danh-sach-phieu-nhap.tiles">Danh sách phiếu nhập</a></li>
+                                    <li><a href="/receipt/add">Thêm phiếu nhập</a></li>
+                                    <li><a href="/receipt">Danh sách phiếu nhập</a></li>
                                 </ul>
                             </li>
-                            <li><a href="quan-ly-nguoi-dung.tiles"><i class="fa fa-male"></i> Quản lý người dùng <span class="fa fa-chevron-down"></span></a></li>
-                            <li><a><i class="far fa-chart-bar"></i> Thống kê <span class="fa fa-chevron-down"></span></a>
+                            <li><a href="/user"><i class="fa fa-male"></i> Quản lý người dùng <span
+                                    class="fa fa-chevron-down"></span></a></li>
+                            <li><a><i class="far fa-chart-bar"></i> Thống kê <span
+                                    class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="thong-ke-doanh-thu.tiles">Thống kê doanh thu</a></li>
-                                    <li><a href="thong-ke-hang-hoa.tiles">Thống kê hàng hóa</a></li>
-                                    <li><a href="thong-ke-chi-phi-nhap.tiles">Thống kê chi phí nhập hàng</a></li>
-                                    <li><a href="thong-ke-loi-nhuan.tiles">Thống kê lợi nhuận </a></li>
+                                    <li><a href="/reportRevenue">Thống kê doanh thu</a></li>
+                                    <li><a href="/reportProduct">Thống kê hàng hóa</a></li>
+                                    <li><a href="/reportProfit">Thống kê chi phí nhập hàng</a></li>
+                                    <li><a href="/reportProfit">Thống kê lợi nhuận </a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -102,12 +111,14 @@
                 <nav class="nav navbar-nav">
                     <ul class=" navbar-right">
                         <li class="nav-item dropdown open" style="padding-left: 15px;">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true"
+                               id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
                                 <img src="admin/images/img.jpg" alt="">John Doe
                             </a>
                             <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item"  href="javascript:;">Help</a>
-                                <a class="dropdown-item"  href="admin/view/login.jsp"><i class="fa fa-sign-out-alt"></i> Log Out</a>
+                                <a class="dropdown-item" href="javascript:;">Help</a>
+                                <a class="dropdown-item" href="admin/view/login.jsp"><i class="fa fa-sign-out-alt"></i>
+                                    Log Out</a>
                             </div>
                         </li>
                     </ul>
@@ -120,7 +131,5 @@
         </footer>
     </div>
 </div>
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </body>
 </html>

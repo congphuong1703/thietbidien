@@ -5,10 +5,7 @@ import com.haluonghoai.thietbidien_v3.DAO.imp.CustomerDao_impl;
 import com.haluonghoai.thietbidien_v3.Models.Customer;
 import com.haluonghoai.thietbidien_v3.Models.JsonResult;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping(value = "/customer")
 public class CustomerAPI {
 

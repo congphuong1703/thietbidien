@@ -17,7 +17,7 @@ public class ProductDao_impl implements ProductDao {
     @Override
     public List<Product> search(String id, String name, float price, boolean status) throws SQLException, ClassNotFoundException {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from tblSanPham where sMasanpham = ? and sTensanpham like ? and fGiaban = ? and bTinhtrang = ?";
+        String sql = "select * from tblSanPham where sMasanpham = ? or sTensanpham like ? or fGiaban = ? and bTinhtrang = ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
         preparedStatement.setString(1,id);
         preparedStatement.setString(2,"%"+name+"%");
