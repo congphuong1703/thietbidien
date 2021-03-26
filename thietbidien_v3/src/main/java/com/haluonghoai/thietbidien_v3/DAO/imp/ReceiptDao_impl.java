@@ -20,7 +20,7 @@ public class ReceiptDao_impl implements ReceiptDao {
         Receipt receipt = null;
         receipt = new Receipt(resultSet.getInt("iMaphieunhap"), resultSet.getDate("dThoigianlap"), resultSet.getString("sGhichu"),
                 resultSet.getInt("iManguoidung"), resultSet.getInt("iManhacungcap"), resultSet.getBoolean("bTinhtrangnhap"));
-        return null;
+        return receipt;
     }
 
     @Override

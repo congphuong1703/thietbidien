@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServlet;
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -30,6 +31,7 @@ public class ReceiptAPI extends HttpServlet {
         try {
             List<ReceiptDetails> receiptDetailsList = receiptDTO.getReceiptDetailsList();
             Receipt receipt = receiptDTO.getReceipt();
+            receipt.setTimeCreate(new Date(System.currentTimeMillis()));
 
             Receipt newReceipt = receiptDao.insert(receipt);
 
