@@ -5,7 +5,9 @@ import com.haluonghoai.thietbidien_v3.DAO.OrderDao;
 import com.haluonghoai.thietbidien_v3.Models.MyConnection;
 import com.haluonghoai.thietbidien_v3.Models.Order;
 import com.haluonghoai.thietbidien_v3.Models.OrderDetails;
+import com.haluonghoai.thietbidien_v3.Models.Receipt;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -175,8 +177,23 @@ public class OrderDao_impl implements OrderDao {
     @Override
     public Order insert(Order order) throws Exception {
         Order newOrder = null;
-
-        return null;
+        String sql = "insert tblDonHang values (?,?,?,?,?,?,?)";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setDate(1, (Date) order.getTimecreate());
+        preparedStatement.setString(2,order.getNote());
+        preparedStatement.setInt(3,order.getIdUser());
+        preparedStatement.setInt(4,order.getIdCustomer());
+        preparedStatement.setInt(5,order.getIdOrderstatus());
+        preparedStatement.setBoolean(6,order.isStatusPaments());
+        preparedStatement.setBoolean(7,order.isPayments());
+        int rs = preparedStatement.executeUpdate();
+        if(rs > 0) {
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if(resultSet.next()) {
+                newOrder = findById((int) resultSet.getLong(1));
+            }
+        }
+        return newOrder;
     }
 
     @Override

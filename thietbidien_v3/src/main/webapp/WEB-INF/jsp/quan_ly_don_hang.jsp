@@ -8,6 +8,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <main>
     <!-- Modal -->
     <div class="title-page mt-4">
@@ -38,8 +39,8 @@
                 <div class="col-md-2 mt-1">
                     <select class="form-control select-dsdh-thanh-toan" id="status-payment">
                         <option value selected disabled>Danh sách đơn hàng theo trạng thái thanh toán</option>
-                        <option value="false">Chưa thanh toán</option>
-                        <option value="true">Đã thanh toán</option>
+                        <option value="0">Chưa thanh toán</option>
+                        <option value="1">Đã thanh toán</option>
                     </select>
                 </div>
                 <div class="col-md-2 mt-1">
@@ -82,76 +83,82 @@
                             </tr>
                             </thead>
                             <tbody id="tbody-san-pham">
-                            <c:forEach items="${orders}" var="order">
-                                <tr>
-                                    <td>${order.id}</td>
-                                    <td>${order.timecreate}</td>
-                                    <td class="text-center">
+                            <c:if test="${orders.size() > 0}">
+                                <c:forEach items="${orders}" var="order">
+                                    <tr>
+                                        <td>${order.id}</td>
+                                        <td>${order.timecreate}</td>
+                                        <td class="text-center">
+                                            <c:choose>
+                                            <c:when test="${order.idOrderstatus == 1}">
+                                            <span class="badge badge-success">Chưa xác nhận</span></td>
+                                        </c:when>
+                                        <c:when test="${order.idOrderstatus == 2}">
+                                            <span class="badge badge-success">Xác nhận</span></td>
+                                        </c:when>
+                                        <c:when test="${order.idOrderstatus == 3}">
+                                            <span class="badge badge-success">Đang giao</span></td>
+                                        </c:when>
+                                        <c:when test="${order.idOrderstatus == 4}">
+                                            <span class="badge badge-success">Hoàn thành</span></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="badge badge-success">Đã hủy</span></td>
+                                        </c:otherwise>
+                                        </c:choose>
                                         <c:choose>
-                                        <c:when test="${order.idOrderstatus == 1}">
-                                        <span class="badge badge-success">Chưa xác nhận</span></td>
-                                    </c:when>
-                                    <c:when test="${order.idOrderstatus == 2}">
-                                        <span class="badge badge-success">Xác nhận</span></td>
-                                    </c:when>
-                                    <c:when test="${order.idOrderstatus == 3}">
-                                        <span class="badge badge-success">Đang giao</span></td>
-                                    </c:when>
-                                    <c:when test="${order.idOrderstatus == 4}">
-                                        <span class="badge badge-success">Hoàn thành</span></td>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <span class="badge badge-success">Đã hủy</span></td>
-                                    </c:otherwise>
-                                    </c:choose>
-                                    <c:choose>
-                                        <c:when test="${order.payments == true}">
-                                            <td class="text-center"><span
-                                                    class="badge badge-success">Chuyển khoản</span>
-                                            </td>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <td class="text-center"><span
-                                                    class="badge badge-success">Sau khi nhận hàng</span>
-                                            </td>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <c:choose>
-                                        <c:when test="${order.statusPaments == true}">
-                                            <td class="text-center"><span
-                                                    class="badge badge-success">Đã thanh toán</span>
-                                            </td>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <td class="text-center"><span
-                                                    class="badge badge-success">Chưa thanh toán</span>
-                                            </td>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <td>
-                                        <a href="/orderDetail?id=${order.id}" class="btn btn-info">Xem chi tiết</a>
-                                    </td>
-                                    <td>
-                                        <select class="form-control select-thanh-toan"
-                                                name="${order.id}"
-                                                id="update-payment">
-                                            <option value="0">Chưa thanh toán</option>
-                                            <option value="1">Đã thanh toán</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select class="form-control select-trang-thai"
-                                                name="${order.id}"
-                                                id="update-order">
-                                            <option value="1">Chưa xác nhận</option>
-                                            <option value="2">Xác nhận</option>
-                                            <option value="3">Đang giao</option>
-                                            <option value="4">Hoàn thành</option>
-                                            <option value="5">Đã hủy</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                                            <c:when test="${order.payments == true}">
+                                                <td class="text-center"><span
+                                                        class="badge badge-success">Chuyển khoản</span>
+                                                </td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td class="text-center">
+                                                    <span class="badge badge-success">Sau khi nhận hàng</span>
+                                                </td>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${order.statusPaments == true}">
+                                                <td class="text-center">
+                                                    <span class="badge badge-success">Đã thanh toán</span>
+                                                </td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td class="text-center"><span
+                                                        class="badge badge-success">Chưa thanh toán</span>
+                                                </td>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <td>
+                                            <a href="/orderDetail?id=${order.id}" class="btn btn-info">Xem chi tiết</a>
+                                        </td>
+                                        <td>
+                                            <select class="form-control select-thanh-toan"
+                                                    name="${order.id}"
+                                                    onchange="updateStatusPayment(${order.id})"
+                                                    id="${order.id}">
+                                                <option value selected disabled>Chọn</option>
+                                                <option value="0">Chưa thanh toán</option>
+                                                <option value="1">Đã thanh toán</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="form-control select-trang-thai"
+                                                    name="${order.id}"
+                                                    id="${order.id}"
+                                                    onchange="updateStatusOrder(${order.id})">
+                                                <option value selected disabled>Chọn</option>
+                                                <option value="1">Chưa xác nhận</option>
+                                                <option value="2">Xác nhận</option>
+                                                <option value="3">Đang giao</option>
+                                                <option value="4">Hoàn thành</option>
+                                                <option value="5">Đã hủy</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
                             </tbody>
                         </table>
                     </div>

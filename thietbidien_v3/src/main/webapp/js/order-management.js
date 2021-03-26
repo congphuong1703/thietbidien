@@ -1,71 +1,99 @@
 var URLAPI = "http://localhost:8080/api/v1";
-$(document).ready(function () {
-    function updateOrder(id) {
-        var status = $("#update-order option:checked").val();
-        $.ajax({
-            url: URLAPI + "/order/update-by-status-order",
-            type: 'PUT',
-            data: {
-                "id": id,
-                "idOrderstatus": status
-            },
-            success: function (res) {
-                alert("Cap nhat trang thai thanh cong")
-            }
-        })
-    }
+
+function updateStatusOrder(id) {
+    var status = $('.select-trang-thai[id=' + id + ']').val();
+    var order = new Object;
+    order.id = id;
+    order.idOrderstatus = status;
+    $.ajax({
+        url: URLAPI + "/order/update-by-status-order",
+        type: 'PUT',
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify(order),
+        success: function (res) {
+            alert("Cap nhat trang thai thanh cong")
+            console.log(res);
+            window.location.reload();
+        }
+    })
+}
 
 
-    function updatePayment(id) {
-        var status = $("#update-order option:checked").val();
-        var order = new Object;
-        order.id = id;
-        order.statusPayment = status;
-        $.ajax({
-            url: URLAPI + "/order/update-by-status-payments",
-            type: 'PUT',
-            dataType: 'json',
-            data: order,
-            success: function (res) {
-                alert("Cap nhat trang thai thanh cong")
-            }
-        })
-    }
+function updateStatusPayment(id) {
+    var status = $('.select-thanh-toan[id=' + id + ']').val();
+    var order = new Object;
+    order.id = id;
+    order.statusPaments = status == 0 ? false : true;
+    $.ajax({
+        url: URLAPI + "/order/update-by-status-payments",
+        type: 'PUT',
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify(order),
+        success: function (res) {
+            console.log(res);
+            alert("Cap nhat trang thai thanh cong")
+            window.location.reload();
+        }
+    })
+}
 
-    ;
+$('#status-payment').change(function updateStatusPayment() {
+    var status = $('#status-payment option:checked').val();
+    $.ajax({
+        url: URLAPI + "/order/find-by-trang-thai-thanh-toan?statusPayments=" + status,
+        type: 'GET',
+        dataType: 'json',
+        success: function (res) {
+            $('#tbody-san-pham').empty();
+            let item = res["data"];
+            console.log(res.data);
+            for (var i = 0; i < item.length; i++) {
+                var orderStatus = "";
+                var statusPayment = "";
+                var payment = "";
+                if (item[i]["idOrderstatus"] == 1) {
+                    orderStatus = `<span class="badge badge-success">Chưa xác nhận</span>`;
+                } else if (item[i]["idOrderstatus"] == 2) {
+                    orderStatus = `<span class="badge badge-success">Xác nhận</span>`;
 
+                } else if (item[i]["idOrderstatus"] == 3) {
+                    orderStatus = `<span class="badge badge-success">Đang giao</span>`;
 
-    $('#status-payment').change(function updateStatusPayment() {
-        var status = $('#status-payment option:checked').val();
+                } else if (item[i]["idOrderstatus"] == 4) {
+                    orderStatus = `<span class="badge badge-success">Hoàn thành</span>`;
 
-        $.ajax({
-            url: URLAPI + "/order/find-by-trang-thai-thanh-toan?statusPayments=" + status,
-            type: 'GET',
-            dataType: 'json',
-            success: function (res) {
-                $('#tbody-san-pham').empty();
-                item = res.data;
-                console.log(item);
-                for (var i = 0; i < item.length; i++) {
-                    $('#tbody-san-pham').append("<tr>" +
-                        "<td>" + item.id + "</td>" +
-                        "<td>" + item.timecreate + "</td>" +
-                        "<td>" + item.idOrderstatus + "</td>" +
-                        "<td>" + item.payments + "</td>" +
-                        "<td>" + item.statusPaments + "</td>" +
-                        "<td><button onclick=\"chiTietDonHang(" + item[i].iMadonhang + ")\"id=\"chi-tiet-don-hang\" type=\"button\" className=\"btn btn-info\">" + "Xem chi tiết" + "</button></td>" +
-                        "<td><select className=\"form-control select-thanh-toan\" onchange=\"updateStatusPayment(" + item[i].id + ")\">" +
-                        "<option value=\"0\">Chưa thanh toán</option>" +
-                        "<option value=\"1\">Đã thanh toán</option></select></td>" +
-                        "<td><select className=\"form-control select-trang-thai\" onchange=\"updateStatusOrder(" + item[i].id + ")\">" +
-                        "<option value=\"1\">Chưa xác nhận</option>" +
-                        "<option value=\"2\">Xác nhận</option>" +
-                        "<option value=\"3\">Đang giao</option>" +
-                        "<option value=\"4\">Hoàn thành</option>" +
-                        "<option value=\"5\">Đã hủy</option></select></td>" +
-                        "</tr>")
+                } else if (item[i]["idOrderstatus"] == 5) {
+                    orderStatus = `<span class="badge badge-success">Đã hủy</span>`;
                 }
+                if (item[i]["statusPaments"] == false)
+                    statusPayment = `<span class="badge badge-success">Chưa thanh toán</span>`;
+                else
+                    statusPayment = `<span class="badge badge-success">Đã thanh toán</span>`;
+                if (item[i]["payments"])
+                    payment = `<span class="badge badge-success">Sau khi nhận hàng</span>`;
+                else
+                    payment = `<span class="badge badge-success">Chuyển khoản</span>`;
+
+                $('#tbody-san-pham').append("<tr>" +
+                    "<td>" + item[i]["id"] + "</td>" +
+                    "<td>" + item[i]["timecreate"] + "</td>" +
+                    "<td>" + orderStatus + "</td>" +
+                    "<td>" + payment + "</td>" +
+                    "<td>" + statusPayment + "</td>" +
+                    "<td><button onclick=\"chiTietDonHang(" + item[i]["iMadonhang"] + ")\"id=\"chi-tiet-don-hang\" type=\"button\" className=\"btn btn-info\">" + "Xem chi tiết" + "</button></td>" +
+                    "<td><select className=\"form-control select-thanh-toan\" id=\"" + item[i]["id"] + "\" onchange=\"updateStatusPayment(" + item[i]["id"] + ")\">" +
+                    "<option value selected disabled>Chọn</option>" +
+                    "<option value=\"0\">Chưa thanh toán</option>" +
+                    "<option value=\"1\">Đã thanh toán</option></select></td>" +
+                    "<td><select className=\"form-control select-trang-thai\" id=\"" + item[i]["id"] + "\" onchange=\"updateStatusOrder(" + item[i]["id"] + ")\">" +
+                    "<option value selected disabled>Chọn</option>" +
+                    "<option value=\"1\">Chưa xác nhận</option>" +
+                    "<option value=\"2\">Xác nhận</option>" +
+                    "<option value=\"3\">Đang giao</option>" +
+                    "<option value=\"4\">Hoàn thành</option>" +
+                    "<option value=\"5\">Đã hủy</option></select></td>" +
+                    "</tr>")
             }
-        })
+        }
     })
 })

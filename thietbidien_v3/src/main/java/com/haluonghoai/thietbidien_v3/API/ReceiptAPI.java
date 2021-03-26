@@ -1,9 +1,13 @@
 package com.haluonghoai.thietbidien_v3.API;
 
 import com.haluonghoai.thietbidien_v3.DAO.ReceiptDao;
+import com.haluonghoai.thietbidien_v3.DAO.ReceiptDetailDao;
 import com.haluonghoai.thietbidien_v3.DAO.imp.ReceiptDao_impl;
+import com.haluonghoai.thietbidien_v3.DAO.imp.ReceiptDetailDao_Impl;
+import com.haluonghoai.thietbidien_v3.DTO.ReceiptDTO;
 import com.haluonghoai.thietbidien_v3.Models.JsonResult;
 import com.haluonghoai.thietbidien_v3.Models.Receipt;
+import com.haluonghoai.thietbidien_v3.Models.ReceiptDetails;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,19 +19,28 @@ import java.util.List;
 @RequestMapping(value = "/receipt")
 public class ReceiptAPI extends HttpServlet {
 
+    private ReceiptDetailDao receiptDetailDao = new ReceiptDetailDao_Impl();
     private ReceiptDao receiptDao = new ReceiptDao_impl();
 
     private JsonResult jsonResult = new JsonResult();
 
     @PostMapping("/add")
-    protected ResponseEntity<String> addProduct(@RequestBody Receipt receipt) {
+    protected ResponseEntity<String> addReceipt(@RequestBody ReceiptDTO receiptDTO) {
         String rs = "";
         try {
+            List<ReceiptDetails> receiptDetailsList = receiptDTO.getReceiptDetailsList();
+            Receipt receipt = receiptDTO.getReceipt();
+
             Receipt newReceipt = receiptDao.insert(receipt);
-            rs = newReceipt != null ? jsonResult.jsonSuccess(newReceipt) : jsonResult.jsonSuccess("Thêm phiếu nhập thất bại");
+
+            for (ReceiptDetails receiptDetails : receiptDetailsList) {
+                receiptDetails.setIdReceipt(newReceipt.getId());
+                receiptDetailDao.insert(receiptDetails);
+            }
+            rs = jsonResult.jsonSuccess("Success");
         } catch (Exception ex) {
             ex.printStackTrace();
-            rs = jsonResult.jsonFail("upload fail");
+            rs = jsonResult.jsonFail("Not success");
         }
         return ResponseEntity.ok(rs);
     }

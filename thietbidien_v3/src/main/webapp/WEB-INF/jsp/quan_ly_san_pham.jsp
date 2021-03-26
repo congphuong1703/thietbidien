@@ -239,7 +239,7 @@
                             <tbody id="tbody-san-pham">
                             <c:forEach items="${products}" var="product">
                                 <tr>
-                                    <td><img src="http:/localhost:8080/${product.image}"></td>
+                                    <td><img src="${product.image}"></td>
                                     <td>${product.id}</td>
                                     <td>${product.name}</td>
                                     <td>${product.price}</td>
@@ -249,8 +249,14 @@
                                     <td>${product.guarantee}</td>
                                     <td>${product.unit}</td>
                                     <td>${product.categoryId}</td>
-                                    <td>${product.status}</td>
-                                    <td class="text-center"><span class="badge badge-success">Còn bán</span></td>
+                                    <c:choose>
+                                        <c:when test="${product.status}">
+                                            <td class="text-center"><span class="badge badge-success">Còn bán</span></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td class="text-center"><span class="badge badge-warning">Không bán</span></td>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <td>
                                         <button type="button" class="btn btn-warning" data-toggle="modal"
                                                 data-target="#exampleModal"><i class="fas fa-pen"></i>

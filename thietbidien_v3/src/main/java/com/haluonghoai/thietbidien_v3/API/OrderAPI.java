@@ -1,10 +1,17 @@
 package com.haluonghoai.thietbidien_v3.API;
 
 import com.google.gson.Gson;
+import com.haluonghoai.thietbidien_v3.DAO.CustomerDao;
 import com.haluonghoai.thietbidien_v3.DAO.OrderDao;
+import com.haluonghoai.thietbidien_v3.DAO.OrderDetailDao;
+import com.haluonghoai.thietbidien_v3.DAO.imp.CustomerDao_impl;
 import com.haluonghoai.thietbidien_v3.DAO.imp.OrderDao_impl;
+import com.haluonghoai.thietbidien_v3.DAO.imp.OrderDetailDao_Impl;
+import com.haluonghoai.thietbidien_v3.DTO.OrderDTO;
 import com.haluonghoai.thietbidien_v3.Models.JsonResult;
 import com.haluonghoai.thietbidien_v3.Models.Order;
+import com.haluonghoai.thietbidien_v3.Models.OrderDetails;
+import com.haluonghoai.thietbidien_v3.Models.Product;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +20,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.Consumes;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @RestController
@@ -22,6 +32,7 @@ import java.util.List;
 public class OrderAPI {
 
     private OrderDao orderDao = new OrderDao_impl();
+    private OrderDetailDao orderDetailDao = new OrderDetailDao_Impl();
 
     private JsonResult jsonResult = new JsonResult();
 
@@ -124,6 +135,27 @@ public class OrderAPI {
         } catch (Exception e) {
             e.printStackTrace();
             rs = jsonResult.jsonFail("update order fail");
+        }
+        return ResponseEntity.ok(rs);
+    }
+
+    @PostMapping(value = "/addPurchase")
+    public ResponseEntity<String> add(@RequestBody OrderDTO orderDTO) {
+        String rs = "";
+        try {
+            List<OrderDetails> orderDetailsList = orderDTO.getOrderDetailsList();
+            Order order = orderDTO.getOrder();
+            order.setTimecreate(new Date(System.currentTimeMillis()));
+            Order newOrder = orderDao.insert(order);
+
+            for (OrderDetails orderDetails : orderDetailsList) {
+                orderDetails.setIdOrder(newOrder.getId());
+                orderDetailDao.insert(orderDetails);
+            }
+            rs =jsonResult.jsonSuccess("Success");
+        } catch (Exception e) {
+            e.printStackTrace();
+            rs = jsonResult.jsonSuccess("Not Success");
         }
         return ResponseEntity.ok(rs);
     }

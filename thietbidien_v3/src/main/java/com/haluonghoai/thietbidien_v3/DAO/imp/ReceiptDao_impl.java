@@ -18,8 +18,8 @@ public class ReceiptDao_impl implements ReceiptDao {
     @Override
     public Receipt getObject(ResultSet resultSet) throws SQLException {
         Receipt receipt = null;
-        receipt = new Receipt(resultSet.getInt("iMaphieunhap"),resultSet.getDate("dThoigianlap"),resultSet.getString("sGhichu"),
-                resultSet.getInt("iManguoidung"),resultSet.getInt("iManhacungcap"),resultSet.getBoolean("bTinhtrangnhap"));
+        receipt = new Receipt(resultSet.getInt("iMaphieunhap"), resultSet.getDate("dThoigianlap"), resultSet.getString("sGhichu"),
+                resultSet.getInt("iManguoidung"), resultSet.getInt("iManhacungcap"), resultSet.getBoolean("bTinhtrangnhap"));
         return null;
     }
 
@@ -34,11 +34,11 @@ public class ReceiptDao_impl implements ReceiptDao {
         String sql = "select * from tblPhieuNhap";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.first()){
-            do{
+        if (resultSet.first()) {
+            do {
                 Receipt receipt = getObject(resultSet);
-                if(receipt!=null) receipts.add(receipt);
-            }while (resultSet.next());
+                if (receipt != null) receipts.add(receipt);
+            } while (resultSet.next());
         }
         return receipts;
     }
@@ -48,12 +48,12 @@ public class ReceiptDao_impl implements ReceiptDao {
         Receipt receipt = new Receipt();
         String sql = "select * from tblPhieuNhap where iMaphieunhap = ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
-        preparedStatement.setInt(1,id);
+        preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.first()){
-            do{
+        if (resultSet.first()) {
+            do {
                 receipt = getObject(resultSet);
-            }while(resultSet.next());
+            } while (resultSet.next());
         }
         return receipt;
     }
@@ -64,14 +64,14 @@ public class ReceiptDao_impl implements ReceiptDao {
         String sql = "insert tblPhieuNhap values (?,?,?,?,?)";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
         preparedStatement.setDate(1, (Date) receipt.getTimeCreate());
-        preparedStatement.setString(2,receipt.getNote());
-        preparedStatement.setInt(3,receipt.getIdUser());
-        preparedStatement.setInt(4,receipt.getIdSupplier());
-        preparedStatement.setBoolean(5,receipt.getStatusEnter());
+        preparedStatement.setString(2, receipt.getNote());
+        preparedStatement.setInt(3, receipt.getIdUser());
+        preparedStatement.setInt(4, receipt.getIdSupplier());
+        preparedStatement.setBoolean(5, receipt.getStatusEnter());
         int rs = preparedStatement.executeUpdate();
-        if(rs > 0) {
+        if (rs > 0) {
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            if(resultSet.first()) {
+            if (resultSet.next()) {
                 newReceipt = findById((int) resultSet.getLong(1));
             }
         }
@@ -104,10 +104,10 @@ public class ReceiptDao_impl implements ReceiptDao {
         boolean result = false;
         String sql = "update tblPhieuNhap set bTinhtrangnhap = ? where iMaphieunhap = ?";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
-        preparedStatement.setBoolean(1,statusEnter);
-        preparedStatement.setInt(2,id);
+        preparedStatement.setBoolean(1, statusEnter);
+        preparedStatement.setInt(2, id);
         int rs = preparedStatement.executeUpdate();
-        if(rs > 0) result = true;
+        if (rs > 0) result = true;
         return result;
     }
 

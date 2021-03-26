@@ -37,7 +37,7 @@
                                 </tr>
                                 </thead>
                                 <tbody id="tbody-san-pham">
-                                <c:forEach items="products" var="product">
+                                <c:forEach items="${products}" var="product">
                                     <tr>
                                         <th scope="row">${product.id}</th>
                                         <td>${product.name}</td>
