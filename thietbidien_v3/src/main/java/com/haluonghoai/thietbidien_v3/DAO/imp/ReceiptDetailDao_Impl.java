@@ -2,10 +2,7 @@ package com.haluonghoai.thietbidien_v3.DAO.imp;
 
 import com.haluonghoai.thietbidien_v3.DAO.ReceiptDao;
 import com.haluonghoai.thietbidien_v3.DAO.ReceiptDetailDao;
-import com.haluonghoai.thietbidien_v3.Models.MyConnection;
-import com.haluonghoai.thietbidien_v3.Models.Product;
-import com.haluonghoai.thietbidien_v3.Models.Receipt;
-import com.haluonghoai.thietbidien_v3.Models.ReceiptDetails;
+import com.haluonghoai.thietbidien_v3.Models.*;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -37,7 +34,15 @@ public class ReceiptDetailDao_Impl implements ReceiptDetailDao {
 
     @Override
     public ReceiptDetails findById(int id) throws Exception {
-        return null;
+        ReceiptDetails receiptDetails = null;
+        String sql = "select * from tblChiTietPhieuNhap where iMaphieunhap = ?";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet =  preparedStatement.executeQuery();
+        if(resultSet.first()) {
+            receiptDetails = getObject(resultSet);
+        }
+        return receiptDetails;
     }
 
     @Override

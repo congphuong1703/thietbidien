@@ -84,8 +84,9 @@
                             </thead>
                             <tbody id="tbody-san-pham">
                             <c:if test="${orders.size() > 0}">
-                                <c:forEach items="${orders}" var="order">
+                                <c:forEach items="${orders}" var="order" varStatus="stt">
                                     <tr>
+                                        <th scope="col">${stt.index}</th>
                                         <td>${order.id}</td>
                                         <td>${order.timecreate}</td>
                                         <td class="text-center">

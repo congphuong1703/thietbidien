@@ -194,6 +194,7 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
+                                <th class="col-2">STT</th>
                                 <th class="col-2">Ảnh</th>
                                 <th class="col-2">Mã sản phẩm</th>
                                 <th class="col-2">Tên sản phẩm</th>
@@ -237,8 +238,9 @@
                             </tr>
                             </thead>
                             <tbody id="tbody-san-pham">
-                            <c:forEach items="${products}" var="product">
+                            <c:forEach items="${products}" var="product" varStatus="stt">
                                 <tr>
+                                    <th scope="col">${stt.index}</th>
                                     <td><img src="${product.image}"></td>
                                     <td>${product.id}</td>
                                     <td>${product.name}</td>

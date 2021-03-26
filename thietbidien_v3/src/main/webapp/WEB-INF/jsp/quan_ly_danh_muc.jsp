@@ -1,14 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 01-Feb-21
-  Time: 12:48 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <main>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -47,11 +44,12 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận thao tác</h5>
+                    <h5 class="modal-title" id="exampleModalLabel1">Xác nhận thao tác</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -88,7 +86,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10">
-                    <button id="btn-them" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> Thêm danh mục sản phẩm</button>
+                    <button id="btn-them" type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-plus"></i> Thêm danh mục sản phẩm
+                    </button>
                 </div>
                 <div class="col-md-4 mt-1 hienthi">
                     Hiển thị bản ghi: <span id="hien-thi" style="border:1px solid #ddd; padding: 3px"></span>
@@ -105,37 +105,41 @@
                             <thead>
                             <tr>
                                 <th scope="col">STT</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Tên danh mục sản phẩm</th>
                                 <th scope="col" style="width: 150px;">Tình trạng bán</th>
                                 <th scope="col" style="width: 175px;">Hành Động</th>
                             </tr>
                             </thead>
                             <tbody>
+                            <c:forEach items="${categories}" var="category" varStatus="stt">
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Dây điện</td>
-                                <td class="text-center"><span class="badge badge-success">Còn bán</span></td>
+                                <th scope="row">${stt.index}</th>
+                                <td value="${category.id}">${category.id}</td>
+                                <td value="${category.name}">${category.name}</td>
+                                <c:choose>
+                                    <c:when test="${category.status}">
+                                        <td value="${category.status}" class="text-center"><span
+                                                class="badge badge-success">Còn bán</span></td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td valu="${category.status}" class="text-center"><span
+                                                class="badge badge-danger">Không bán</span></td>
+                                    </c:otherwise>
+                                </c:choose>
                                 <td>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pen"></i>
-                                        Sửa</button>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal"
+                                            data-target="#exampleModal" value="${category.id}"><i
+                                            class="fas fa-pen"></i>
+                                        Sửa
+                                    </button>
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
-                                        Xóa</button>
+                                            data-target="#exampleModal1" value="${category.id}"><i class="fas fa-trash-alt"></i>
+                                        Xóa
+                                    </button>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Thiết bị chiếu sáng</td>
-                                <td class="text-center"><span class="badge badge-danger">Không còn bán</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pen"></i>
-                                        Sửa</button>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
-                                        Xóa</button>
-                                </td>
-                            </tr>
-                            </tbody>
+                            </c:forEach>
                         </table>
                     </div>
                 </div>

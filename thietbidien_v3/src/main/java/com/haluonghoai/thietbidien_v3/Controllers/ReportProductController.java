@@ -12,12 +12,12 @@ public class ReportProductController {
 
     @ModelAttribute(name = "changeURL")
     public String changeURL() {
-        return "thong_ke_san_pham";
+        return "thong_ke_hang_hoa";
     }
 
     @GetMapping
     public String go(ModelMap model) {
-        return "thong_ke_san_pham";
+        return "thong_ke_hang_hoa";
     }
 
 }

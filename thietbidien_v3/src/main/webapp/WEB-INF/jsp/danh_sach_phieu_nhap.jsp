@@ -1,11 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 01-Feb-21
-  Time: 3:09 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <main>
     <!-- Modal -->
     <div class="title-page mt-4">
@@ -29,7 +25,8 @@
                 </div>
             </div>
         </div>
-    </div><br>
+    </div>
+    <br>
     <div class="table-data">
         <div class="container">
             <div class="row">
@@ -50,40 +47,36 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Admin</td>
-                                <td>Panasonic</td>
-                                <td>22-03-2020</td>
-                                <td>50000</td>
-                                <td>Đã nhập</td>
-                                <td>
-                                    <a class="btn btn-info" href="chi-tiet-phieu-nhap.tiles">Xem chi tiết</a>
-                                </td>
-                                <td>
-                                    <select class="form-control select-dsdh-htthanh-toan">
-                                        <option>Chưa nhập</option>
-                                        <option>Đã nhập</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Admin</td>
-                                <td>Panasonic</td>
-                                <td>22-03-2020</td>
-                                <td>50000</td>
-                                <td>Chưa nhập</td>
-                                <td>
-                                    <a class="btn btn-info" href="chi-tiet-don-hang.tiles">Xem chi tiết</a>
-                                </td>
-                                <td>
-                                    <select class="form-control select-dsdh-htthanh-toan">
-                                        <option>Chưa nhập</option>
-                                        <option>Đã nhập</option>
-                                    </select>
-                                </td>
-                            </tr>
+                            <c:forEach varStatus="stt" items="${receipts}" var="receipt">
+                                <tr>
+                                    <th scope="row">${stt.index}</th>
+                                    <td value="${receipt.id}">${receipt.id}</td>
+                                    <td value="${receipt.idUser}">${receipt.idUser}</td>
+                                    <td value="${receipt.idSupplier}">${receipt.idSupplier}</td>
+                                    <td value="${receipt.timeCreate}">${receipt.timeCreate}</td>
+                                    <td value="${receipt.note}">${receipt.note}</td>
+                                    <c:choose>
+                                        <c:when test="${!receipt.statusEnter}">
+                                            <td value="${receipt.statusEnter}" class="text-center"><span
+                                                    class="badge badge-danger">Chưa nhập</span></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td value="${receipt.statusEnter}" class="text-center"><span
+                                                    class="badge badge-success">Đã nhập</span></td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <td>
+                                        <a class="btn btn-info" href="/receiptDetail/findById?id=${receipt.id}">Xem chi
+                                            tiết</a>
+                                    </td>
+                                    <td>
+                                        <select class="form-control select-dsdh-htthanh-toan">
+                                            <option>Chưa nhập</option>
+                                            <option>Đã nhập</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>

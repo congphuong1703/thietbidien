@@ -1,14 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 25-Feb-21
-  Time: 7:28 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <main>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -24,7 +21,6 @@
                                 <label>Tên nhà cung cấp</label>
                                 <input type="text" class="form-control" id="input-ten" placeholder="Nhập tên">
                                 <div class="invalid-feedback">
-                                    Error!
                                 </div>
                             </div>
                         </div>
@@ -33,7 +29,6 @@
                                 <label>Số điện thoại</label>
                                 <input type="text" class="form-control" id="input-sdt" placeholder="Nhập số điện thoại">
                                 <div class="invalid-feedback">
-                                    Error!
                                 </div>
                             </div>
                         </div>
@@ -42,7 +37,6 @@
                                 <label>Email</label>
                                 <input type="text" class="form-control" id="input-email" placeholder="Nhập email">
                                 <div class="invalid-feedback">
-                                    Error!
                                 </div>
                             </div>
                         </div>
@@ -51,7 +45,6 @@
                                 <label>Địa chỉ</label>
                                 <input type="number" class="form-control" id="input-dia-chi" placeholder="Nhập địa chỉ">
                                 <div class="invalid-feedback">
-                                    Error!
                                 </div>
                             </div>
                         </div>
@@ -64,11 +57,12 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận thao tác</h5>
+                    <h5 class="modal-title" id="exampleModalLabel1">Xác nhận thao tác</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -105,7 +99,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10">
-                    <button id="btn-them" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> Thêm nhà cung cấp</button>
+                    <button id="btn-them" type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-plus"></i> Thêm nhà cung cấp
+                    </button>
                 </div>
                 <div class="col-md-2 mt-1 hienthi">
                     Hiển thị bản ghi <input type="text" readonly style="width:30px">
@@ -122,6 +118,7 @@
                             <thead>
                             <tr>
                                 <th scope="col">STT</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Tên nhà cung cấp</th>
                                 <th scope="col">Số điện thoại</th>
                                 <th scope="col">Email</th>
@@ -130,37 +127,28 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Panasonic</td>
-                                <td>094358496</td>
-                                <td>hoai@gmail.com</td>
-                                <td>Bắc Giang</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pen"></i>
-                                        Sửa</button>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
-                                        Xóa</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Panasonic</td>
-                                <td>094358496</td>
-                                <td>hoai@gmail.com</td>
-                                <td>Bắc Giang</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pen"></i>
-                                        Sửa</button>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
-                                        Xóa</button>
-                                </td>
-                            </tr>
-
-
-
+                            <c:forEach items="${suppliers}" var="supplier" varStatus="stt">
+                                <tr>
+                                    <th scope="row">${stt.index}</th>
+                                    <td value="${supplier.id}">${supplier.id}</td>
+                                    <td value="${supplier.name}">${supplier.name}</td>
+                                    <td value="${supplier.sdt}">${supplier.sdt}</td>
+                                    <td value="${supplier.email}">${supplier.email}</td>
+                                    <td value="${supplier.adress}">${supplier.adress}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning" value="${supplier.id}"
+                                                data-toggle="modal" data-target="#exampleModal"><i
+                                                class="fas fa-pen"></i>
+                                            Sửa
+                                        </button>
+                                        <button type="button" class="btn btn-danger" value="${supplier.adress}"
+                                                data-toggle="modal"
+                                                data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
+                                            Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>

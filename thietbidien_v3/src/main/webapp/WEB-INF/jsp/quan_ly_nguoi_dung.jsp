@@ -1,14 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 25-Feb-21
-  Time: 9:35 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <main>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -22,7 +19,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Họ và tên</label>
-                                <input type="text" class="form-control" id="input-ten" placeholder="Nhập họ tên">
+                                <input type="text" class="form-control" id="input-ten1" placeholder="Nhập họ tên">
                                 <div class="invalid-feedback">
                                     Error!
                                 </div>
@@ -40,7 +37,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Địa chỉ</label>
-                                <input type="text" class="form-control" id="input-ten" placeholder="Nhập địa chỉ">
+                                <input type="text" class="form-control" id="input-ten2" placeholder="Nhập địa chỉ">
                                 <div class="invalid-feedback">
                                     Error!
                                 </div>
@@ -49,7 +46,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Số điện thoại</label>
-                                <input type="number" class="form-control" id="input-ten" placeholder="Nhập số điện thoại">
+                                <input type="number" class="form-control" id="input-ten3"
+                                       placeholder="Nhập số điện thoại">
                                 <div class="invalid-feedback">
                                     Error!
                                 </div>
@@ -58,7 +56,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Ngày sinh</label>
-                                <input type="date" class="form-control" id="input-ten" placeholder="Nhập ngày sinh">
+                                <input type="date" class="form-control" id="input-ten4" placeholder="Nhập ngày sinh">
                                 <div class="invalid-feedback">
                                     Error!
                                 </div>
@@ -67,7 +65,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Mật khẩu</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                <input type="password" class="form-control" id="exampleInputPassword1"
+                                       placeholder="Password">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -88,11 +87,12 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận thao tác</h5>
+                    <h5 class="modal-title" id="exampleModalLabel1">Xác nhận thao tác</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -129,7 +129,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10">
-                    <button id="btn-them" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> Thêm người dùng</button>
+                    <button id="btn-them" type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-plus"></i> Thêm người dùng
+                    </button>
                 </div>
                 <div class="col-md-2 mt-1 hienthi">
                     Hiển thị bản ghi <input type="text" readonly style="width:30px">
@@ -146,51 +148,46 @@
                             <thead>
                             <tr>
                                 <th scope="col">STT</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Họ và tên</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Địa chỉ</th>
                                 <th scope="col">Số điện thoại</th>
                                 <th scope="col">Ngày sinh</th>
-                                <th scope="col">Mật khẩu</th>
                                 <th scope="col">Quyền</th>
                                 <th scope="col">Hành động</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Hà Thị Lương Hoài</td>
-                                <td>hoai391998@gmail.com</td>
-                                <td>Bắc Giang</td>
-                                <td>038594846</td>
-                                <td>03-09-1998</td>
-                                <td>23443</td>
-                                <td>Admin</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pen"></i>
-                                        Sửa</button>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
-                                        Xóa</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Hà Thị Lương Hoài</td>
-                                <td>hoai391998@gmail.com</td>
-                                <td>Bắc Giang</td>
-                                <td>038594846</td>
-                                <td>03-09-1998</td>
-                                <td>23443</td>
-                                <td>Admin</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pen"></i>
-                                        Sửa</button>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
-                                        Xóa</button>
-                                </td>
-                            </tr>
+                            <c:forEach items="${users}" var="user" varStatus="stt">
+                                <tr>
+                                    <th scope="row">${stt.index}</th>
+                                    <td value="${user.id}">${user.id}</td>
+                                    <td value="${user.name}">${user.name}</td>
+                                    <td value="${user.email}">${user.email}</td>
+                                    <td value="${user.adress}">${user.adress}</td>
+                                    <td value="${user.phonenumber}">${user.phonenumber}</td>
+                                    <td value="${user.dateOfBirth}">${user.dateOfBirth}</td>
+                                    <c:choose>
+                                        <c:when test="${user.idQuyen == 1}">
+                                            <td value="${user.idQuyen}">Quản lý</td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td value="${user.idQuyen}">Nhân viên</td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <td>
+                                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                data-target="#exampleModal"><i class="fas fa-pen"></i>
+                                            Sửa
+                                        </button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
+                                            Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
