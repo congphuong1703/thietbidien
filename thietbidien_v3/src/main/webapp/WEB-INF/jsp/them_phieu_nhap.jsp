@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <main>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -23,7 +24,7 @@
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
                                 <select id="select-ten-san-pham" class="form-control">
-                                    <option selected >000</option>
+                                    <option selected>000</option>
                                     <option>001</option>
                                     <option>002</option>
                                 </select>
@@ -59,11 +60,12 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận thao tác</h5>
+                    <h5 class="modal-title" id="exampleModalLabel1">Xác nhận thao tác</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -99,28 +101,26 @@
     <div class="tool-page">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center pb-4">
-                    <label for="" style="font-size: 16px;color: rgb(44, 39, 39);">Thời gian lập</label>
-                    <input type="text" name="" id="">
-                </div>
                 <div class="col-md-6 pb-3">
                     <select id="select-ma-nguoi-lap" class="form-control" style="width:200px;margin-left:250px">
-                        <option selected >Mã người lập</option>
-                        <option>001</option>
-                        <option>002</option>
+                        <option selected value disabled>Mã người lập</option>
+                        <option value="1">001</option>
+                        <option value="2">002</option>
                     </select>
                 </div>
                 <div class="col-md-6 pb-3">
-                    <select id="select-ma-nguoi-lap" class="form-control" style="width:200px;margin-left:145px">
-                        <option selected >Tên nhà cung cấp</option>
-                        <option>Panasonic</option>
-                        <option>jdskdg</option>
+                    <select id="select-ma-nha-cung-cap" class="form-control" style="width:200px;margin-left:145px">
+                        <option selected value disabled>Mã nhà cung cấp</option>
+                        <option value="1">Panasonic</option>
+                        <option value="2">jdskdg</option>
                     </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button id="btn-them" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> Thêm sản phẩm</button>
+                    <button id="btn-add-product" type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-plus"></i> Thêm sản phẩm
+                    </button>
                 </div>
             </div>
         </div>
@@ -142,33 +142,39 @@
                                 <th scope="col" style="width: 175px;">Hành Động</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="product">
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Dây điện vinacap</td>
-                                <td>40</td>
-                                <td>50000</td>
-                                <td>200000</td>
+                                <td name="id">4</td>
+                                <td name="name">Dây điện vinacap</td>
+                                <td name="amount">40</td>
+                                <td name="price">50000</td>
+                                <td name="total">200000</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pen"></i>
-                                        Sửa</button>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal"
+                                            data-target="#exampleModal"><i class="fas fa-pen"></i>
+                                        Sửa
+                                    </button>
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
                                             data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
-                                        Xóa</button>
+                                        Xóa
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">2</th>
-                                <td>Dây điện vinacap</td>
-                                <td>40</td>
-                                <td>50000</td>
-                                <td>200000</td>
+                                <td name="id">1</td>
+                                <td name="name">Dây điện vinacap</td>
+                                <td name="amount">40</td>
+                                <td name="price">50000</td>
+                                <td name="total">200000</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pen"></i>
-                                        Sửa</button>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal"
+                                            data-target="#exampleModal"><i class="fas fa-pen"></i>
+                                        Sửa
+                                    </button>
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
                                             data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
-                                        Xóa</button>
+                                        Xóa
+                                    </button>
                                 </td>
                             </tr>
                             </tbody>
@@ -180,10 +186,10 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label style="color: rgb(48, 45, 45);font-size: 16;">Ghi chú</label>
-            <textarea class="form-control" id="textarea-gioi-thieu"
+            <label style="color: rgb(48, 45, 45);font-size: 16px;">Ghi chú</label>
+            <textarea class="form-control" id="textarea-note"
                       rows="3"></textarea>
-            <div class="invalid-feedback">
+            <div class="invalid-feedback" hidden id="error">
                 Error!
             </div>
         </div>
@@ -191,7 +197,8 @@
     <br>
     <div class="col-md-12">
         <div class="nut-cap-nhat">
-            <button id="btn-them" type="button" class="btn btn-primary" data-toggle="modal">Lưu phiếu nhập</button>
+            <button id="btn-add-receipt" onclick="addReceipt()" type="button" class="btn btn-primary" data-toggle="modal">Lưu phiếu nhập</button>
         </div>
     </div>
 </main>
+<script src="/js/receipt.js"></script>
