@@ -49,6 +49,7 @@ public class LoginController {
             session.setAttribute("role", quyen.getId());
             model.addAttribute("user", user);
             model.addAttribute("role", quyen);
+            model.addAttribute("name", user.getName());
             return "redirect:/product";
         }
 

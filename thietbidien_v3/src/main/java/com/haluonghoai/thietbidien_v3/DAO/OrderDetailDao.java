@@ -9,4 +9,6 @@ import java.util.List;
 public interface OrderDetailDao extends BaseDao<OrderDetails> {
     public List<OrderDetails> seeDetails(int id) throws SQLException, ClassNotFoundException;
 
+    int sumProductByIdOrder(int id) throws SQLException;
+
 }

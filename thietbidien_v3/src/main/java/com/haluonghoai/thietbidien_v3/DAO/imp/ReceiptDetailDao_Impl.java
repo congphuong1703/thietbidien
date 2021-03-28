@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReceiptDetailDao_Impl implements ReceiptDetailDao {
@@ -29,7 +30,17 @@ public class ReceiptDetailDao_Impl implements ReceiptDetailDao {
 
     @Override
     public List<ReceiptDetails> findAll() throws SQLException, ClassNotFoundException {
-        return null;
+        List<ReceiptDetails> receiptDetailsList = new ArrayList<>();
+        String sql = "select * from tblChiTietPhieuNhap";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                ReceiptDetails receiptDetails = getObject(resultSet);
+                if (receiptDetails != null) receiptDetailsList.add(receiptDetails);
+            } while (resultSet.next());
+        }
+        return receiptDetailsList;
     }
 
     @Override

@@ -172,69 +172,29 @@
             </div>
         </div>
     </div>
-    <div class="tool-page">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10">
-                    <button id="btn-them" type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModal"><i class="fas fa-plus"></i> Thêm danh mục sản phẩm
-                    </button>
-                </div>
-                <div class="col-md-2 mt-1 hienthi">
-                    Hiển thị bản ghi <input type="text" readonly style="width:30px">
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="table-data">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="table-reponsive">
-                        <table class="table table-hover table-bordered">
+                    <div class="table-responsive">
+                        <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
+                               cellspacing="0"
+                               width="100%">
                             <thead>
                             <tr>
-                                <th class="col-2">STT</th>
-                                <th class="col-2">Ảnh</th>
-                                <th class="col-2">Mã sản phẩm</th>
-                                <th class="col-2">Tên sản phẩm</th>
-                                <th class="col-2">Giá bán</th>
-                                <th class="col-2">Số lượng</th>
-                                <th class="col-2">Mô tả</th>
-                                <th class="col-2">Thông số kỹ thuật</th>
-                                <th class="col-2">Bảo hành</th>
-                                <th class="col-2">Đơn vị tính</th>
-                                <th class="col-4">Danh mục sản phẩm</th>
-                                <th class="col-2" style="width: 150px;">Tình trạng bán</th>
-                                <th class="col-2" style="width: 175px;">Hành Động</th>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <form action="/product/search">
-                                    <td><input type="text" name="code" class="form-control" id="input-search-ma"></td>
-                                    <td><input type="text" name="name" class="form-control" id="input-search-ten"></td>
-                                    <td><input type="number" name="price" required class="form-control"
-                                               id="input-search-gia">
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <select name="status" id="select-search-het-hang" class="form-control">
-                                            <option disabled value="0" selected>Chọn</option>
-                                            <option value="1">Còn hàng</option>
-                                            <option value="2">Hết hàng</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <button type="submit" class="btn btn-primary" id="btn-tim-kiem">
-                                            <i class="fas fa-search"></i> Tìm kiếm
-                                        </button>
-                                    </td>
-                                </form>
+                                <th>STT</th>
+                                <th>Ảnh</th>
+                                <th>Mã sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá bán</th>
+                                <th>Số lượng</th>
+                                <th>Mô tả</th>
+                                <th>Thông số kỹ thuật</th>
+                                <th>Bảo hành</th>
+                                <th>Đơn vị tính</th>
+                                <th>Danh mục sản phẩm</th>
+                                <th style="width: 150px;">Tình trạng bán</th>
+                                <th style="width: 175px;">Hành Động</th>
                             </tr>
                             </thead>
                             <tbody id="tbody-san-pham">
@@ -253,10 +213,12 @@
                                     <td>${product.categoryId}</td>
                                     <c:choose>
                                         <c:when test="${product.status}">
-                                            <td class="text-center"><span class="badge badge-success">Còn bán</span></td>
+                                            <td class="text-center"><span class="badge badge-success">Còn bán</span>
+                                            </td>
                                         </c:when>
                                         <c:otherwise>
-                                            <td class="text-center"><span class="badge badge-warning">Không bán</span></td>
+                                            <td class="text-center"><span class="badge badge-warning">Không bán</span>
+                                            </td>
                                         </c:otherwise>
                                     </c:choose>
                                     <td>

@@ -1,11 +1,4 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 30-Jan-21
-  Time: 11:59 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -16,116 +9,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="/css/custom.scss" rel="stylesheet" type="text/css"/>
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/vendor/bootstrap/css/jquery.dataTables.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet" rel="stylesheet"/>
+
     <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/jquery/jquery.dataTables.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/vendor/bootstrap/js/proper.min.js"></script>
+    <script src="/js/myjs.js"></script>
 </head>
 <body class="nav-md">
-<div class="container body">
+<div class="bs-example" style="padding: 0 5%">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+        <a href="#" class="navbar-brand">Quang Phúc</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/category"><i class="fa fa-edit"></i>Danh mục<span
+                        class="fa fa-chevron-down"></span></a>
+                <a class="nav-item nav-link active" href="/product"><i class="fa fa-gift"></i>Sản phẩm<span
+                        class="fa fa-chevron-down"></span></a>
+                <a class="nav-item nav-link active" href="/order"><i class="fa fa-shopping-bag"></i>Đơn hàng<span
+                        class="fa fa-chevron-down"></span></a>
+                <a class="nav-item nav-link active" href="/supplier"><i class="fa fa-truck"></i>Nhà cung cấp<span
+                        class="fa fa-chevron-down"></span></a>
+                <a class="nav-item nav-link active" href="/customer"><i class="fa fa-male"></i>Khách hàng<span
+                        class="fa fa-chevron-down"></span></a>
+                <a class="nav-item nav-link active" href="/user"><i class="fa fa-male"></i>Người dùng<span
+                        class="fa fa-chevron-down"></span></a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Phiếu nhập</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/receipt/add">Thêm phiếu nhập</a>
+                        <a class="dropdown-item" href="/receipt">Danh sách phiếu nhập</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Thống kê</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/reportRevenue">Thống kê doanh thu</a>
+                        <a class="dropdown-item" href="/reportProduct">Thống kê hàng hóa</a>
+                        <a class="dropdown-item" href="/reportCost">Thống kê chi phí nhập hàng</a>
+                        <a class="dropdown-item" href="/reportProfit">Thống kê lợi nhuận </a>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-nav">
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Xin chào,${name}</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/logout">Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div style="padding:10px">
     <div class="main_container">
-        <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="layout.jsp" class="site_title"><span>QUANG PHÚC</span></a>
-                </div>
-
-                <div class="clearfix"></div>
-
-                <!-- menu profile quick info -->
-                <div class="profile clearfix">
-                    <div class="profile_pic">
-                        <img src="admin/images/img.jpg" alt="..." class="img-circle profile_img">
-                    </div>
-                    <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>John Doe</h2>
-                    </div>
-                </div>
-                <!-- /menu profile quick info -->
-
-                <br/>
-
-                <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
-                        <ul class="nav side-menu">
-                            <li><a href="/category"><i class="fa fa-edit"></i> Quản lý danh mục sản phẩm <span
-                                    class="fa fa-chevron-down"></span></a></li>
-                            <li><a href="/product"><i class="fa fa-gift"></i> Quản lý sản phẩm <span
-                                    class="fa fa-chevron-down"></span></a></li>
-                            <li><a href="/order"><i class="fa fa-shopping-bag"></i> Quản lý đơn hàng <span
-                                    class="fa fa-chevron-down"></span></a></li>
-                            <li><a href="/supplier"><i class="fa fa-truck"></i> Quản lý nhà cung cấp <span
-                                    class="fa fa-chevron-down"></span></a></li>
-                            <li><a href="/customer"><i class="fa fa-male"></i> Danh sách khách hàng <span
-                                    class="fa fa-chevron-down"></span></a></li>
-                            <li><a><i class="fa fa-clipboard"></i> Quản lý phiếu nhập <span
-                                    class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="/receipt/add">Thêm phiếu nhập</a></li>
-                                    <li><a href="/receipt">Danh sách phiếu nhập</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/user"><i class="fa fa-male"></i> Quản lý người dùng <span
-                                    class="fa fa-chevron-down"></span></a></li>
-                            <li><a><i class="far fa-chart-bar"></i> Thống kê <span
-                                    class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="/reportRevenue">Thống kê doanh thu</a></li>
-                                    <li><a href="/reportProduct">Thống kê hàng hóa</a></li>
-                                    <li><a href="/reportProfit">Thống kê chi phí nhập hàng</a></li>
-                                    <li><a href="/reportProfit">Thống kê lợi nhuận </a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /sidebar menu -->
-
-                <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="admin/view/login.jsp">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <!-- /menu footer buttons -->
-            </div>
-        </div>
-
-        <!-- top navigation -->
-        <div class="top_nav">
-            <div class="nav_menu">
-                <div class="nav toggle">
-                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                </div>
-                <nav class="nav navbar-nav">
-                    <ul class=" navbar-right">
-                        <li class="nav-item dropdown open" style="padding-left: 15px;">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true"
-                               id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                                <img src="admin/images/img.jpg" alt="">John Doe
-                            </a>
-                            <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="javascript:;">Help</a>
-                                <a class="dropdown-item" href="admin/view/login.jsp"><i class="fa fa-sign-out-alt"></i>
-                                    Log Out</a>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <jsp:include page="${param.layoutmenu }"></jsp:include>
-        </div>
+        <jsp:include page="${param.layoutmenu }"></jsp:include>
         <footer>
             <div class="clearfix"></div>
         </footer>

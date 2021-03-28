@@ -20,7 +20,7 @@ public class ProductDao_impl implements ProductDao {
         String sql = "select * from tblSanPham where sMasanpham = ? or sTensanpham like ? or fGiaban = ? and bTinhtrang = ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
         preparedStatement.setString(1,id);
-        preparedStatement.setString(2,"%"+name+"%");
+        preparedStatement.setString(2,name);
         preparedStatement.setFloat(3,price);
         preparedStatement.setBoolean(4,status);
         ResultSet resultSet = preparedStatement.executeQuery();

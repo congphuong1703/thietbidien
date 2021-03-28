@@ -85,13 +85,14 @@
     <div class="tool-page">
         <div class="container">
             <div class="row">
-                <div class="col-md-10">
-                    <button id="btn-them" type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModal"><i class="fas fa-plus"></i> Thêm danh mục sản phẩm
-                    </button>
+                <div class="col-6 col-md-4">
                 </div>
-                <div class="col-md-4 mt-1 hienthi">
-                    Hiển thị bản ghi: <span id="hien-thi" style="border:1px solid #ddd; padding: 3px"></span>
+                <div class="col-6 col-md-4" >
+                    <select id="select-ma-nguoi-lap" class="form-control">
+                        <option selected value disabled>Mã người lập</option>
+                        <option value="1">001</option>
+                        <option value="2">002</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -100,13 +101,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="table-reponsive">
-                        <table class="table table-hover table-bordered">
+                    <div class="table-responsive">
+                     <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
+                                   cellspacing="0"
+                                   width="100%">
                             <thead>
                             <tr>
-                                <th scope="col">STT</th>
-                                <th scope="col">ID</th>
-                                <th scope="col">Tên danh mục sản phẩm</th>
+                               <th>STT</th>
+                               <th>ID</th>
+                               <th>Tên danh mục sản phẩm</th>
                                 <th scope="col" style="width: 150px;">Tình trạng bán</th>
                                 <th scope="col" style="width: 175px;">Hành Động</th>
                             </tr>
@@ -134,7 +137,8 @@
                                         Sửa
                                     </button>
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#exampleModal1" value="${category.id}"><i class="fas fa-trash-alt"></i>
+                                            data-target="#exampleModal1" value="${category.id}"><i
+                                            class="fas fa-trash-alt"></i>
                                         Xóa
                                     </button>
                                 </td>

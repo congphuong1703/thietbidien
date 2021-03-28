@@ -112,4 +112,53 @@ public class ReceiptDao_impl implements ReceiptDao {
     }
 
 
+    @Override
+    public List<Receipt> findByIdSupplier(int id) throws Exception {
+        List<Receipt> receipts = new ArrayList<>();
+        String sql = "select * from tblPhieuNhap where iManhacungcap = ?";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                Receipt receipt = getObject(resultSet);
+                if (receipt != null) receipts.add(receipt);
+            } while (resultSet.next());
+        }
+        return receipts;
+    }
+
+    @Override
+    public List<Integer> getAllYear() throws SQLException {
+        List<Integer> years = new ArrayList<>();
+        String sql = "  select distinct year(dThoigianlap) from tblPhieuNhap";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                int year = resultSet.getInt(1);
+                years.add(year);
+            } while (resultSet.next());
+        }
+        return years;
+    }
+
+    @Override
+    public List<Receipt> findByIdUser(int id) throws Exception {
+        List<Receipt> receipts = new ArrayList<>();
+        String sql = "select * from tblPhieuNhap where iManguoidung = ?";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                Receipt receipt = getObject(resultSet);
+                if (receipt != null) receipts.add(receipt);
+            } while (resultSet.next());
+        }
+        return receipts;
+    }
+
+
+
 }

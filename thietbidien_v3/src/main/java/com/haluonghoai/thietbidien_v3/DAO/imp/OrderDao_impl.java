@@ -216,4 +216,19 @@ public class OrderDao_impl implements OrderDao {
         banghi = resultSet.getInt(1);
         return banghi;
     }
+
+    @Override
+    public List<Integer> getAllYear() throws SQLException {
+        List<Integer> years = new ArrayList<>();
+        String sql = "select distinct year(dThoigiandat) from tblDonHang";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                int year = resultSet.getInt(1);
+                years.add(year);
+            } while (resultSet.next());
+        }
+        return years;
+    }
 }

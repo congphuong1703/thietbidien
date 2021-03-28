@@ -16,34 +16,25 @@
             </div>
         </div>
     </div>
-    <div class="tool-page">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 mt-1 search">
-                    <input type="search" name="" id="input" class="form-control" value="" style="width:200px;">
-                    <button type="button" class="btn btn-primary">Tìm kiếm</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
     <div class="table-data">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="table-reponsive">
-                        <table class="table table-hover table-bordered">
+                    <div class="table-responsive">
+                        <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
+                               cellspacing="0"
+                               width="100%">
                             <thead>
                             <tr>
-                                <th scope="col">STT</th>
-                                <th scope="col">Mã phiếu nhập</th>
-                                <th scope="col">Người lập phiếu</th>
-                                <th scope="col">Mã nhà cung cấp</th>
-                                <th scope="col">Thời gian lập</th>
-                                <th scope="col">Ghi chú</th>
-                                <th scope="col">Tình trạng</th>
-                                <th scope="col">Chi tiết phiếu nhập</th>
-                                <th scope="col">Cập nhật tình trạng</th>
+                               <th>STT</th>
+                               <th>Mã phiếu nhập</th>
+                               <th>Người lập phiếu</th>
+                               <th>Nhà cung cấp</th>
+                               <th>Thời gian lập</th>
+                               <th>Ghi chú</th>
+                               <th>Tình trạng</th>
+                               <th>Chi tiết phiếu nhập</th>
+                               <th>Cập nhật tình trạng</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -51,8 +42,8 @@
                                 <tr>
                                     <th scope="row">${stt.index}</th>
                                     <td value="${receipt.id}">${receipt.id}</td>
-                                    <td value="${receipt.idUser}">${receipt.idUser}</td>
-                                    <td value="${receipt.idSupplier}">${receipt.idSupplier}</td>
+                                    <td value="${receipt.userName}">${receipt.userName}</td>
+                                    <td value="${receipt.supplierName}">${receipt.supplierName}</td>
                                     <td value="${receipt.timeCreate}">${receipt.timeCreate}</td>
                                     <td value="${receipt.note}">${receipt.note}</td>
                                     <c:choose>

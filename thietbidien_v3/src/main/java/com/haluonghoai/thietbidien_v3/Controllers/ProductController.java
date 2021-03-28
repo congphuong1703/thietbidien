@@ -40,8 +40,10 @@ public class ProductController {
                              @QueryParam("name") String name,
                              @QueryParam("price") int price,
                              @QueryParam("status") String status) {
-        if (code.equalsIgnoreCase(""))
-            return "redirect:/product";
+        if (code == null)
+            code = "";
+        if(name == null)
+            name = "";
         try {
             model.addAttribute("products", productDao.search(code, name, price, status == "1" ? true : false));
         } catch (Exception e) {

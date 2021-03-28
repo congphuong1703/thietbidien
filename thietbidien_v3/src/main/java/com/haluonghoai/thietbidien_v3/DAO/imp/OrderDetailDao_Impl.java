@@ -91,4 +91,17 @@ public class OrderDetailDao_Impl implements OrderDetailDao {
         banghi = resultSet.getInt(1);
         return banghi;
     }
+
+    @Override
+    public int sumProductByIdOrder(int id) throws SQLException {
+        int total = 0;
+        String sql = "select sum(iSoluong) from tblChiTietDonHang where iMadonhang = ";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.last();
+        total = resultSet.getInt(1);
+
+        return total;
+    }
 }

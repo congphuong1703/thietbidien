@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-//@RequestMapping(value = "/category")
 public class CategoryAPI {
 
     private CategoryService categoryService = new CategoryService_impl();

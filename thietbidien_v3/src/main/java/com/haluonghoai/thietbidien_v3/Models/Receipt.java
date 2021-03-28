@@ -9,6 +9,8 @@ public class Receipt {
     private int idUser;
     private int idSupplier;
     private Boolean statusEnter;
+    private String userName;
+    private String supplierName;
 
     public Receipt() {
     }
@@ -64,6 +66,22 @@ public class Receipt {
 
     public Boolean getStatusEnter() {
         return statusEnter;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
     public void setStatusEnter(Boolean statusEnter) {

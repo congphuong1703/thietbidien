@@ -15,43 +15,23 @@
             </div>
         </div>
     </div>
-    <div class="tool-page">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 mt-1 hienthi">
-                    Hiển thị bản ghi <input type="text" readonly style="width:30px">
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
     <div class="table-data">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="table-reponsive">
-                        <table class="table table-hover table-bordered">
-                            <thead>
+                    <div class="table-responsive">
+                       <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
+                                   cellspacing="0"
+                                   width="100%">
+                           <thead>
                             <tr>
-                                <th scope="col">STT</th>
-                                <th scope="col">ID</th>
-                                <th scope="col">Họ và tên</th>
-                                <th scope="col">Số điện thoại</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Địa chỉ</th>
+                               <th>STT</th>
+                               <th>ID</th>
+                               <th>Họ và tên</th>
+                               <th>Số điện thoại</th>
+                               <th>Email</th>
+                               <th>Địa chỉ</th>
                                 <th scope="col" style="width: 175px;">Hành Động</th>
-                            </tr>
-                            <tr>
-                                <th scope="row"></th>
-                                <td><input type="text" class="form-control" id="input-search-ten"></td>
-                                <td><input type="text" class="form-control" id="input-search-sdt"></td>
-                                <td><input type="text" class="form-control" id="input-search-email"></td>
-                                <td><input type="text" class="form-control" id="input-search-dia-chi"></td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" id="btn-tim-kiem"><i
-                                            class="fas fa-search"></i> Tìm kiếm
-                                    </button>
-                                </td>
                             </tr>
                             </thead>
                             <tbody>

@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 25-Feb-21
-  Time: 11:04 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <main>
     <!-- Modal -->
@@ -21,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div class="tool-page pb-4">
+    <%--<div class="tool-page pb-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mt-1 hienthi">
@@ -49,13 +43,14 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
     <div class="table-data">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="table-reponsive">
-                        <table class="table table-hover table-bordered">
+                    <div class="table-responsive">
+                        <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm" cellspacing="0"
+                               width="100%">
                             <thead>
                             <tr>
                                 <th scope="col">STT</th>
@@ -66,28 +61,24 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Hà Thị Lương Hoài</td>
-                                <td>hoai391998@gmail.com</td>
-                                <td>Bắc Giang</td>
-                                <td>038594846</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Hà Thị Lương Hoài</td>
-                                <td>hoai391998@gmail.com</td>
-                                <td>Bắc Giang</td>
-                                <td>038594846</td>
-                            </tr>
+                            <c:forEach items="${listReport}" var="list" varStatus="stt">
+                                <tr>
+                                    <th scope="row">${stt.index}</th>
+                                    <td> ${list.get('idOrder')}</td>
+                                    <td> ${list.get('totalProduct')}</td>
+                                    <td> ${list.get('date')}</td>
+                                    <td> ${list.get('revenue')}</td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    </div><br>
+    </div>
+    <br>
     <div class="tong-doanh-thu text-center" style="color: brown; font-size: 18px;">
-        <label for="">Tổng doanh thu:</label>&nbsp;&nbsp;<span>20000000</span>
+        <label>Tổng doanh thu:</label>&nbsp;&nbsp;<span>${total}</span>
     </div>
 </main>

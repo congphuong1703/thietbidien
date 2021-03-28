@@ -26,4 +26,7 @@ public interface OrderDao extends BaseDao<Order> {
     List<Order> selectOrderByStatusPayments(boolean trangthaitt) throws SQLException, ClassNotFoundException;
 
     Order findById(int id) throws SQLException, ClassNotFoundException, Exception;
+
+    public List<Integer> getAllYear() throws SQLException;
+
 }

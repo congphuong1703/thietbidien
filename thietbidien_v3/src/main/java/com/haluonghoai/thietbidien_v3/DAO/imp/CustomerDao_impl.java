@@ -83,7 +83,7 @@ public class CustomerDao_impl implements CustomerDao {
     @Override
     public List<Customer> search(String name, String phoneNumber, String email, String adress) throws SQLException, ClassNotFoundException {
         List<Customer> list = new ArrayList<>();
-        String sql = "select * from tblKhachhang where sHoten like ? or sEmail = ? or sDiachi = ?, sSodienthoai = ?";
+        String sql = "select * from tblKhachhang where sHoten like ? or sEmail like ? or sDiachi like ? or sSodienthoai like ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
         preparedStatement.setString(1, name);
         preparedStatement.setString(2, phoneNumber);

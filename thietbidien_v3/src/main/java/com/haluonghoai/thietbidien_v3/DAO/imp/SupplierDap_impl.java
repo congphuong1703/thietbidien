@@ -2,6 +2,7 @@ package com.haluonghoai.thietbidien_v3.DAO.imp;
 
 import com.haluonghoai.thietbidien_v3.DAO.SupplierDao;
 import com.haluonghoai.thietbidien_v3.Models.MyConnection;
+import com.haluonghoai.thietbidien_v3.Models.Receipt;
 import com.haluonghoai.thietbidien_v3.Models.Supplier;
 
 import java.sql.*;
@@ -105,5 +106,21 @@ public class SupplierDap_impl implements SupplierDao {
         resultSet.last();
         banghi = resultSet.getInt(1);
         return banghi;
+    }
+
+    @Override
+    public List<Supplier> searchByName(String name) throws SQLException {
+        List<Supplier> suppliers = new ArrayList<>();
+        String sql = "select * from tblNhaCungCap where sTennhacungcap like ? ";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setString(1,"%"+name+"%");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                Supplier supplier = getObject(resultSet);
+                if (supplier != null) suppliers.add(supplier);
+            } while (resultSet.next());
+        }
+        return suppliers;
     }
 }

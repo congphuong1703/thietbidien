@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Admin
@@ -54,8 +55,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="table-reponsive">
-                        <table class="table table-hover table-bordered">
+                    <div class="table-responsive">
+                        <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm" cellspacing="0"
+                               width="100%">
                             <thead>
                             <tr>
                                 <th scope="col">STT</th>
@@ -68,32 +70,26 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td></td>
-                                <td>SP112</td>
-                                <td>Dây điện Cadivi</td>
-                                <td>50000</td>
-                                <td>50</td>
-                                <td>Dây điện</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td></td>
-                                <td>SP115</td>
-                                <td>Dây điện Cadivi</td>
-                                <td>50000</td>
-                                <td>50</td>
-                                <td>Dây điện</td>
-                            </tr>
+                            <c:forEach items="${listReport}" var="list" varStatus="stt">
+                                <tr>
+                                    <th scope="row">${stt.index}</th>
+                                    <td>${list.get('idReceipt')}</td>
+                                    <td>${list.get('userName')}</td>
+                                    <td>${list.get('supplierName')}</td>
+                                    <td>${list.get('dateCreate')}</td>
+                                    <td>${list.get('note')}</td>
+                                    <td>${list.get('cost')}</td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    </div><br>
+    </div>
+    <br>
     <div class="tong-chi-phi text-center" style="color: brown; font-size: 18px;">
-        <label for="">Tổng chi phí:</label>&nbsp;&nbsp;<span>20000000</span>
+        <label >Tổng chi phí:</label>&nbsp;&nbsp;<span>${total}</span>
     </div>
 </main>

@@ -3,6 +3,7 @@ package com.haluonghoai.thietbidien_v3.DAO.imp;
 
 import com.haluonghoai.thietbidien_v3.DAO.UserDao;
 import com.haluonghoai.thietbidien_v3.Models.MyConnection;
+import com.haluonghoai.thietbidien_v3.Models.Supplier;
 import com.haluonghoai.thietbidien_v3.Models.User;
 
 import java.sql.*;
@@ -128,5 +129,21 @@ public class UserDao_impl implements UserDao {
         resultSet.last();
         banghi = resultSet.getInt(1);
         return banghi;
+    }
+
+    @Override
+    public List<User> searchByName(String name) throws SQLException {
+        List<User> users = new ArrayList<>();
+        String sql = "select * from tblNguoiDung where sHoten like ? ";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setString(1,"%"+name+"%");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                User user = getObject(resultSet);
+                if (user != null) users.add(user);
+            } while (resultSet.next());
+        }
+        return users;
     }
 }

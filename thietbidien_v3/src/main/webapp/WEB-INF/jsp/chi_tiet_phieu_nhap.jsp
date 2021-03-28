@@ -7,7 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <main>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -83,16 +84,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <div class="table-reponsive">
-                            <table class="table table-hover table-bordered">
+                        <div class="table-responsive">
+                            <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
+                                   cellspacing="0"
+                                   width="100%">
                                 <thead>
                                 <tr>
-                                    <th scope="col">STT</th>
-                                    <th scope="col">Mã sản phẩm</th>
-                                    <th scope="col">Tên sản phẩm</th>
-                                    <th scope="col">Số lượng</th>
-                                    <th scope="col">Đơn giá</th>
-                                    <th scope="col">Thành tiền</th>
+                                   <th>STT</th>
+                                   <th>Mã sản phẩm</th>
+                                   <th>Tên sản phẩm</th>
+                                   <th>Số lượng</th>
+                                   <th>Đơn giá</th>
+                                   <th>Thành tiền</th>
                                 </tr>
                                 </thead>
                                 <tbody>

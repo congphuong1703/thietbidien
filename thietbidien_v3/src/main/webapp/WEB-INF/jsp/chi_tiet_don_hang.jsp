@@ -25,25 +25,27 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <div class="table-reponsive">
-                            <table class="table table-hover table-bordered">
+                        <div class="table-responsive">
+                            <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
+                                   cellspacing="0"
+                                   width="100%">
                                 <thead>
                                 <tr>
-                                    <th scope="col">Mã sản phẩm</th>
-                                    <th scope="col">Tên sản phẩm</th>
-                                    <th scope="col">Số lượng</th>
-                                    <th scope="col">Đơn giá</th>
-                                    <th scope="col">Thành tiền</th>
+                                   <th>Mã sản phẩm</th>
+                                   <th>Tên sản phẩm</th>
+                                   <th>Số lượng</th>
+                                   <th>Đơn giá</th>
+                                   <th>Thành tiền</th>
                                 </tr>
                                 </thead>
                                 <tbody id="tbody-san-pham">
                                 <c:forEach items="${products}" var="product">
                                     <tr>
-                                        <th scope="row">${product.id}</th>
-                                        <td>${product.name}</td>
-                                        <td>${product.amount}</td>
-                                        <td>${product.price}</td>
-                                        <td>${product.total}</td>
+                                        <td value="${product.id}" id="${product.id}">${product.id}</td>
+                                        <td value="${product.name}">${product.name}</td>
+                                        <td value="${product.amount}">${product.amount}</td>
+                                        <td value="${product.price}">${product.price}</td>
+                                        <td value="${product.total}">${product.total}</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>

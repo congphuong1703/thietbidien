@@ -125,36 +125,23 @@
             </div>
         </div>
     </div>
-    <div class="tool-page">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10">
-                    <button id="btn-them" type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModal"><i class="fas fa-plus"></i> Thêm người dùng
-                    </button>
-                </div>
-                <div class="col-md-2 mt-1 hienthi">
-                    Hiển thị bản ghi <input type="text" readonly style="width:30px">
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="table-data">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="table-reponsive">
-                        <table class="table table-hover table-bordered">
-                            <thead>
+                    <div class="table-responsive">
+                       <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
+                                   cellspacing="0"
+                                   width="100%">      <thead>
                             <tr>
-                                <th scope="col">STT</th>
-                                <th scope="col">ID</th>
-                                <th scope="col">Họ và tên</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Địa chỉ</th>
-                                <th scope="col">Số điện thoại</th>
-                                <th scope="col">Ngày sinh</th>
-                                <th scope="col">Quyền</th>
+                               <th>STT</th>
+                               <th>ID</th>
+                               <th>Họ và tên</th>
+                               <th>Email</th>
+                               <th>Địa chỉ</th>
+                               <th>Số điện thoại</th>
+                               <th>Ngày sinh</th>
+                               <th>Quyền</th>
                                 <th scope="col">Hành động</th>
                             </tr>
                             </thead>

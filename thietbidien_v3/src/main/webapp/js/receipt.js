@@ -13,7 +13,7 @@ function addReceipt() {
 
     for (var i = 0; i < listProduct.length; i++) {
         listElementProductDetail = listProduct.eq(i).children('td');
-        var idProduct = listElementProductDetail.eq(0).text();
+        var idProduct = listElementProductDetail.eq(1).text();
         var amount = listElementProductDetail.eq(2).text();
         var price = listElementProductDetail.eq(3).text();
         var receiptDetail = new Object();
@@ -46,3 +46,14 @@ function addReceipt() {
         }
     })
 }
+
+$('#btn-add-product').click(function () {
+    var selectChecked = $('#select-product option:checked');
+    var idProduct = selectChecked.val();
+    var nameProduct = selectChecked.attr("name");
+    var number = $('#input-number').val();
+    var price = $('#input-price').val();
+
+
+})
+

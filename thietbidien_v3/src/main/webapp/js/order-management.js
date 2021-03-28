@@ -11,7 +11,7 @@ function updateStatusOrder(id) {
         contentType: "application/json;charset=utf-8",
         data: JSON.stringify(order),
         success: function (res) {
-            alert("Cap nhat trang thai thanh cong")
+            alert("Cập nhật thành công")
             console.log(res);
             window.location.reload();
         }
@@ -31,12 +31,12 @@ function updateStatusPayment(id) {
         data: JSON.stringify(order),
         success: function (res) {
             console.log(res);
-            alert("Cap nhat trang thai thanh cong")
+            alert("Cập nhật thành công")
             window.location.reload();
         }
     })
 }
-
+/*
 $('#status-payment').change(function updateStatusPayment() {
     var status = $('#status-payment option:checked').val();
     $.ajax({
@@ -96,4 +96,4 @@ $('#status-payment').change(function updateStatusPayment() {
             }
         }
     })
-})
+})*/
