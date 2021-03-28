@@ -28,13 +28,10 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
         }
 
         if (session.getAttribute("user") != null) {
-            if (session.getAttribute("role") != null && session.getAttribute("role").equals("2"))
-                if (request.getServletPath().equalsIgnoreCase("/receipt")
-                        || request.getServletPath().equalsIgnoreCase("/reportCost")
+            if (session.getAttribute("role") != null && session.getAttribute("role").equals(2))
+                if (request.getServletPath().equalsIgnoreCase("/reportCost")
                         || request.getServletPath().equalsIgnoreCase("/reportProduct")
                         || request.getServletPath().equalsIgnoreCase("/reportProfit")
-                        || request.getServletPath().equalsIgnoreCase("/orderDetail")
-                        || request.getServletPath().equalsIgnoreCase("/supplier")
                         || request.getServletPath().equalsIgnoreCase("/user")) {
                     response.sendRedirect(request.getContextPath() + "/login");
                     return false;
@@ -42,7 +39,7 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
         }
 
         if (session.getAttribute("role") != null) {
-            if (session.getAttribute("role").equals("1")) {
+            if (session.getAttribute("role").equals(1)) {
                 session.setAttribute("show", "true");
             } else {
                 session.setAttribute("show", "false");
@@ -58,16 +55,16 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
         HttpSession session = request.getSession();
         if (!request.getServletPath().contains("/api/v1"))
             if (!session.getAttribute("role").equals(1)) {
-            if (request.getServletPath().equalsIgnoreCase("/receipt")
-                    || request.getServletPath().equalsIgnoreCase("/reportCost")
-                    || request.getServletPath().equalsIgnoreCase("/reportProduct")
-                    || request.getServletPath().equalsIgnoreCase("/reportProfit")
-                    || request.getServletPath().equalsIgnoreCase("/supplier")
-                    || request.getServletPath().equalsIgnoreCase("/user")) {
-                modelAndView.clear();
+                if (request.getServletPath().equalsIgnoreCase("/receipt")
+                        || request.getServletPath().equalsIgnoreCase("/reportCost")
+                        || request.getServletPath().equalsIgnoreCase("/reportProduct")
+                        || request.getServletPath().equalsIgnoreCase("/reportProfit")
+                        || request.getServletPath().equalsIgnoreCase("/supplier")
+                        || request.getServletPath().equalsIgnoreCase("/user")) {
+                    modelAndView.clear();
 
+                }
             }
-        }
         super.postHandle(request, response, handler, modelAndView);
     }
 
