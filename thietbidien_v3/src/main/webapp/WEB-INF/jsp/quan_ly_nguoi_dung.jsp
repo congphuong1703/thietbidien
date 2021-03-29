@@ -64,9 +64,9 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>pass</label>
+                                    <label>Mật khẩu</label>
                                     <form:input path="pass" id="pass" type="text" class="form-control"
-                                                placeholder="pass"/>
+                                                placeholder="Mật khẩu"/>
                                 </div>
                             </div>
                             <div class="col-md-4">

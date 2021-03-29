@@ -86,7 +86,7 @@ public class ReceiptAPI extends HttpServlet {
     }
 
     @PutMapping(value = "/update")
-    protected ResponseEntity<String> updateProduct(@RequestBody Receipt receipt) {
+    protected ResponseEntity<String> update(@RequestBody Receipt receipt) {
         String rs = "";
         try {
             rs = jsonResult.jsonSuccess(receiptDao.updateTinhTrang(receipt.getStatusEnter(), receipt.getId()));

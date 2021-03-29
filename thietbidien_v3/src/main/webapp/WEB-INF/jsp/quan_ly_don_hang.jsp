@@ -276,6 +276,7 @@
         </div>
     </div>
 </main>
+<script src="/js/order-management.js" charset="utf-8"></script>
 <div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -301,5 +302,4 @@
         </div>
     </div>
 </div>
-<script src="/js/order-management.js" charset="utf-8"></script>
 

@@ -47,7 +47,6 @@ public class ReceiptController {
                 receipt.setUserName(user.getName());
                 receipts.add(receipt);
             }
-
             model.addAttribute("receipts", receipts);
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,7 +56,9 @@ public class ReceiptController {
 
     @GetMapping("/add")
     public String goAddReceipt(Model model) throws SQLException, ClassNotFoundException {
-        model.addAttribute("products",productDao.findAll());
+        model.addAttribute("products", productDao.findAll());
+        model.addAttribute("suppliers", supplierDao.findAll());
+        model.addAttribute("users", userDao.findAll());
         return "them_phieu_nhap";
     }
 

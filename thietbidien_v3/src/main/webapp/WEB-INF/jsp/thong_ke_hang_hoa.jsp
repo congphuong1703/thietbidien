@@ -48,7 +48,7 @@
                             <c:forEach items="${products}" var="product" varStatus="stt">
                                 <tr>
                                     <th scope="row">${stt.index}</th>
-                                    <td value="${product.image}"><img src="${product.image}"/></td>
+                                    <td value="${product.image}"><img width="50%" src="${product.image}"/></td>
                                     <td value="${product.id}">${product.id}</td>
                                     <td value="${product.name}">${product.name}</td>
                                     <td value="${product.price}">${product.price}</td>
