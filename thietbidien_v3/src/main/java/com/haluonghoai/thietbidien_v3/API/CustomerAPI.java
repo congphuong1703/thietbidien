@@ -37,6 +37,22 @@ public class CustomerAPI {
         return ResponseEntity.ok(rs);
     }
 
+    @PostMapping(value = "/add")
+    public ResponseEntity<String> addCustomer(@RequestBody Customer customer) {
+
+        String rs = "";
+        try {
+            Customer newCustomer = customerDao.insert(customer);
+            rs = newCustomer != null ? jsonResult.jsonSuccess(customer) : jsonResult.jsonSuccess("thêm khách hàng thất bại");
+        } catch (Exception e) {
+            e.printStackTrace();
+            rs = jsonResult.jsonFail("upload customer fail !");
+        }
+        return ResponseEntity.ok(rs);
+    }
+
+
+
     @GetMapping(value = "/so-ban-ghi")
     public ResponseEntity<String> countRecord() {
         String rs = "";
@@ -62,6 +78,20 @@ public class CustomerAPI {
         } catch (Exception ex) {
             ex.printStackTrace();
             rs = jsonResult.jsonFail("seach-customer-fail");
+        }
+        return ResponseEntity.ok(rs);
+    }
+
+    @GetMapping(value = "/search-customer-username")
+    public ResponseEntity<String> searchCustomerByUsername(@RequestParam("username") String username)
+    {
+        String rs = "";
+        try {
+            List<Customer> list = customerDao.searchByUsername(username);
+            rs = jsonResult.jsonSuccess(list);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            rs = jsonResult.jsonFail("seach-customer-username-fail");
         }
         return ResponseEntity.ok(rs);
     }

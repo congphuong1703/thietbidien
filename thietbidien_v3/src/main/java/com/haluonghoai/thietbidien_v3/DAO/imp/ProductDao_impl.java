@@ -181,4 +181,19 @@ public class ProductDao_impl implements ProductDao {
         banghi = resultSet.getInt(1);
         return banghi;
     }
+
+    @Override
+    public Product searchProductById(int id) throws SQLException {
+        Product product = new Product();
+        String sql = "select * from tblSanPham where iId_sanpham = ?";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setInt(1,id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if(resultSet.first()){
+            do{
+                product = getObject(resultSet);
+            }while(resultSet.next());
+        }
+        return product;
+    }
 }

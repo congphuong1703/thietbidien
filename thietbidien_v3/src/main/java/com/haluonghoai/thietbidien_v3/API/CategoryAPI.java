@@ -11,14 +11,14 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-//@RequestMapping(value = "/category")
+@RequestMapping(value = "/category")
 public class CategoryAPI {
 
     private CategoryService categoryService = new CategoryService_impl();
 
     private JsonResult jsonResult = new JsonResult();
 
-    @PostMapping("/category/add")
+    @PostMapping("/add")
     public ResponseEntity addCategory(@RequestBody Category category) {
         String rs = "";
         try {
@@ -31,7 +31,7 @@ public class CategoryAPI {
         return ResponseEntity.ok(rs);
     }
 
-    @GetMapping(value = "/category/find-all")
+    @GetMapping(value = "/find-all")
     public ResponseEntity<String> findAll() {
         String res = "";
         try {

@@ -4,7 +4,7 @@ package com.haluonghoai.thietbidien_v3.DAO.imp;
 import com.haluonghoai.thietbidien_v3.DAO.CustomerDao;
 import com.haluonghoai.thietbidien_v3.Models.Customer;
 import com.haluonghoai.thietbidien_v3.Models.MyConnection;
-import com.haluonghoai.thietbidien_v3.Models.Order;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -56,7 +56,24 @@ public class CustomerDao_impl implements CustomerDao {
 
     @Override
     public Customer insert(Customer customer) throws Exception {
-        return null;
+        Customer newCustomer = null;
+        String sql = "insert tblKhachHang values (?,?,?,?,?,?)";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setString(1,customer.getName());
+        preparedStatement.setString(2,customer.getEmail());
+        preparedStatement.setString(3,customer.getAdress());
+        preparedStatement.setString(4,customer.getPhoneNumber());
+        preparedStatement.setString(5,customer.getUsername());
+        preparedStatement.setString(6,customer.getPassword());
+        int rs = preparedStatement.executeUpdate();
+        if(rs > 0) {
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if(resultSet.next()) {
+                newCustomer = findById((int) resultSet.getLong(1));
+            }
+        }
+        return newCustomer;
+
     }
 
     @Override
@@ -89,6 +106,22 @@ public class CustomerDao_impl implements CustomerDao {
         preparedStatement.setString(2, phoneNumber);
         preparedStatement.setString(3, email);
         preparedStatement.setString(4, adress);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                Customer customer = getObject(resultSet);
+                if (customer != null) list.add(customer);
+            } while (resultSet.next());
+        }
+        return list;
+    }
+
+    @Override
+    public List<Customer> searchByUsername(String username) throws SQLException, ClassNotFoundException {
+        List<Customer> list = new ArrayList<>();
+        String sql = "select * from tblKhachhang where sTendangnhap = ?";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setString(1, username);
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.first()) {
             do {

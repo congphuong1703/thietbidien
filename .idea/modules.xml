@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/thietbidien_v3/Thietbidien_v3.iml" filepath="$PROJECT_DIR$/thietbidien_v3/Thietbidien_v3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thietbidien.iml" filepath="$PROJECT_DIR$/thietbidien.iml" />
+    </modules>
+  </component>
+</project>
