@@ -8,39 +8,47 @@
          aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Danh mục sản phẩm</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body form-custom">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group" id="ten-danh-muc">
-                                <label>Tên danh mục sản phẩm</label>
-                                <input type="hidden" id="idCategory">
-                                <input type="text" class="form-control" id="input-ten" placeholder="Nhập tên">
-                                <div class="invalid-feedback">
-                                    Error!
+                <form:form modelAttribute="categoryModel" action="/category/add" method="get">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Danh mục sản phẩm</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body form-custom">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>ID danh mục</label>
+                                    <form:input path="id" id="id" readonly="true" type="text"
+                                                class="form-control"
+                                                placeholder="ID"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Tên danh mục</label>
+                                    <form:input path="name" id="name" type="text" class="form-control"
+                                                placeholder="Tên danh mục"/>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-check" id="status">
+                                    <label>Không bán</label>
+                                    <form:radiobutton path="status" name="status" value="false" checked="true"/> <br>
+                                    <label>Còn bán</label>
+                                    <form:radiobutton path="status" name="status" value="true"/>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="checkbox-tinh-trang-ban">
-                                <label class="form-check-label">
-                                    Không còn bán
-                                </label>
-                            </div>
-                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-success" id="btn-luu-lai">Lưu</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-success">Lưu</button>
+                    </div>
+                </form:form>
             </div>
         </div>
     </div>
@@ -65,7 +73,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-danger" id="btn-xac-nhan-xoa">Xóa</button>
+                    <a class="btn btn-danger" id="methodDelete">Xóa</a>
                 </div>
             </div>
         </div>
@@ -82,34 +90,38 @@
             </div>
         </div>
     </div>
-    <div class="tool-page">
-        <div class="container">
-            <div class="row">
-                <div class="col-6 col-md-4">
-                </div>
-                <div class="col-6 col-md-4" >
-                    <select id="select-ma-nguoi-lap" class="form-control">
-                        <option selected value disabled>Mã người lập</option>
-                        <option value="1">001</option>
-                        <option value="2">002</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="table-data">
         <div class="container">
+            <div style="margin-bottom: 10px">
+                <button class="btn btn-outline-primary" id="add" data-toggle="modal"
+                        data-target="#exampleModal">
+                    Thêm danh mục
+                </button>
+            </div>
+            <div class="alert alert-success" hidden="${insertSuccess}">
+                <strong>Success!</strong> Thêm mới thành công
+            </div>
+            <div class="alert alert-success" hidden="${updateSuccess}">
+                <strong>Success!</strong> Cập nhật thành công
+            </div>
+            <div class="alert alert-success" hidden="${deleteSuccess}">
+                <strong>Success!</strong> Xóa thành công
+            </div>
+            <div class="alert alert-danger" hidden="${fail}">
+                <strong>Danger!</strong> Thất bại.
+            </div>
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
-                     <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
-                                   cellspacing="0"
-                                   width="100%">
+                        <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
+                               cellspacing="0"
+                               width="100%">
                             <thead>
                             <tr>
-                               <th>STT</th>
-                               <th>ID</th>
-                               <th>Tên danh mục sản phẩm</th>
+                                <th>STT</th>
+                                <th>ID</th>
+                                <th>Tên danh mục sản phẩm</th>
                                 <th scope="col" style="width: 150px;">Tình trạng bán</th>
                                 <th scope="col" style="width: 175px;">Hành Động</th>
                             </tr>
@@ -117,7 +129,7 @@
                             <tbody>
                             <c:forEach items="${categories}" var="category" varStatus="stt">
                             <tr>
-                                <th scope="row">${stt.index}</th>
+                                <th>${stt.index}</th>
                                 <td value="${category.id}">${category.id}</td>
                                 <td value="${category.name}">${category.name}</td>
                                 <c:choose>
@@ -126,19 +138,26 @@
                                                 class="badge badge-success">Còn bán</span></td>
                                     </c:when>
                                     <c:otherwise>
-                                        <td valu="${category.status}" class="text-center"><span
+                                        <td value="${category.status}" class="text-center"><span
                                                 class="badge badge-danger">Không bán</span></td>
                                     </c:otherwise>
                                 </c:choose>
                                 <td>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal"
-                                            data-target="#exampleModal" value="${category.id}"><i
-                                            class="fas fa-pen"></i>
+                                    <button type="button" id="${category.id}" class="btn btn-warning"
+                                            data-toggle="modal"
+                                            data-target="#exampleModal"
+                                            data-id="${category.id}"
+                                            data-name="${category.name}"
+                                            data-status="${category.status}"
+                                            onclick="updateCategory(${category.id})"
+                                            value="${category.id}"><i class="fas fa-pen"></i>
                                         Sửa
                                     </button>
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#exampleModal1" value="${category.id}"><i
-                                            class="fas fa-trash-alt"></i>
+                                            data-target="#exampleModal1" onclick="deleteCategory(${category.id})"
+                                            value="${category.id}">
+                                        <i
+                                                class="fas fa-trash-alt"></i>
                                         Xóa
                                     </button>
                                 </td>
@@ -151,5 +170,5 @@
         </div>
     </div>
 </main>
-<script src="admin/ajax/quan-ly-san-pham.js"></script>
+<script src="/js/category.js"></script>
 

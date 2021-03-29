@@ -56,7 +56,7 @@ public class ReportCostController {
             map.put("supplierName", supplier.getName());
             map.put("dateCreate", simpleDateFormat.format(receipt.getTimeCreate()));
             map.put("note", receipt.getNote());
-            map.put("cost", format.format(cost));
+            map.put("cost", String.valueOf(cost));
             list.add(map);
         }
         model.addAttribute("listReport", list);

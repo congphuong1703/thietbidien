@@ -15,41 +15,14 @@
             </div>
         </div>
     </div>
-    <%--<div class="tool-page pb-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mt-1 hienthi">
-                    Hiển thị bản ghi <input type="text" readonly style="width:30px">
-                </div>
-                <div class="col-md-4 mt-1">
-                    <select class="form-control select-dsdh-htthanh-toan">
-                        <option>Tháng</option>
-                        <option> 1</option>
-                        <option> 2</option>
-                        <option> 3</option>
-                        <option> 4</option>
-                        <option> 5</option>
-                    </select>
-                </div>
-                <div class="col-md-4 mt-1">
-                    <select class="form-control select-dsdh-htthanh-toan">
-                        <option>Năm</option>
-                        <option> 2021</option>
-                        <option> 2020</option>
-                        <option> 2019</option>
-                        <option> 2018</option>
-                        <option> 2017</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>--%>
     <div class="table-data">
         <div class="container">
+            <div id="demo" style="margin-bottom: 10px"></div>
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
-                        <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm" cellspacing="0"
+                        <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
+                               cellspacing="0"
                                width="100%">
                             <thead>
                             <tr>
@@ -67,7 +40,7 @@
                                     <td> ${list.get('idOrder')}</td>
                                     <td> ${list.get('totalProduct')}</td>
                                     <td> ${list.get('date')}</td>
-                                    <td> ${list.get('revenue')}</td>
+                                    <td value="${list.get('revenue')}"> ${list.get('revenue')}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -78,7 +51,31 @@
         </div>
     </div>
     <br>
-    <div class="tong-doanh-thu text-center" style="color: brown; font-size: 18px;">
-        <label>Tổng doanh thu:</label>&nbsp;&nbsp;<span>${total}</span>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Báo cáo doanh thu hiện có trong bảng</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body form-custom">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Tổng số sản phẩm:</label>&nbsp;<span id="totalProduct"></span><br>
+                                <label>Tổng doanh thu:</label>&nbsp;<span id="totalRevenue"></span><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
+<script src="/js/reportRevenue.js"></script>

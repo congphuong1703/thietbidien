@@ -14,123 +14,116 @@
          aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Sản phẩm</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body form-custom">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Mã sản phẩm</label>
-                                <input type="text" class="form-control" placeholder="Nhập mã sản phẩm">
-                                <div class="invalid-feedback">
-                                    Error!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Tên sản phẩm</label>
-                                <input type="text" class="form-control" placeholder="Nhập tên sản phẩm">
-                                <div class="invalid-feedback">
-                                    Error!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Danh mục sản phẩm</label>
-                                <select id="select-loai-san-pham" class="form-control select-loai-san-pham">
-                                    <option value="1">Dây điện</option>
-                                    <option value="2">Cáp điện</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Giá bán</label>
-                                <input type="text" class="form-control" placeholder="Nhập giá bán">
-                                <div class="invalid-feedback">
-                                    Error!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Số lượng</label>
-                                <input type="number" class="form-control" placeholder="Nhập Số lượng">
-                                <div class="invalid-feedback">
-                                    Error!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Bảo hành</label>
-                                <input type="number" class="form-control"
-                                       placeholder="Nhập số tháng bảo hành">
-                                <div class="invalid-feedback">
-                                    Error!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Ảnh</label>
-                                <input type="file" class="form-control-file" id="file-anh">
-                                <div class="invalid-feedback">
-                                    Error!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Đơn vị tính</label>
-                                <input type="text" class="form-control" id="input-ten" placeholder="Nhập đơn vị tính">
-                                <div class="invalid-feedback">
-                                    Error!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Mô tả</label>
-                                <textarea class="form-control is-invalid"
-                                          rows="3"></textarea>
-                                <div class="invalid-feedback">
-                                    Error!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Thông số kỹ thuật</label>
-                                <textarea class="form-control is-invalid" id="textarea-gioi-thieu"
-                                          rows="3"></textarea>
-                                <div class="invalid-feedback">
-                                    Error!
-                                </div>
-                            </div>
-                        </div>
+                <form:form modelAttribute="productModel" action="/product/add" method="get">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Sản phẩm</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
+                    <div class="modal-body form-custom">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>ID</label>
+                                    <form:input path="increaseId" id="increaseId" readonly="true" type="text"
+                                                class="form-control"
+                                                placeholder="ID"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Mã sản phẩm</label>
+                                    <form:input path="id" id="id" type="text"
+                                                class="form-control"
+                                                placeholder="Mã sản phẩm"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Tên sản phẩm</label>
+                                    <form:input path="name" id="name" type="text" class="form-control"
+                                                placeholder="Tên sản phẩm"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Giá</label>
+                                    <form:input path="price" id="price" type="number" class="form-control"
+                                                placeholder="Giá"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Nguồn ảnh</label>
+                                    <form:input path="image" id="image" type="text" class="form-control"
+                                                placeholder="Nguồn ảnh"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Mô tả</label>
+                                    <form:textarea path="description" id="description" type="text" class="form-control"
+                                                   placeholder="Mô tả"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Số lượng</label>
+                                    <form:input path="amount" id="amount" type="number" class="form-control"
+                                                placeholder="Số lượng"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Thông số</label>
+                                    <form:input path="specification" id="specification" type="text" class="form-control"
+                                                placeholder="Thông số"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Bảo hành</label>
+                                    <form:input path="guarantee" id="guarantee" type="number" class="form-control"
+                                                placeholder="Bảo hành"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Đơn vị</label>
+                                    <form:input path="unit" id="unit" type="text" class="form-control"
+                                                placeholder="Đơn vị"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Danh mục</label>
+                                    <form:select path="categoryId" id="categoryId" class="form-control" require="true">
+                                        <option id="-1" selected value disabled></option>
+                                        <c:forEach items="${categories}" var="category">
+                                            <form:option data-id="${category.id}"
+                                                         value="${category.id}">${category.id} | ${category.name}</form:option>
+                                        </c:forEach>
+                                    </form:select>
 
-                        <div class="col-md-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="checkbox-het-hang">
-                                <label class="form-check-label">
-                                    Hết hàng
-                                </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check" id="status">
+                                    <label>Còn hàng</label>
+                                    <form:radiobutton path="status" name="status" value="false" checked="true"/> <br>
+                                    <label>hết hàng</label>
+                                    <form:radiobutton path="status" name="status" value="true"/>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-success" id="btn-luu-lai">Lưu</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-success">Lưu</button>
+                    </div>
+                </form:form>
             </div>
         </div>
     </div>
@@ -155,7 +148,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-danger" id="btn-xac-nhan-xoa">Xóa</button>
+                    <a class="btn btn-danger" id="methodDelete">Xóa</a>
                 </div>
             </div>
         </div>
@@ -164,7 +157,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1>Quản Lý Sản Phẩm</h1>
+                    <h1>Quản Lý Danh Mục Sản Phẩm</h1>
                 </div>
                 <div class="col-12">
                     <hr>
@@ -172,8 +165,27 @@
             </div>
         </div>
     </div>
+
     <div class="table-data">
         <div class="container">
+            <div style="margin-bottom: 10px">
+                <button class="btn btn-outline-primary" id="add" data-toggle="modal"
+                        data-target="#exampleModal">
+                    Thêm danh mục
+                </button>
+            </div>
+            <div class="alert alert-success" hidden="${insertSuccess}">
+                <strong>Success!</strong> Thêm mới thành công
+            </div>
+            <div class="alert alert-success" hidden="${updateSuccess}">
+                <strong>Success!</strong> Cập nhật thành công
+            </div>
+            <div class="alert alert-success" hidden="${deleteSuccess}">
+                <strong>Success!</strong> Xóa thành công
+            </div>
+            <div class="alert alert-danger" hidden="${fail}">
+                <strong>Danger!</strong> Thất bại.
+            </div>
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
@@ -223,11 +235,26 @@
                                     </c:choose>
                                     <td>
                                         <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                data-target="#exampleModal"><i class="fas fa-pen"></i>
+                                                data-target="#exampleModal"
+                                                data-id="${product.id}"
+                                                data-name="${product.name}"
+                                                data-price="${product.price}"
+                                                data-image="${product.image}"
+                                                data-status="${product.status}"
+                                                data-description="${product.description}"
+                                                data-amount="${product.amount}"
+                                                data-specification="${product.specification}"
+                                                data-guarantee="${product.guarantee}"
+                                                data-unit="${product.unit}"
+                                                data-categoryId="${product.categoryId}"
+                                                onclick="updateProduct(${product.id})"><i
+                                                class="fas fa-pen"></i>
                                             Sửa
                                         </button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
+                                                data-target="#exampleModal1"
+                                                onclick="deleteProduct(${product.id})"><i class=" fas fa-trash-alt
+                                        "></i>
                                             Xóa
                                         </button>
                                     </td>
@@ -241,3 +268,4 @@
         </div>
     </div>
 </main>
+<script src="/js/product.js"></script>

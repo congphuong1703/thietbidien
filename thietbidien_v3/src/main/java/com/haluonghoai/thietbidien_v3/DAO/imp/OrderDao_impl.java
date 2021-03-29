@@ -2,10 +2,7 @@ package com.haluonghoai.thietbidien_v3.DAO.imp;
 
 
 import com.haluonghoai.thietbidien_v3.DAO.OrderDao;
-import com.haluonghoai.thietbidien_v3.Models.MyConnection;
-import com.haluonghoai.thietbidien_v3.Models.Order;
-import com.haluonghoai.thietbidien_v3.Models.OrderDetails;
-import com.haluonghoai.thietbidien_v3.Models.Receipt;
+import com.haluonghoai.thietbidien_v3.Models.*;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -21,7 +18,7 @@ public class OrderDao_impl implements OrderDao {
     @Override
     public Order getObject(ResultSet resultSet) throws SQLException {
         Order order = null;
-        order = new Order(resultSet.getInt("iMadonhang"),resultSet.getDate("dThoigiandat"),resultSet.getString("sGhichu"),resultSet.getInt("iManguoidung"),resultSet.getInt("iMakhachhang"),resultSet.getInt("iMatrangthai"),resultSet.getBoolean("bTrangthaithanhtoan"),resultSet.getBoolean("bHinhthucthanhtoan"));
+        order = new Order(resultSet.getInt("iMadonhang"), resultSet.getDate("dThoigiandat"), resultSet.getString("sGhichu"), resultSet.getInt("iManguoidung"), resultSet.getInt("iMakhachhang"), resultSet.getInt("iMatrangthai"), resultSet.getBoolean("bTrangthaithanhtoan"), resultSet.getBoolean("bHinhthucthanhtoan"));
         return order;
     }
 
@@ -33,14 +30,14 @@ public class OrderDao_impl implements OrderDao {
     @Override
     public List<Order> findAll() throws SQLException, ClassNotFoundException {
         List<Order> list = new ArrayList<>();
-        String sql = "select * from tblDonHang";
+        String sql = "select * from tblDonHang sort order by year(dThoigiandat) asc";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.first()){
-            do{
+        if (resultSet.first()) {
+            do {
                 Order order = getObject(resultSet);
-                if(order != null) list.add(order);
-            }while(resultSet.next());
+                if (order != null) list.add(order);
+            } while (resultSet.next());
         }
         return list;
     }
@@ -50,10 +47,10 @@ public class OrderDao_impl implements OrderDao {
         boolean result = false;
         String sql = "update tblDonHang set bTrangthaithanhtoan = ? where iMadonhang = ?";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
-        preparedStatement.setBoolean(1,tttt);
-        preparedStatement.setInt(2,id);
+        preparedStatement.setBoolean(1, tttt);
+        preparedStatement.setInt(2, id);
         int rs = preparedStatement.executeUpdate();
-        if(rs > 0) result = true;
+        if (rs > 0) result = true;
         return result;
     }
 
@@ -62,10 +59,10 @@ public class OrderDao_impl implements OrderDao {
         boolean result = false;
         String sql = "update tblDonHang set iMatrangthai = ? where iMadonhang = ?";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
-        preparedStatement.setInt(1,matrangthai);
-        preparedStatement.setInt(2,id);
+        preparedStatement.setInt(1, matrangthai);
+        preparedStatement.setInt(2, id);
         int rs = preparedStatement.executeUpdate();
-        if(rs > 0) result = true;
+        if (rs > 0) result = true;
         return result;
     }
 
@@ -75,9 +72,9 @@ public class OrderDao_impl implements OrderDao {
         String sql = "select tblDonHang.iMadonhang as N'Mã đơn hàng', tblKhachHang.iMakhachhang, tblKhachHang.sHoten, tblKhachHang.sSodienthoai, tblKhachHang.sEmail, tblKhachHang.sDiachi from tblDonHang\n" +
                 "inner join tblKhachHang on tblDonHang.iMakhachhang = tblKhachHang.iMakhachhang where tblDonHang.iMadonhang = ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
-        preparedStatement.setInt(1,id);
+        preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.first()) {
+        if (resultSet.first()) {
             order = getObject(resultSet);
         }
         return order;
@@ -90,9 +87,9 @@ public class OrderDao_impl implements OrderDao {
                 "from (tblChiTietDonHang inner join tblSanPham on tblChiTietDonHang.iId_sanpham = tblSanPham.iId_sanpham) inner join tblDonHang on tblChiTietDonHang.iMadonhang = tblDonHang.iMadonhang\n" +
                 "where tblDonHang.iMadonhang = ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
-        preparedStatement.setInt(1,id);
+        preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.first()){
+        if (resultSet.first()) {
             order = getObject(resultSet);
         }
         return order;
@@ -118,13 +115,13 @@ public class OrderDao_impl implements OrderDao {
         List<Order> list = new ArrayList<>();
         String sql = "select * from tblDonHang where tblDonHang.bHinhthucthanhtoan = ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
-        preparedStatement.setBoolean(1,payments);
+        preparedStatement.setBoolean(1, payments);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.first()){
-            do{
+        if (resultSet.first()) {
+            do {
                 Order order = getObject(resultSet);
-                if(order != null) list.add(order);
-            }while(resultSet.next());
+                if (order != null) list.add(order);
+            } while (resultSet.next());
         }
         return list;
     }
@@ -134,13 +131,13 @@ public class OrderDao_impl implements OrderDao {
         List<Order> list = new ArrayList<>();
         String sql = "select * from tblDonHang where tblDonHang.iMatrangthai = ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
-        preparedStatement.setInt(1,matrangthai);
+        preparedStatement.setInt(1, matrangthai);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.first()){
-            do{
+        if (resultSet.first()) {
+            do {
                 Order order = getObject(resultSet);
-                if(order != null) list.add(order);
-            }while(resultSet.next());
+                if (order != null) list.add(order);
+            } while (resultSet.next());
         }
         return list;
     }
@@ -150,13 +147,13 @@ public class OrderDao_impl implements OrderDao {
         List<Order> list = new ArrayList<>();
         String sql = "select * from tblDonHang where tblDonHang.bTrangthaithanhtoan = ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
-        preparedStatement.setBoolean(1,trangthaitt);
+        preparedStatement.setBoolean(1, trangthaitt);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.first()){
-            do{
+        if (resultSet.first()) {
+            do {
                 Order order = getObject(resultSet);
-                if(order != null) list.add(order);
-            }while(resultSet.next());
+                if (order != null) list.add(order);
+            } while (resultSet.next());
         }
         return list;
     }
@@ -167,8 +164,8 @@ public class OrderDao_impl implements OrderDao {
         String sql = "select * from tblDonHang where iMadonhang = ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
         preparedStatement.setInt(1, id);
-        ResultSet resultSet =  preparedStatement.executeQuery();
-        if(resultSet.first()) {
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
             order = getObject(resultSet);
         }
         return order;
@@ -180,16 +177,16 @@ public class OrderDao_impl implements OrderDao {
         String sql = "insert tblDonHang values (?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
         preparedStatement.setDate(1, (Date) order.getTimecreate());
-        preparedStatement.setString(2,order.getNote());
-        preparedStatement.setInt(3,order.getIdUser());
-        preparedStatement.setInt(4,order.getIdCustomer());
-        preparedStatement.setInt(5,order.getIdOrderstatus());
-        preparedStatement.setBoolean(6,order.isStatusPaments());
-        preparedStatement.setBoolean(7,order.isPayments());
+        preparedStatement.setString(2, order.getNote());
+        preparedStatement.setInt(3, order.getIdUser());
+        preparedStatement.setInt(4, order.getIdCustomer());
+        preparedStatement.setInt(5, order.getIdOrderstatus());
+        preparedStatement.setBoolean(6, order.isStatusPaments());
+        preparedStatement.setBoolean(7, order.isPayments());
         int rs = preparedStatement.executeUpdate();
-        if(rs > 0) {
+        if (rs > 0) {
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 newOrder = findById((int) resultSet.getLong(1));
             }
         }
@@ -198,7 +195,20 @@ public class OrderDao_impl implements OrderDao {
 
     @Override
     public boolean update(Order object) throws SQLException {
-        return false;
+        boolean result = false;
+        String sql = "update tblDonHang set dThoigiandat = ?, sGhichu = ?, iManguoidung = ?, iMakhachhang = ?," +
+                " iMatrangthai = ?, bTrangthaithanhtoan = ?, bHinhthucthanhtoan = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setDate(1, (Date) object.getTimecreate());
+        preparedStatement.setString(2, object.getNote());
+        preparedStatement.setInt(3, object.getIdUser());
+        preparedStatement.setInt(4, object.getIdCustomer());
+        preparedStatement.setInt(5, object.getIdOrderstatus());
+        preparedStatement.setBoolean(6, object.isStatusPaments());
+        preparedStatement.setBoolean(7, object.isPayments());
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
+        return result;
     }
 
     @Override

@@ -181,4 +181,16 @@ public class ProductDao_impl implements ProductDao {
         banghi = resultSet.getInt(1);
         return banghi;
     }
+
+    @Override
+    public boolean deleteByCategoryId(int id) throws SQLException {
+        boolean result = false;
+        String sql ="delete from tblSanPham where iMadanhmucsp = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1,id);
+        int rs = preparedStatement.executeUpdate();
+        if(rs >0) result = true;
+        return result;
+    }
+
 }

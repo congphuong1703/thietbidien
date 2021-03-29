@@ -89,4 +89,20 @@ public class ReceiptDetailDao_Impl implements ReceiptDetailDao {
     public int count() throws SQLException, ClassNotFoundException {
         return 0;
     }
+
+    @Override
+    public List<ReceiptDetails> seeDetails(int id) throws SQLException {
+        List<ReceiptDetails> receiptDetailsList = new ArrayList<>();
+        String sql = "select * from tblChiTietPhieuNhap where iMaphieunhap = ?";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                ReceiptDetails receiptDetails = getObject(resultSet);
+                if (receiptDetails != null) receiptDetailsList.add(receiptDetails);
+            } while (resultSet.next());
+        }
+        return receiptDetailsList;
+    }
 }

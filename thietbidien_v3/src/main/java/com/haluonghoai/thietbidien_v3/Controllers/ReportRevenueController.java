@@ -59,9 +59,8 @@ public class ReportRevenueController {
 
             map.put("idOrder", String.valueOf(order.getId()));
             map.put("totalProduct", String.valueOf(totalProduct));
+            map.put("revenue", String.valueOf(revenue));
             map.put("date", simpleDateFormat.format(order.getTimecreate()));
-            map.put("totalProduct", format.format(totalProduct));
-            map.put("revenue", format.format(revenue));
             list.add(map);
         }
 
