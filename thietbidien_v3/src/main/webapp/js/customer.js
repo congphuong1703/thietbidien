@@ -6,7 +6,6 @@ function updateCustomer(id) {
     $('#phoneNumber').val($('#' + id).attr('data-phoneNumber'));
     $('#username').val($('#' + id).attr('data-username'));
     $('#password').val($('#' + id).attr('data-password'));
-
 }
 
 function deleteCustomer(id) {

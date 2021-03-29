@@ -8,8 +8,8 @@ $(document).ready(function () {
             var totalRevenue = table.column(4, {page: 'current'}).data().sum();
             var totalProduct = table.column(2, {page: 'current'}).data().sum();
 
-            $('#totalProduct').text(totalProduct.replace(/\d(?=(\d{3})+\.)/g, '$&,'));
-            $('#totalRevenue').text(totalRevenue.replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+            $('#totalProduct').text(totalProduct.toString().replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+            $('#totalRevenue').text(totalRevenue.toString().replace(/\d(?=(\d{3})+\.)/g, '$&,'));
 
             $('#exampleModal').modal('show');
         });

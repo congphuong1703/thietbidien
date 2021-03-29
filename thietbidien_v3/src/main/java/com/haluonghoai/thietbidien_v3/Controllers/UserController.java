@@ -1,5 +1,6 @@
 package com.haluonghoai.thietbidien_v3.Controllers;
 
+import com.haluonghoai.thietbidien_v3.Config.Common;
 import com.haluonghoai.thietbidien_v3.DAO.UserDao;
 import com.haluonghoai.thietbidien_v3.DAO.imp.UserDao_impl;
 import com.haluonghoai.thietbidien_v3.Models.Customer;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.sql.SQLException;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
     @ModelAttribute(name = "changeURL")
@@ -24,7 +26,7 @@ public class UserController {
 
     UserDao userDao = new UserDao_impl();
 
-    @RequestMapping("/user")
+    @GetMapping
     public String go(ModelMap model) {
         try {
             model.addAttribute("users", userDao.findAll());

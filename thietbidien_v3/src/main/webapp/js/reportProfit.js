@@ -7,7 +7,7 @@ $(document).ready(function () {
         .on('click', function () {
             var totalProfit = table.column(2, {page: 'current'}).data().sum();
 
-            $('#totalProfit').text(totalProfit.toFixed(0).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+            $('#totalProfit').text(totalProfit.toString().toFixed(0).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
 
             $('#exampleModal').modal('show');
         });

@@ -7,7 +7,7 @@ $(document).ready(function () {
         .on('click', function () {
             var totalCost = table.column(6, {page: 'current'}).data().sum();
 
-            $('#totalCost').text(totalCost.replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+            $('#totalCost').text(totalCost.toString().replace(/\d(?=(\d{3})+\.)/g, '$&,'));
 
             $('#exampleModal').modal('show');
         });

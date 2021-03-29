@@ -51,7 +51,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Số điện thoại</label>
-                                    <form:input path="phoneNumber" id="phoneNumber" type="text" class="form-control"
+                                    <form:input path="phonenumber" id="phonenumber" type="text" class="form-control"
                                                 placeholder="Số điện thoại"/>
                                 </div>
                             </div>
@@ -70,11 +70,12 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-check" id="status">
+                                <div class="form-check" id="idQuyen">
                                     <label>Quản lý</label>
-                                    <form:radiobutton path="idQuyen" name="idQuyen" value="1" checked="true"/> <br>
+                                    <form:radiobutton path="idQuyen" data-idQuyen="1" name="idQuyen" value="1"
+                                                      checked="true"/> <br>
                                     <label>Nhân viên</label>
-                                    <form:radiobutton path="idQuyen" name="idQuyen" value="2"/>
+                                    <form:radiobutton path="idQuyen" name="idQuyen" data-idQuyen="2" value="2"/>
                                 </div>
                             </div>
                         </div>
@@ -186,6 +187,7 @@
                                     <td>
                                         <button type="button" class="btn btn-warning" data-toggle="modal"
                                                 data-target="#exampleModal"
+                                                id="${user.id}"
                                                 data-id="${user.id}"
                                                 data-name="${user.name}"
                                                 data-email="${user.email}"
@@ -215,3 +217,4 @@
         </div>
     </div>
 </main>
+<script src="/js/user.js"></script>
