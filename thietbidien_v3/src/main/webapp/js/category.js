@@ -18,3 +18,18 @@ $('#add').click(function () {
     $('#name').val("");
     $('#status input#status1').prop('checked', true);
 })
+
+function simpleValidation() {
+    var nameEle = $('#name');
+
+    if (nameEle.val() === '') {
+        nameEle.val("Bạn phải nhập tên danh mục");
+        nameEle.focus(function () {
+            nameEle.val('');
+        })
+        nameEle.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+    return  true;
+
+}

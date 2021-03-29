@@ -17,3 +17,30 @@ $('#add').click(function () {
     $('#email').val("");
     $('#adress').val("");
 })
+
+
+function simpleValidation() {
+    var nameEle = $('#name');
+    var emailELe = $('#email');
+
+
+    if (nameEle.val() === '') {
+        nameEle.val("Bạn phải nhập tên nhà cung cấp");
+        nameEle.focus(function () {
+            nameEle.val('');
+        })
+        nameEle.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+
+    if (emailELe.val() === '') {
+        emailELe.val("Bạn phải nhập email nhà cung cấp");
+        emailELe.focus(function () {
+            emailELe.val('');
+        })
+        emailELe.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+    return  true;
+
+}

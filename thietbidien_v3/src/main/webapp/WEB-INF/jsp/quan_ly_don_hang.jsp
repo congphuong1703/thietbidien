@@ -15,7 +15,7 @@
          aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form:form modelAttribute="orderModel" action="/order/add" method="get">
+                <form:form modelAttribute="orderModel" action="/order/add" method="get" onsubmit="return simpleValidation()">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Đơn hàng</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -43,13 +43,14 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Người lập đơn</label>
-                                    <form:select path="idUser" id="idUser" class="form-control" require="true">
+                                    <form:select path="idUser" id="idUser" class="form-control required" require="true">
                                         <option id="-1" selected value disabled></option>
                                         <c:forEach items="${users}" var="user">
                                             <form:option data-id="${user.id}"
                                                          value="${user.id}">${user.id} | ${user.name}</form:option>
                                         </c:forEach>
                                     </form:select>
+                                    <span class="text-danger invalidData"></span>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -62,6 +63,7 @@
                                                          value="${customer.id}">${customer.id} | ${customer.name}</form:option>
                                         </c:forEach>
                                     </form:select>
+                                    <span class="text-danger invalidData"></span>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -75,6 +77,7 @@
                                                          value="${orderStatus.id}">${orderStatus.id} | ${orderStatus.name}</form:option>
                                         </c:forEach>
                                     </form:select>
+                                    <span class="text-danger invalidData"></span>
                                 </div>
                             </div>
                             <div class="col-md-4">

@@ -14,7 +14,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form:form method="get" action="/supplier/add" modelAttribute="supplierModel">
+                <form:form method="get" action="/supplier/add" modelAttribute="supplierModel" onsubmit="return simpleValidation()">
                     <div class="modal-body form-custom">
                         <div class="row">
                             <div class="col-md-6">

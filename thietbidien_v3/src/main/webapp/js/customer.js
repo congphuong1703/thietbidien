@@ -22,3 +22,50 @@ $('#add').click(function () {
     $('#username').val("");
     $('#password').val("");
 })
+
+
+function simpleValidation() {
+    var nameEle = $('#name');
+    var emailELe = $('#email');
+    var usernameEle = $('#username');
+    var passwordEle = $('#password');
+
+
+    if (nameEle.val() === '') {
+        nameEle.val("Bạn phải nhập tên khách hàng");
+        nameEle.focus(function () {
+            nameEle.val('');
+        })
+        nameEle.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+
+    if (emailELe.val() === '') {
+        emailELe.val("Bạn phải nhập email khách hàng");
+        emailELe.focus(function () {
+            emailELe.val('');
+        })
+        emailELe.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+
+    if (usernameEle.val() === '') {
+        usernameEle.val("Bạn phải nhập username");
+        usernameEle.focus(function () {
+            usernameEle.val('');
+        })
+        usernameEle.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+
+    if (passwordEle.val() === '') {
+        passwordEle.val("Bạn phải nhập password ");
+        passwordEle.focus(function () {
+            passwordEle.val('');
+        })
+        passwordEle.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+    return  true;
+
+}

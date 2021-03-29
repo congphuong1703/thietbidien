@@ -47,3 +47,34 @@ $('#add').click(function () {
     $('#idCustomer option#-1').prop('selected', true);
     $('#idOrderstatus option#-1').prop('selected', true);
 })
+
+
+function simpleValidation() {
+    //var selected_option = $('#mySelectBox option:selected');
+    // $('#idUser option#-1').prop('selected', true);
+    var conditionCustomer = $('#idCustomer option#-1').prop('selected');
+    var conditionUser = $('#idUser option#-1').prop('selected');
+    var conditionOrderstatus = $('#idOrderstatus option#-1').prop('selected');
+
+    if (conditionCustomer) {
+
+        $('#idCustomer').next().text('Bạn phải chọn khách hàng')
+        $('#idCustomer').css({'border-color': 'red'})
+        return false;
+    }
+    if (conditionUser) {
+
+        $('#idUser').next().text('Bạn phải chọn người lập đơn')
+        $('#idUser').css({'border-color': 'red'})
+        return false;
+    }
+
+    if (conditionOrderstatus) {
+
+        $('#idOrderstatus').next().text('Bạn phải chọn trạng thái')
+        $('#idOrderstatus').css({'border-color': 'red'})
+        return false;
+    }
+
+    return true;
+}

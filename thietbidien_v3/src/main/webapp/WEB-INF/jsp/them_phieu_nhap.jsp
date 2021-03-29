@@ -35,14 +35,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Số lượng</label>
-                                <input type="number" class="form-control" id="input-number" required
+                                <input type="number" class="form-control" min="1" id="input-number" value="0.0"
                                        placeholder="Nhập số lượng">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Đơn giá</label>
-                                <input type="number" class="form-control" id="input-price" required
+                                <input type="number" class="form-control" min="1" id="input-price" value="0.0"
                                        placeholder="Nhập đơn giá">
                             </div>
                         </div>
