@@ -20,117 +20,84 @@
     <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="/vendor/bootstrap/js/proper.min.js"></script>
     <script src="/js/myjs.js"></script>
-    <script src="/js/app.js"></script>
+
 </head>
 <body class="nav-md">
 <div class="wrapper">
     <nav id="sidebar" class="sidebar">
         <div class="sidebar-content js-simplebar">
-            <a class="sidebar-brand" href="index.html">
-                <span class="align-middle">AdminKit</span>
+            <a class="sidebar-brand" href="/">
+                <span class="align-middle">Quản trị Quang Phúc</span>
             </a>
 
             <ul class="sidebar-nav">
-                <li class="sidebar-header">
-                    Pages
-                </li>
 
                 <li class="sidebar-item active">
-                    <a class="sidebar-link" href="index.html">
-                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                    <a class="sidebar-link" href="/category">
+                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Danh mục</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="pages-profile.html">
-                        <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+                    <a class="sidebar-link" href="/product">
+                        <i class="align-middle" data-feather="user"></i> <span class="align-middle">Sản phẩm</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="pages-settings.html">
-                        <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
+                    <a class="sidebar-link" href="/order">
+                        <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Đơn hàng</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="pages-invoice.html">
-                        <i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Invoice</span>
+                    <a class="sidebar-link" href="/supplier">
+                        <i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Nhà cung cấp</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="pages-blank.html">
-                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
+                    <a class="sidebar-link" href="/customer">
+                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">Khách hàng</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/user">
+                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">Người dùng</span>
                     </a>
                 </li>
 
                 <li class="sidebar-header">
-                    Tools & Components
+                    Quản trị thống kê
                 </li>
                 <li class="sidebar-item">
                     <a data-target="#ui" data-toggle="collapse" class="sidebar-link collapsed">
-                        <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">UI Elements</span>
+                        <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Phiếu nhập</span>
                     </a>
                     <ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
-                        <li class="sidebar-item"><a class="sidebar-link" href="ui-alerts.html">Alerts</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="ui-buttons.html">Buttons</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="ui-cards.html">Cards</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="ui-general.html">General</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="ui-grid.html">Grid</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="ui-modals.html">Modals</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="ui-typography.html">Typography</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link" href="/receipt/add">Thêm phiếu nhập</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link" href="/receipt">Danh sách phiếu nhập</a></li>
+
                     </ul>
                 </li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="icons-feather.html">
-                        <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
-                    </a>
-                </li>
+
 
                 <li class="sidebar-item">
                     <a data-target="#forms" data-toggle="collapse" class="sidebar-link collapsed">
-                        <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Forms</span>
+                        <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Thống kê</span>
                     </a>
                     <ul id="forms" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
-                        <li class="sidebar-item"><a class="sidebar-link" href="forms-layouts.html">Form Layouts</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="forms-basic-inputs.html">Basic Inputs</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link" href="/reportRevenue">Thống kê doanh thu</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link" href="/reportProduct">Thống kê hàng hóa</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link" href="/reportCost">Thống kê chi phí nhập hàng</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link" href="/reportProfit">Thống kê lợi nhuận</a></li>
                     </ul>
                 </li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="tables-bootstrap.html">
-                        <i class="align-middle" data-feather="list"></i> <span class="align-middle">Tables</span>
-                    </a>
-                </li>
 
-                <li class="sidebar-header">
-                    Plugins & Addons
-                </li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="charts-chartjs.html">
-                        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="maps-google.html">
-                        <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
-                    </a>
-                </li>
             </ul>
-
-            <div class="sidebar-cta">
-                <div class="sidebar-cta-content">
-                    <strong class="d-inline-block mb-2">Upgrade to Pro</strong>
-                    <div class="mb-3 text-sm">
-                        Are you looking for more components? Check out our premium version.
-                    </div>
-                    <a href="https://adminkit.io/pricing" target="_blank" class="btn btn-primary btn-block">Upgrade to Pro</a>
-                </div>
-            </div>
         </div>
     </nav>
 
@@ -337,7 +304,7 @@
                 <div class="row text-muted">
                     <div class="col-6 text-left">
                         <p class="mb-0">
-                            <a href="index.html" class="text-muted"><strong>AdminKit Demo</strong></a> &copy;
+                            <a href="index.html" class="text-muted"><strong>AdminKit</strong></a> &copy;
                         </p>
                     </div>
                     <div class="col-6 text-right">
@@ -411,6 +378,223 @@
 <%--        </div>--%>
 <%--    </nav>--%>
 <%--</div>--%>
-
+    <script src="/js/app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
+            var gradient = ctx.createLinearGradient(0, 0, 0, 225);
+            gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
+            gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
+            // Line chart
+            new Chart(document.getElementById("chartjs-dashboard-line"), {
+                type: "line",
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    datasets: [{
+                        label: "Sales ($)",
+                        fill: true,
+                        backgroundColor: gradient,
+                        borderColor: window.theme.primary,
+                        data: [
+                            2115,
+                            1562,
+                            1584,
+                            1892,
+                            1587,
+                            1923,
+                            2566,
+                            2448,
+                            2805,
+                            3438,
+                            2917,
+                            3327
+                        ]
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        intersect: false
+                    },
+                    hover: {
+                        intersect: true
+                    },
+                    plugins: {
+                        filler: {
+                            propagate: false
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            reverse: true,
+                            gridLines: {
+                                color: "rgba(0,0,0,0.0)"
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                stepSize: 1000
+                            },
+                            display: true,
+                            borderDash: [3, 3],
+                            gridLines: {
+                                color: "rgba(0,0,0,0.0)"
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Pie chart
+            new Chart(document.getElementById("chartjs-dashboard-pie"), {
+                type: "pie",
+                data: {
+                    labels: ["Chrome", "Firefox", "IE"],
+                    datasets: [{
+                        data: [4306, 3801, 1689],
+                        backgroundColor: [
+                            window.theme.primary,
+                            window.theme.warning,
+                            window.theme.danger
+                        ],
+                        borderWidth: 5
+                    }]
+                },
+                options: {
+                    responsive: !window.MSInputMethodContext,
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    cutoutPercentage: 75
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Bar chart
+            new Chart(document.getElementById("chartjs-dashboard-bar"), {
+                type: "bar",
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    datasets: [{
+                        label: "This year",
+                        backgroundColor: window.theme.primary,
+                        borderColor: window.theme.primary,
+                        hoverBackgroundColor: window.theme.primary,
+                        hoverBorderColor: window.theme.primary,
+                        data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79],
+                        barPercentage: .75,
+                        categoryPercentage: .5
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            gridLines: {
+                                display: false
+                            },
+                            stacked: false,
+                            ticks: {
+                                stepSize: 20
+                            }
+                        }],
+                        xAxes: [{
+                            stacked: false,
+                            gridLines: {
+                                color: "transparent"
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var markers = [{
+                coords: [31.230391, 121.473701],
+                name: "Shanghai"
+            },
+                {
+                    coords: [28.704060, 77.102493],
+                    name: "Delhi"
+                },
+                {
+                    coords: [6.524379, 3.379206],
+                    name: "Lagos"
+                },
+                {
+                    coords: [35.689487, 139.691711],
+                    name: "Tokyo"
+                },
+                {
+                    coords: [23.129110, 113.264381],
+                    name: "Guangzhou"
+                },
+                {
+                    coords: [40.7127837, -74.0059413],
+                    name: "New York"
+                },
+                {
+                    coords: [34.052235, -118.243683],
+                    name: "Los Angeles"
+                },
+                {
+                    coords: [41.878113, -87.629799],
+                    name: "Chicago"
+                },
+                {
+                    coords: [51.507351, -0.127758],
+                    name: "London"
+                },
+                {
+                    coords: [40.416775, -3.703790],
+                    name: "Madrid "
+                }
+            ];
+            var map = new JsVectorMap({
+                map: "world",
+                selector: "#world_map",
+                zoomButtons: true,
+                markers: markers,
+                markerStyle: {
+                    initial: {
+                        r: 9,
+                        strokeWidth: 7,
+                        stokeOpacity: .4,
+                        fill: window.theme.primary
+                    },
+                    hover: {
+                        fill: window.theme.primary,
+                        stroke: window.theme.primary
+                    }
+                }
+            });
+            window.addEventListener("resize", () => {
+                map.updateSize();
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("datetimepicker-dashboard").flatpickr({
+                inline: true,
+                prevArrow: "<span class=\"fas fa-chevron-left\" title=\"Previous month\"></span>",
+                nextArrow: "<span class=\"fas fa-chevron-right\" title=\"Next month\"></span>",
+            });
+        });
+    </script>
 </body>
 </html>
