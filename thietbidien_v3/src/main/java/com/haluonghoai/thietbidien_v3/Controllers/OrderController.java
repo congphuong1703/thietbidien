@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/order")
 public class OrderController {
 
     @ModelAttribute(name = "changeURL")
@@ -65,7 +66,7 @@ public class OrderController {
         return "chi_tiet_don_hang";
     }
 
-    @RequestMapping("/order")
+    @GetMapping
     public String go(Model model) {
         try {
             model.addAttribute("orders", orderDao.findAll());
@@ -109,8 +110,11 @@ public class OrderController {
         } catch (Exception e) {
             model.addAttribute("fail", true);
         }
-        model.addAttribute("products", productDao.findAll());
-        model.addAttribute("productModel", new Product());
+        model.addAttribute("orders", orderDao.findAll());
+        model.addAttribute("orderModel", new Order());
+        model.addAttribute("users", userDao.findAll());
+        model.addAttribute("customers", customerDao.findAll());
+        model.addAttribute("orderStatuses", orderStatusDao.findAll());
         return "quan_ly_don_hang";
     }
 
@@ -118,14 +122,17 @@ public class OrderController {
     public String delete(Model model,
                          @RequestParam("id") int id) throws SQLException, ClassNotFoundException {
         try {
-            productDao.delete(id);
+            orderDao.delete(id);
             model.addAttribute("deleteSuccess", true);
         } catch (Exception e) {
             model.addAttribute("fail", true);
         }
 
-        model.addAttribute("products", productDao.findAll());
-        model.addAttribute("productModel", new Product());
+        model.addAttribute("orders", orderDao.findAll());
+        model.addAttribute("orderModel", new Order());
+        model.addAttribute("users", userDao.findAll());
+        model.addAttribute("customers", customerDao.findAll());
+        model.addAttribute("orderStatuses", orderStatusDao.findAll());
         return "quan_ly_don_hang";
     }
 

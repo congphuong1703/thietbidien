@@ -14,46 +14,46 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body form-custom">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Tên nhà cung cấp</label>
-                                <input type="text" class="form-control" id="input-ten" placeholder="Nhập tên">
-                                <div class="invalid-feedback">
+                <form:form method="get" action="/supplier/add" modelAttribute="supplierModel">
+                    <div class="modal-body form-custom">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tên nhà cung cấp</label>
+                                    <form:input path="name" id="name" type="text" class="form-control"
+                                                placeholder="Nhập tên"/>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Số điện thoại</label>
-                                <input type="text" class="form-control" id="input-sdt" placeholder="Nhập số điện thoại">
-                                <div class="invalid-feedback">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Số điện thoại</label>
+                                    <form:input path="sdt" id="sdt" type="text" class="form-control"
+                                                placeholder="Nhập số điện thoại"/>
+                                    <div class="invalid-feedback">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" class="form-control" id="input-email" placeholder="Nhập email">
-                                <div class="invalid-feedback">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <form:input path="email" id="email" type="email" class="form-control"
+                                                placeholder="Nhập email"/>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Địa chỉ</label>
-                                <input type="number" class="form-control" id="input-dia-chi" placeholder="Nhập địa chỉ">
-                                <div class="invalid-feedback">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Địa chỉ</label>
+                                    <form:input type="text" path="adress" id="adress" class="form-control"
+                                           placeholder="Nhập địa chỉ"/>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-success" id="btn-luu-lai">Lưu</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-success" id="btn-luu-lai">Lưu</button>
+                    </div>
+                </form:form>
             </div>
         </div>
     </div>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-danger" id="btn-xac-nhan-xoa">Xóa</button>
+                    <a class="btn btn-danger" id="methodDelete">Xóa</a>
                 </div>
             </div>
         </div>
@@ -100,9 +100,10 @@
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
-                       <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
-                                   cellspacing="0"
-                                   width="100%">      <thead>
+                        <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
+                               cellspacing="0"
+                               width="100%">
+                            <thead>
                             <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">ID</th>
@@ -123,14 +124,21 @@
                                     <td value="${supplier.email}">${supplier.email}</td>
                                     <td value="${supplier.adress}">${supplier.adress}</td>
                                     <td>
-                                        <button type="button" class="btn btn-warning" value="${supplier.id}"
-                                                data-toggle="modal" data-target="#exampleModal"><i
+                                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                data-target="#exampleModal"
+                                                data-id="${supplier.id}"
+                                                data-name="${supplier.name}"
+                                                data-sdt="${supplier.sdt}"
+                                                data-email="${supplier.email}"
+                                                data-adress="${supplier.adress}"
+                                                onclick="updateSupplier(${supplier.id})"><i
                                                 class="fas fa-pen"></i>
                                             Sửa
                                         </button>
-                                        <button type="button" class="btn btn-danger" value="${supplier.adress}"
-                                                data-toggle="modal"
-                                                data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#exampleModal1"
+                                                onclick="deleteSupplier(${supplier.id})"><i class=" fas fa-trash-alt
+                                        "></i>
                                             Xóa
                                         </button>
                                     </td>

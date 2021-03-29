@@ -157,7 +157,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1>Quản Lý Danh Mục Sản Phẩm</h1>
+                    <h1>Quản Lý Nhà Cung Cấp</h1>
                 </div>
                 <div class="col-12">
                     <hr>
@@ -171,7 +171,7 @@
             <div style="margin-bottom: 10px">
                 <button class="btn btn-outline-primary" id="add" data-toggle="modal"
                         data-target="#exampleModal">
-                    Thêm danh mục
+                    Thêm nhà cung cấp
                 </button>
             </div>
             <div class="alert alert-success" hidden="${insertSuccess}">

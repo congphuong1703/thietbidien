@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/product")
 public class ProductController {
 
     @ModelAttribute(name = "changeURL")
@@ -28,7 +29,7 @@ public class ProductController {
 
     ProductDao productDao = new ProductDao_impl();
 
-    @RequestMapping("/product")
+    @GetMapping
     public String go(Model model) {
         try {
             model.addAttribute("products", productDao.findAll());
@@ -39,7 +40,7 @@ public class ProductController {
         return "quan_ly_san_pham";
     }
 
-    @GetMapping(value = "/product/search")
+    @GetMapping(value = "/search")
     public String findByName(Model model, @QueryParam("code") String code,
                              @QueryParam("name") String name,
                              @QueryParam("price") int price,
