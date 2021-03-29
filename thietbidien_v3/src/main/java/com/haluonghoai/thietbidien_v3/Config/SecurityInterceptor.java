@@ -62,7 +62,6 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
                         || request.getServletPath().equalsIgnoreCase("/supplier")
                         || request.getServletPath().equalsIgnoreCase("/user")) {
                     modelAndView.clear();
-
                 }
             }
         super.postHandle(request, response, handler, modelAndView);

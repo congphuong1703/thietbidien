@@ -17,11 +17,13 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 @Configuration
 public class TemplateConfiguration implements WebMvcConfigurer {
 
+    //Prefix cho api với anotation @RestController
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
         configurer.addPathPrefix("/api/v1", HandlerTypePredicate.forAnnotation(RestController.class));
     }
 
+    //config tiles
     @Bean
     public UrlBasedViewResolver viewResolver() {
         UrlBasedViewResolver urlBasedViewResolver = new UrlBasedViewResolver();
@@ -29,6 +31,7 @@ public class TemplateConfiguration implements WebMvcConfigurer {
         return urlBasedViewResolver;
     }
 
+    //config đường dẫn cho tiles
     @Bean
     public TilesConfigurer tilesConfigurer() {
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
@@ -38,12 +41,5 @@ public class TemplateConfiguration implements WebMvcConfigurer {
 
         });
         return tilesConfigurer;
-    }
-
-    @Bean
-    public MessageSource messageSource() {
-        ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
-        resourceBundleMessageSource.setBasename("messages");
-        return resourceBundleMessageSource;
     }
 }

@@ -15,10 +15,8 @@ public class Interceptor extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         // TODO Auto-generated method stub
 
-//         đăng kí chạy securityInterceptor cho tất cả trang khi chạy các trang web. trừ trang login
+//         đăng kí chạy securityInterceptor trang login
         registry.addInterceptor(securityInterceptor).excludePathPatterns("/login").excludePathPatterns("/actionlogin").excludePathPatterns("/css/style.css").excludePathPatterns("/css/mycss.css").excludePathPatterns("/vendor/bootstrap/css/bootstrap.min.css");
 
-        // chỉ khi vào trang home mới chạy interceptor
-        registry.addInterceptor(securityInterceptor).addPathPatterns("/home");
     }
 }

@@ -58,8 +58,15 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Username</label>
-                                    <form:textarea path="username" id="username" type="text" class="form-control"
-                                                   placeholder="Username"/>
+                                    <form:input path="username" id="username" type="text" class="form-control"
+                                                placeholder="Username"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <form:input path="password" id="password" type="text" class="form-control"
+                                                placeholder="Password"/>
                                 </div>
                             </div>
                         </div>
@@ -119,18 +126,26 @@
                     Thêm khách hàng
                 </button>
             </div>
-            <div class="alert alert-success" hidden="${insertSuccess}">
-                <strong>Success!</strong> Thêm mới thành công
-            </div>
-            <div class="alert alert-success" hidden="${updateSuccess}">
-                <strong>Success!</strong> Cập nhật thành công
-            </div>
-            <div class="alert alert-success" hidden="${deleteSuccess}">
-                <strong>Success!</strong> Xóa thành công
-            </div>
-            <div class="alert alert-danger" hidden="${fail}">
-                <strong>Danger!</strong> Thất bại.
-            </div>
+            <c:if test="${insertSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Thêm mới thành công
+                </div>
+            </c:if>
+            <c:if test="${updateSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Cập nhật thành công
+                </div>
+            </c:if>
+            <c:if test="${deleteSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Xóa thành công
+                </div>
+            </c:if>
+            <c:if test="${fail}">
+                <div class="alert alert-danger">
+                    <strong>Danger!</strong> Thất bại.
+                </div>
+            </c:if>
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
@@ -160,12 +175,14 @@
                                     <td>
                                         <button type="button" class="btn btn-warning" data-toggle="modal"
                                                 data-target="#exampleModal"
+                                                id="${customer.id}"
                                                 data-id="${customer.id}"
                                                 data-name="${customer.name}"
                                                 data-email="${customer.email}"
                                                 data-adress="${customer.adress}"
                                                 data-phoneNumber="${customer.phoneNumber}"
                                                 data-username="${customer.username}"
+                                                data-password="${customer.password}"
                                                 onclick="updateCustomer(${customer.id})"><i
                                                 class="fas fa-pen"></i>
                                             Sửa
@@ -187,3 +204,4 @@
         </div>
     </div>
 </main>
+<script src="/js/customer.js"></script>

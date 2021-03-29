@@ -40,7 +40,6 @@ public class SupplierController {
     @GetMapping("/add")
     public String add(Model model,
                       @ModelAttribute("supplierModel") Supplier supplier) throws Exception {
-
         try {
             if (supplier.getId() == 0) {
                 supplierDao.insert(supplier);
@@ -71,7 +70,6 @@ public class SupplierController {
         model.addAttribute("supplierModel", new Supplier());
         return "quan_ly_nha_cung_cap";
     }
-
 
 
 }

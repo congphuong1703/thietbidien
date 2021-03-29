@@ -64,7 +64,7 @@ public class SupplierDap_impl implements SupplierDao {
         int rs = preparedStatement.executeUpdate();
         if(rs > 0) {
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            if(resultSet.first()) {
+            if(resultSet.next()) {
                 newSupplier = findById((int) resultSet.getLong(1));
             }
         }

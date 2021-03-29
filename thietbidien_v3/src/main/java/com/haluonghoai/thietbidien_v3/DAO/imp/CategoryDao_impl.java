@@ -1,9 +1,9 @@
 package com.haluonghoai.thietbidien_v3.DAO.imp;
 
 
-
 import com.haluonghoai.thietbidien_v3.DAO.CategoryDao;
 import com.haluonghoai.thietbidien_v3.Models.Category;
+import com.haluonghoai.thietbidien_v3.Models.Customer;
 import com.haluonghoai.thietbidien_v3.Models.MyConnection;
 
 import java.sql.*;
@@ -17,7 +17,7 @@ public class CategoryDao_impl implements CategoryDao {
     @Override
     public Category getObject(ResultSet resultSet) throws SQLException {
         Category category = null;
-        category = new Category(resultSet.getInt("iMadanhmucsp"),resultSet.getString("sTendanhmucsp"),resultSet.getBoolean("bTinhtrangban"));
+        category = new Category(resultSet.getInt("iMadanhmucsp"), resultSet.getString("sTendanhmucsp"), resultSet.getBoolean("bTinhtrangban"));
         return category;
     }
 
@@ -32,13 +32,13 @@ public class CategoryDao_impl implements CategoryDao {
         List<Category> list = new ArrayList<>();
         String sql = "{call sp_select_danhmuc}";
         Connection connection = myConnection.connectDb();
-        CallableStatement sttm = connection.prepareCall(sql, ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+        CallableStatement sttm = connection.prepareCall(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet resultSet = sttm.executeQuery();
-        if(resultSet.first()){
-            do{
+        if (resultSet.first()) {
+            do {
                 Category category = getObject(resultSet);
-                if(category != null) list.add(category);
-            }while(resultSet.next());
+                if (category != null) list.add(category);
+            } while (resultSet.next());
         }
         return list;
     }
@@ -49,8 +49,8 @@ public class CategoryDao_impl implements CategoryDao {
         String sql = "select * from tblDanhMucSanPham where iMadanhmucsp = ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
         preparedStatement.setInt(1, id);
-        ResultSet resultSet =  preparedStatement.executeQuery();
-        if(resultSet.first()) {
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
             category = getObject(resultSet);
         }
         return category;
@@ -62,12 +62,12 @@ public class CategoryDao_impl implements CategoryDao {
         Category newCategory = null;
         String sql = "insert tblDanhMucSanPham(sTendanhmucsp,bTinhtrangban) values (?,?)";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
-        preparedStatement.setString(1,category.getName());
-        preparedStatement.setBoolean(2,category.isStatus());
+        preparedStatement.setString(1, category.getName());
+        preparedStatement.setBoolean(2, category.isStatus());
         int rs = preparedStatement.executeUpdate();
-        if(rs > 0) {
+        if (rs > 0) {
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 newCategory = findById((int) resultSet.getLong(1));
             }
         }
@@ -83,7 +83,7 @@ public class CategoryDao_impl implements CategoryDao {
         preparedStatement.setBoolean(2, category.isStatus());
         preparedStatement.setInt(3, category.getId());
         int rs = preparedStatement.executeUpdate();
-        if(rs > 0) result = true;
+        if (rs > 0) result = true;
         return result;
     }
 
@@ -92,9 +92,9 @@ public class CategoryDao_impl implements CategoryDao {
         boolean result = false;
         String sql = "delete from tblDanhMucSanPham where iMadanhmucsp = ?";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
-        preparedStatement.setInt(1,id);
+        preparedStatement.setInt(1, id);
         int rs = preparedStatement.executeUpdate();
-        if(rs > 0) result = true;
+        if (rs > 0) result = true;
         return result;
     }
 
@@ -103,7 +103,7 @@ public class CategoryDao_impl implements CategoryDao {
         int banghi = 0;
         String sql = "{call sp_select_banghi}";
         Connection connection = myConnection.connectDb();
-        CallableStatement sttm = connection.prepareCall(sql,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        CallableStatement sttm = connection.prepareCall(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
         ResultSet resultSet = sttm.executeQuery();
         resultSet.last();
         banghi = resultSet.getInt(1);

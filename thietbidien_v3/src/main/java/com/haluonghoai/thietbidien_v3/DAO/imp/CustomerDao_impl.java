@@ -2,6 +2,7 @@ package com.haluonghoai.thietbidien_v3.DAO.imp;
 
 
 import com.haluonghoai.thietbidien_v3.DAO.CustomerDao;
+import com.haluonghoai.thietbidien_v3.Models.Category;
 import com.haluonghoai.thietbidien_v3.Models.Customer;
 import com.haluonghoai.thietbidien_v3.Models.MyConnection;
 import com.haluonghoai.thietbidien_v3.Models.Order;
@@ -28,7 +29,7 @@ public class CustomerDao_impl implements CustomerDao {
     @Override
     public List<Customer> findAll() throws SQLException, ClassNotFoundException {
         List<Customer> list = new ArrayList<>();
-        String sql = "{call sp_select_khachhang}";
+        String sql = "select * from tblKhachHang order by iMakhachhang desc";
         Connection connection = myConnection.connectDb();
         CallableStatement sttm = connection.prepareCall(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet resultSet = sttm.executeQuery();
@@ -56,20 +57,37 @@ public class CustomerDao_impl implements CustomerDao {
 
     @Override
     public Customer insert(Customer customer) throws Exception {
-        return null;
+        Customer newCustomer = null;
+        String sql = "insert tblKhachHang(sHoten,sEmail,sDiachi,sSodienthoai,sTendangnhap,sMatkhau) values (?,?,?,?,?,?)";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setString(1,customer.getName());
+        preparedStatement.setString(2,customer.getEmail());
+        preparedStatement.setString(3,customer.getAdress());
+        preparedStatement.setString(4,customer.getPhoneNumber());
+        preparedStatement.setString(5,customer.getUsername());
+        preparedStatement.setString(6,customer.getPassword());
+        int rs = preparedStatement.executeUpdate();
+        if(rs > 0) {
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if(resultSet.next()) {
+                newCustomer = findById((int) resultSet.getLong(1));
+            }
+        }
+        return newCustomer;
     }
 
     @Override
     public boolean update(Customer object) throws SQLException {
         boolean result = false;
         String sql = "update tblKhachHang set sHoten = ?, sEmail = ?, sDiachi = ?, sSodienthoai = ?," +
-                " sTendangnhap = ?";
+                " sTendangnhap = ? where iMakhachhang = ?";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
         preparedStatement.setString(1, object.getName());
         preparedStatement.setString(2, object.getEmail());
         preparedStatement.setString(3, object.getAdress());
         preparedStatement.setString(4, object.getPhoneNumber());
         preparedStatement.setString(5, object.getUsername());
+        preparedStatement.setInt(6, object.getId());
         int rs = preparedStatement.executeUpdate();
         if (rs > 0) result = true;
         return result;

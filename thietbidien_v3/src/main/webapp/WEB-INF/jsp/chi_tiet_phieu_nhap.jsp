@@ -85,7 +85,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
+                            <table class="table table-striped table-hover table-sm"
                                    cellspacing="0"
                                    width="100%">
                                 <thead>

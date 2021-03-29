@@ -19,6 +19,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label>ID danh mục</label>
+                                    <form:input path="id" id="id" readonly="true" type="text"
+                                                class="form-control"
+                                                placeholder="ID"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label>Tên nhà cung cấp</label>
                                     <form:input path="name" id="name" type="text" class="form-control"
                                                 placeholder="Nhập tên"/>
@@ -97,6 +105,32 @@
     </div>
     <div class="table-data">
         <div class="container">
+            <div style="margin-bottom: 10px">
+                <button class="btn btn-outline-primary" id="add" data-toggle="modal"
+                        data-target="#exampleModal">
+                    Thêm nhà cung cấp
+                </button>
+            </div>
+            <c:if test="${insertSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Thêm mới thành công
+                </div>
+            </c:if>
+            <c:if test="${updateSuccess}">
+                <div class="alert alert-success" >
+                    <strong>Success!</strong> Cập nhật thành công
+                </div>
+            </c:if>
+            <c:if test="${deleteSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Xóa thành công
+                </div>
+            </c:if>
+            <c:if test="${fail}">
+                <div class="alert alert-danger">
+                    <strong>Danger!</strong> Thất bại.
+                </div>
+            </c:if>
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
@@ -126,6 +160,7 @@
                                     <td>
                                         <button type="button" class="btn btn-warning" data-toggle="modal"
                                                 data-target="#exampleModal"
+                                                id="${supplier.id}"
                                                 data-id="${supplier.id}"
                                                 data-name="${supplier.name}"
                                                 data-sdt="${supplier.sdt}"
@@ -152,3 +187,4 @@
         </div>
     </div>
 </main>
+<script src="/js/supplier.js"></script>
