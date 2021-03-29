@@ -67,7 +67,8 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Trạng thái đơn hàng</label>
-                                    <form:select path="orderStatus" id="orderStatus" class="form-control" require="true">
+                                    <form:select path="idOrderstatus" id="idOrderstatus" class="form-control"
+                                                 require="true">
                                         <option id="-1" selected value disabled></option>
                                         <c:forEach items="${orderStatuses}" var="orderStatus">
                                             <form:option data-id="${orderStatus.id}"
@@ -79,17 +80,18 @@
                             <div class="col-md-4">
                                 <div class="form-check" id="statusPaments">
                                     <label>Đã thanh toán</label>
-                                    <form:radiobutton path="statusPaments" name="statusPaments" value="false" checked="true"/> <br>
+                                    <form:radiobutton path="statusPaments" name="statusPaments" value="false"
+                                                      checked="true"/> <br>
                                     <label>Chưa thanh toán</label>
                                     <form:radiobutton path="statusPaments" name="statusPaments" value="true"/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-check" id="payments">
-                                    <label>Chuyển khoản</label>
-                                    <form:radiobutton path="status" name="status" value="false" checked="true"/> <br>
                                     <label>Thanh toán sau khi nhận hàng</label>
-                                    <form:radiobutton path="status" name="status" value="true"/>
+                                    <form:radiobutton path="payments" name="payments" value="true"/><br>
+                                    <label>Chuyển khoản</label>
+                                    <form:radiobutton path="payments" name="payments" value="false" checked="true"/>
                                 </div>
                             </div>
                         </div>
@@ -150,18 +152,26 @@
                     Thêm đơn hàng
                 </button>
             </div>
-            <div class="alert alert-success" hidden="${insertSuccess}">
-                <strong>Success!</strong> Thêm mới thành công
-            </div>
-            <div class="alert alert-success" hidden="${updateSuccess}">
-                <strong>Success!</strong> Cập nhật thành công
-            </div>
-            <div class="alert alert-success" hidden="${deleteSuccess}">
-                <strong>Success!</strong> Xóa thành công
-            </div>
-            <div class="alert alert-danger" hidden="${fail}">
-                <strong>Danger!</strong> Thất bại.
-            </div>
+            <c:if test="${insertSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Thêm mới thành công
+                </div>
+            </c:if>
+            <c:if test="${updateSuccess}">
+                <div class="alert alert-success" >
+                    <strong>Success!</strong> Cập nhật thành công
+                </div>
+            </c:if>
+            <c:if test="${deleteSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Xóa thành công
+                </div>
+            </c:if>
+            <c:if test="${fail}">
+                <div class="alert alert-danger">
+                    <strong>Danger!</strong> Thất bại.
+                </div>
+            </c:if>
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
@@ -209,7 +219,7 @@
                                     <td value="${order.payments}">
                                         <c:choose>
                                             <c:when test="${order.payments == true}">
-                                            <span class="badge badge-success">Chuyển khoản</span>
+                                                <span class="badge badge-success">Chuyển khoản</span>
                                             </c:when>
                                             <c:otherwise>
                                                 <span class="badge badge-success">Sau khi nhận hàng</span>
@@ -217,7 +227,7 @@
                                         </c:choose>
                                     </td>
                                     <td value="${order.statusPaments}">
-                                    <c:choose>
+                                        <c:choose>
                                             <c:when test="${order.statusPaments == true}">
                                                 <span class="badge badge-success">Đã thanh toán</span>
                                             </c:when>
@@ -227,7 +237,8 @@
                                         </c:choose>
                                     </td>
                                     <td>
-                                        <a href="/orderDetail?id=${order.id}" class="btn btn-info">Xem chi tiết</a>
+                                        <a href="/order/orderDetail?id=${order.id}" class="btn btn-info">Xem chi
+                                            tiết</a>
                                     </td>
                                     <td>
                                         <select class="form-control select-thanh-toan"
@@ -262,5 +273,30 @@
         </div>
     </div>
 </main>
+<div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="notify">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body form-custom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Cập nhật thành công</label><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeNotify" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="/js/order-management.js" charset="utf-8"></script>
 

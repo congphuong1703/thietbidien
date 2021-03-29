@@ -31,7 +31,7 @@ public class ReceiptDao_impl implements ReceiptDao {
     @Override
     public List<Receipt> findAll() throws SQLException, ClassNotFoundException {
         List<Receipt> receipts = new ArrayList<>();
-        String sql = "select * from tblPhieuNhap year(dThoigianlap) asc";
+        String sql = "select * from tblPhieuNhap";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.first()) {
@@ -80,12 +80,29 @@ public class ReceiptDao_impl implements ReceiptDao {
 
     @Override
     public boolean update(Receipt object) throws SQLException {
-        return false;
+        boolean result = false;
+        String sql = "update tblPhieuNhap set dThoigianlap = ?, sGhichu = ?, iManguoidung = ?, iManhacungcap = ?," +
+                " bTinhtrangnhap = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setDate(1, (Date) object.getTimeCreate());
+        preparedStatement.setString(2, object.getNote());
+        preparedStatement.setInt(3, object.getIdUser());
+        preparedStatement.setInt(4, object.getIdSupplier());
+        preparedStatement.setBoolean(5, object.getStatusEnter());
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
+        return result;
     }
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return false;
+        boolean result = false;
+        String sql = "delete from tblPhieuNhap where iMaphieunhap = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1, id);
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
+        return result;
     }
 
     @Override
@@ -158,7 +175,6 @@ public class ReceiptDao_impl implements ReceiptDao {
         }
         return receipts;
     }
-
 
 
 }

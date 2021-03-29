@@ -3,163 +3,134 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <main>
-    <main>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <form:form modelAttribute="customerModel" action="/customer/add" method="get">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Khách hàng</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-
-                        <div class="modal-body form-custom">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>ID</label>
-                                        <form:input path="id" id="id" readonly="true" type="text"
-                                                    class="form-control"
-                                                    placeholder="ID"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Tên khách hàng</label>
-                                        <form:input path="name" id="id" type="text"
-                                                    class="form-control"
-                                                    placeholder="Tên khách hàng"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Tên sản phẩm</label>
-                                        <form:input path="name" id="name" type="text" class="form-control"
-                                                    placeholder="Tên sản phẩm"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Giá</label>
-                                        <form:input path="price" id="price" type="number" class="form-control"
-                                                    placeholder="Giá"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Nguồn ảnh</label>
-                                        <form:input path="image" id="image" type="text" class="form-control"
-                                                    placeholder="Nguồn ảnh"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Mô tả</label>
-                                        <form:textarea path="description" id="description" type="text" class="form-control"
-                                                       placeholder="Mô tả"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Số lượng</label>
-                                        <form:input path="amount" id="amount" type="number" class="form-control"
-                                                    placeholder="Số lượng"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Thông số</label>
-                                        <form:input path="specification" id="specification" type="text" class="form-control"
-                                                    placeholder="Thông số"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Bảo hành</label>
-                                        <form:input path="guarantee" id="guarantee" type="number" class="form-control"
-                                                    placeholder="Bảo hành"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Đơn vị</label>
-                                        <form:input path="unit" id="unit" type="text" class="form-control"
-                                                    placeholder="Đơn vị"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                            <button type="submit" class="btn btn-success">Lưu</button>
-                        </div>
-                    </form:form>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form:form modelAttribute="customerModel" action="/customer/add" method="get">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel1">Xác nhận thao tác</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Khách hàng</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-12">
-                                    Bạn có chắc chắn xóa khách hàng này không?
+
+                    <div class="modal-body form-custom">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>ID</label>
+                                    <form:input path="id" id="id" readonly="true" type="text"
+                                                class="form-control"
+                                                placeholder="ID"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Tên khách hàng</label>
+                                    <form:input path="name" id="name" type="text"
+                                                class="form-control"
+                                                placeholder="Tên khách hàng"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <form:input path="email" id="email" type="email" class="form-control"
+                                                placeholder="email"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Địa chỉ</label>
+                                    <form:input path="adress" id="adress" type="text" class="form-control"
+                                                placeholder="Địa chỉ"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Số điện thoại</label>
+                                    <form:input path="phoneNumber" id="phoneNumber" type="text" class="form-control"
+                                                placeholder="Số điện thoại"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <form:textarea path="username" id="username" type="text" class="form-control"
+                                                   placeholder="Username"/>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                        <a class="btn btn-danger" id="methodDelete">Xóa</a>
+                        <button type="submit" class="btn btn-success">Lưu</button>
                     </div>
-                </div>
+                </form:form>
             </div>
         </div>
-        <div class="title-page mt-4">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <h1>Quản Lý Khách Hàng</h1>
-                    </div>
-                    <div class="col-12">
-                        <hr>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="table-data">
-            <div class="container">
-                <div style="margin-bottom: 10px">
-                    <button class="btn btn-outline-primary" id="add" data-toggle="modal"
-                            data-target="#exampleModal">
-                        Thêm khách hàng
+    </div>
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Xác nhận thao tác</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="alert alert-success" hidden="${insertSuccess}">
-                    <strong>Success!</strong> Thêm mới thành công
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                Bạn có chắc chắn xóa khách hàng này không?
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="alert alert-success" hidden="${updateSuccess}">
-                    <strong>Success!</strong> Cập nhật thành công
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <a class="btn btn-danger" id="methodDelete">Xóa</a>
                 </div>
-                <div class="alert alert-success" hidden="${deleteSuccess}">
-                    <strong>Success!</strong> Xóa thành công
+            </div>
+        </div>
+    </div>
+    <div class="title-page mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1>Quản Lý Khách Hàng</h1>
                 </div>
-                <div class="alert alert-danger" hidden="${fail}">
-                    <strong>Danger!</strong> Thất bại.
+                <div class="col-12">
+                    <hr>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-data">
+        <div class="container">
+            <div style="margin-bottom: 10px">
+                <button class="btn btn-outline-primary" id="add" data-toggle="modal"
+                        data-target="#exampleModal">
+                    Thêm khách hàng
+                </button>
+            </div>
+            <div class="alert alert-success" hidden="${insertSuccess}">
+                <strong>Success!</strong> Thêm mới thành công
+            </div>
+            <div class="alert alert-success" hidden="${updateSuccess}">
+                <strong>Success!</strong> Cập nhật thành công
+            </div>
+            <div class="alert alert-success" hidden="${deleteSuccess}">
+                <strong>Success!</strong> Xóa thành công
+            </div>
+            <div class="alert alert-danger" hidden="${fail}">
+                <strong>Danger!</strong> Thất bại.
+            </div>
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">

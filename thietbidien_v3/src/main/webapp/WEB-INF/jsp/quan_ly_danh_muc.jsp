@@ -99,18 +99,26 @@
                     Thêm danh mục
                 </button>
             </div>
-            <div class="alert alert-success" hidden="${insertSuccess}">
-                <strong>Success!</strong> Thêm mới thành công
-            </div>
-            <div class="alert alert-success" hidden="${updateSuccess}">
-                <strong>Success!</strong> Cập nhật thành công
-            </div>
-            <div class="alert alert-success" hidden="${deleteSuccess}">
-                <strong>Success!</strong> Xóa thành công
-            </div>
-            <div class="alert alert-danger" hidden="${fail}">
-                <strong>Danger!</strong> Thất bại.
-            </div>
+            <c:if test="${insertSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Thêm mới thành công
+                </div>
+            </c:if>
+            <c:if test="${updateSuccess}">
+                <div class="alert alert-success" >
+                    <strong>Success!</strong> Cập nhật thành công
+                </div>
+            </c:if>
+            <c:if test="${deleteSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Xóa thành công
+                </div>
+            </c:if>
+            <c:if test="${fail}">
+                <div class="alert alert-danger">
+                    <strong>Danger!</strong> Thất bại.
+                </div>
+            </c:if>
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">

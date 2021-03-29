@@ -11,9 +11,7 @@ function updateStatusOrder(id) {
         contentType: "application/json;charset=utf-8",
         data: JSON.stringify(order),
         success: function (res) {
-            alert("Cập nhật thành công")
-            console.log(res);
-            window.location.reload();
+            $('#notification').modal('show');
         }
     })
 }
@@ -30,12 +28,25 @@ function updateStatusPayment(id) {
         contentType: "application/json;charset=utf-8",
         data: JSON.stringify(order),
         success: function (res) {
-            console.log(res);
-            alert("Cập nhật thành công")
-            window.location.reload();
+            $('#notification').modal('show');
         }
     })
 }
+
+
+$('#closeNotify').click(function(){
+    window.location.reload();
+})
+
+$('#add').click(function () {
+    $('#id').val(0);
+    $('#note').val("");
+    $('#payments input#payments1').prop('checked', true);
+    $('#statusPaments input#status1').prop('checked', true);
+    $('#idUser option#-1').prop('selected', true);
+    $('#idCustomer option#-1').prop('selected', true);
+    $('#idOrderstatus option#-1').prop('selected', true);
+})
 /*
 $('#status-payment').change(function updateStatusPayment() {
     var status = $('#status-payment option:checked').val();

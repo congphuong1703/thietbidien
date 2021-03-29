@@ -27,7 +27,7 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping({"/login","/"})
+    @RequestMapping({"/login", "/"})
     public String go(Model model) {
         return "login";
     }
@@ -50,10 +50,11 @@ public class LoginController {
             model.addAttribute("user", user);
             model.addAttribute("role", quyen);
             model.addAttribute("name", user.getName());
-            return "redirect:/product";
+            return "redirect:/category";
+        } else {
+            model.addAttribute("loginFail", true);
         }
-
-        return "redirect:/login";
+        return "login";
     }
 
 }

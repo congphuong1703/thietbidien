@@ -157,7 +157,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1>Quản Lý Nhà Cung Cấp</h1>
+                    <h1>Quản Lý Sản Phẩm</h1>
                 </div>
                 <div class="col-12">
                     <hr>
@@ -171,21 +171,29 @@
             <div style="margin-bottom: 10px">
                 <button class="btn btn-outline-primary" id="add" data-toggle="modal"
                         data-target="#exampleModal">
-                    Thêm nhà cung cấp
+                    Thêm sản phẩm
                 </button>
             </div>
-            <div class="alert alert-success" hidden="${insertSuccess}">
-                <strong>Success!</strong> Thêm mới thành công
-            </div>
-            <div class="alert alert-success" hidden="${updateSuccess}">
-                <strong>Success!</strong> Cập nhật thành công
-            </div>
-            <div class="alert alert-success" hidden="${deleteSuccess}">
-                <strong>Success!</strong> Xóa thành công
-            </div>
-            <div class="alert alert-danger" hidden="${fail}">
-                <strong>Danger!</strong> Thất bại.
-            </div>
+            <c:if test="${insertSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Thêm mới thành công
+                </div>
+            </c:if>
+            <c:if test="${updateSuccess}">
+                <div class="alert alert-success" >
+                    <strong>Success!</strong> Cập nhật thành công
+                </div>
+            </c:if>
+            <c:if test="${deleteSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Xóa thành công
+                </div>
+            </c:if>
+            <c:if test="${fail}">
+                <div class="alert alert-danger">
+                    <strong>Danger!</strong> Thất bại.
+                </div>
+            </c:if>
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
@@ -195,6 +203,7 @@
                             <thead>
                             <tr>
                                 <th>STT</th>
+                                <th>ID</th>
                                 <th>Ảnh</th>
                                 <th>Mã sản phẩm</th>
                                 <th>Tên sản phẩm</th>
@@ -213,7 +222,8 @@
                             <c:forEach items="${products}" var="product" varStatus="stt">
                                 <tr>
                                     <th scope="col">${stt.index}</th>
-                                    <td><img src="${product.image}"></td>
+                                    <td>${product.increaseId}</td>
+                                    <td><img width="50%" src="${product.image}"></td>
                                     <td>${product.id}</td>
                                     <td>${product.name}</td>
                                     <td>${product.price}</td>
@@ -236,6 +246,9 @@
                                     <td>
                                         <button type="button" class="btn btn-warning" data-toggle="modal"
                                                 data-target="#exampleModal"
+                                                id="${product.increaseId}"
+                                                value="${product.increaseId}"
+                                                data-increaseId="${product.increaseId}"
                                                 data-id="${product.id}"
                                                 data-name="${product.name}"
                                                 data-price="${product.price}"
@@ -247,13 +260,13 @@
                                                 data-guarantee="${product.guarantee}"
                                                 data-unit="${product.unit}"
                                                 data-categoryId="${product.categoryId}"
-                                                onclick="updateProduct(${product.id})"><i
+                                                onclick="updateProduct(${product.increaseId})"><i
                                                 class="fas fa-pen"></i>
                                             Sửa
                                         </button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal"
                                                 data-target="#exampleModal1"
-                                                onclick="deleteProduct(${product.id})"><i class=" fas fa-trash-alt
+                                                onclick="deleteProduct(${product.increaseId})"><i class=" fas fa-trash-alt
                                         "></i>
                                             Xóa
                                         </button>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -100,13 +101,9 @@ public class OrderController {
                       @ModelAttribute("orderModel") Order order) throws Exception {
 
         try {
-            if (order.getId() == 0) {
-                orderDao.insert(order);
-                model.addAttribute("insertSuccess", true);
-            } else {
-                model.addAttribute("updateSuccess", true);
-                orderDao.update(order);
-            }
+            order.setTimecreate(new Date(System.currentTimeMillis()));
+            orderDao.insert(order);
+            model.addAttribute("insertSuccess", true);
         } catch (Exception e) {
             model.addAttribute("fail", true);
         }
@@ -123,9 +120,9 @@ public class OrderController {
                          @RequestParam("id") int id) throws SQLException, ClassNotFoundException {
         try {
             orderDao.delete(id);
-            model.addAttribute("deleteSuccess", true);
+            model.addAttribute("deleteSuccess", false);
         } catch (Exception e) {
-            model.addAttribute("fail", true);
+            model.addAttribute("fail", false);
         }
 
         model.addAttribute("orders", orderDao.findAll());

@@ -1,7 +1,9 @@
 package com.haluonghoai.thietbidien_v3.Controllers;
 
 
+import com.haluonghoai.thietbidien_v3.DAO.CategoryDao;
 import com.haluonghoai.thietbidien_v3.DAO.ProductDao;
+import com.haluonghoai.thietbidien_v3.DAO.imp.CategoryDao_impl;
 import com.haluonghoai.thietbidien_v3.DAO.imp.ProductDao_impl;
 import com.haluonghoai.thietbidien_v3.Models.Category;
 import com.haluonghoai.thietbidien_v3.Models.Product;
@@ -29,10 +31,13 @@ public class ProductController {
 
     ProductDao productDao = new ProductDao_impl();
 
+    CategoryDao categoryDao = new CategoryDao_impl();
+
     @GetMapping
     public String go(Model model) {
         try {
             model.addAttribute("products", productDao.findAll());
+            model.addAttribute("categories", categoryDao.findAll());
             model.addAttribute("productModel", new Product());
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,15 +68,18 @@ public class ProductController {
 
         try {
             if (product.getIncreaseId() == 0) {
-                productDao.insert(product);
+                Product newProduct = new Product(product);
+                productDao.insert(newProduct);
                 model.addAttribute("insertSuccess", true);
             } else {
-                model.addAttribute("updateSuccess", true);
                 productDao.update(product);
+                model.addAttribute("updateSuccess", true);
             }
         } catch (Exception e) {
             model.addAttribute("fail", true);
+            e.printStackTrace();
         }
+        model.addAttribute("categories", categoryDao.findAll());
         model.addAttribute("products", productDao.findAll());
         model.addAttribute("productModel", new Product());
         return "quan_ly_san_pham";
@@ -86,7 +94,7 @@ public class ProductController {
         } catch (Exception e) {
             model.addAttribute("fail", true);
         }
-
+        model.addAttribute("categories", categoryDao.findAll());
         model.addAttribute("products", productDao.findAll());
         model.addAttribute("productModel", new Product());
         return "quan_ly_san_pham";

@@ -82,7 +82,13 @@ public class ReceiptDetailDao_Impl implements ReceiptDetailDao {
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return false;
+        boolean result = false;
+        String sql = "delete from tblChiTietPhieuNhap where iMaphieunhap = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1, id);
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
+        return result;
     }
 
     @Override

@@ -27,12 +27,12 @@
     <nav id="sidebar" class="sidebar">
         <div class="sidebar-content js-simplebar">
             <a class="sidebar-brand" href="/">
-                <span class="align-middle">Quản trị Quang Phúc</span>
+                <span class="align-middle">Quang Phúc</span>
             </a>
 
             <ul class="sidebar-nav">
 
-                <li class="sidebar-item active">
+                <li class="sidebar-item">
                     <a class="sidebar-link" href="/category">
                         <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Danh mục</span>
                     </a>
@@ -77,11 +77,8 @@
                     <ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
                         <li class="sidebar-item"><a class="sidebar-link" href="/receipt/add">Thêm phiếu nhập</a></li>
                         <li class="sidebar-item"><a class="sidebar-link" href="/receipt">Danh sách phiếu nhập</a></li>
-
                     </ul>
                 </li>
-
-
 
                 <li class="sidebar-item">
                     <a data-target="#forms" data-toggle="collapse" class="sidebar-link collapsed">
@@ -265,7 +262,7 @@
                             <a class="dropdown-item" href="pages-settings.html"><i class="align-middle mr-1" data-feather="settings"></i> Settings & Privacy</a>
                             <a class="dropdown-item" href="#"><i class="align-middle mr-1" data-feather="help-circle"></i> Help Center</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Log out</a>
+                            <a class="dropdown-item" href="/logout">Log out</a>
                         </div>
                     </li>
                 </ul>

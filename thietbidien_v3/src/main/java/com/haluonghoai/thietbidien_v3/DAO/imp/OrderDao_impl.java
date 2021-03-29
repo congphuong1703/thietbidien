@@ -30,7 +30,7 @@ public class OrderDao_impl implements OrderDao {
     @Override
     public List<Order> findAll() throws SQLException, ClassNotFoundException {
         List<Order> list = new ArrayList<>();
-        String sql = "select * from tblDonHang sort order by year(dThoigiandat) asc";
+        String sql = "select * from tblDonHang sort order by iMadonhang desc";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.first()) {
@@ -213,7 +213,13 @@ public class OrderDao_impl implements OrderDao {
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return false;
+        boolean result = false;
+        String sql = "delete from tblDonHang where iMadonhang = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1,id);
+        int rs = preparedStatement.executeUpdate();
+        if(rs > 0) result = true;
+        return result;
     }
 
     @Override

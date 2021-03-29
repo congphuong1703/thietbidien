@@ -8,82 +8,82 @@
          aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Quản Lý Người Dùng</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body form-custom">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Họ và tên</label>
-                                <input type="text" class="form-control" id="input-ten1" placeholder="Nhập họ tên">
-                                <div class="invalid-feedback">
-                                    Error!
+                <form:form modelAttribute="userModel" action="/user/add" method="get">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Người dùng</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body form-custom">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>ID</label>
+                                    <form:input path="id" id="id" readonly="true" type="text"
+                                                class="form-control"
+                                                placeholder="ID"/>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" class="form-control" id="input-ten" placeholder="Nhập email">
-                                <div class="invalid-feedback">
-                                    Error!
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Tên người dùng</label>
+                                    <form:input path="name" id="name" type="text"
+                                                class="form-control"
+                                                placeholder="Tên người dùng"/>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Địa chỉ</label>
-                                <input type="text" class="form-control" id="input-ten2" placeholder="Nhập địa chỉ">
-                                <div class="invalid-feedback">
-                                    Error!
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <form:input path="email" id="email" type="email" class="form-control"
+                                                placeholder="email"/>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Số điện thoại</label>
-                                <input type="number" class="form-control" id="input-ten3"
-                                       placeholder="Nhập số điện thoại">
-                                <div class="invalid-feedback">
-                                    Error!
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Địa chỉ</label>
+                                    <form:input path="adress" id="adress" type="text" class="form-control"
+                                                placeholder="Địa chỉ"/>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Ngày sinh</label>
-                                <input type="date" class="form-control" id="input-ten4" placeholder="Nhập ngày sinh">
-                                <div class="invalid-feedback">
-                                    Error!
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Số điện thoại</label>
+                                    <form:input path="phoneNumber" id="phoneNumber" type="text" class="form-control"
+                                                placeholder="Số điện thoại"/>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Mật khẩu</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                       placeholder="Password">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Ngày sinh</label>
+                                    <form:input path="dateOfBirth" id="dateOfBirth" type="text" class="form-control"
+                                                placeholder="Ngày sinh"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Quyền</label>
-                                <select id="select-loai-san-pham" class="form-control select-loai-san-pham">
-                                    <option value="1">Quản lý</option>
-                                    <option value="2">Nhân viên bán hàng</option>
-                                </select>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>pass</label>
+                                    <form:input path="pass" id="pass" type="text" class="form-control"
+                                                placeholder="pass"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check" id="status">
+                                    <label>Quản lý</label>
+                                    <form:radiobutton path="idQuyen" name="idQuyen" value="1" checked="true"/> <br>
+                                    <label>Nhân viên</label>
+                                    <form:radiobutton path="idQuyen" name="idQuyen" value="2"/>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-success" id="btn-luu-lai">Lưu</button>
+                        <button type="submit" class="btn btn-success">Lưu</button>
                     </div>
-                </div>
+                </form:form>
             </div>
         </div>
     </div>
@@ -101,14 +101,14 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
-                                Bạn có chắc chắn xóa sản phẩm này không?
+                                Bạn có chắc chắn xóa người dùng này không?
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-danger" id="btn-xac-nhan-xoa">Xóa</button>
+                    <a class="btn btn-danger" id="methodDelete">Xóa</a>
                 </div>
             </div>
         </div>
@@ -125,23 +125,43 @@
             </div>
         </div>
     </div>
+
     <div class="table-data">
         <div class="container">
+            <div style="margin-bottom: 10px">
+                <button class="btn btn-outline-primary" id="add" data-toggle="modal"
+                        data-target="#exampleModal">
+                    Thêm người dùng
+                </button>
+            </div>
+            <div class="alert alert-success" hidden="${insertSuccess}">
+                <strong>Success!</strong> Thêm mới thành công
+            </div>
+            <div class="alert alert-success" hidden="${updateSuccess}">
+                <strong>Success!</strong> Cập nhật thành công
+            </div>
+            <div class="alert alert-success" hidden="${deleteSuccess}">
+                <strong>Success!</strong> Xóa thành công
+            </div>
+            <div class="alert alert-danger" hidden="${fail}">
+                <strong>Danger!</strong> Thất bại.
+            </div>
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
-                       <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
-                                   cellspacing="0"
-                                   width="100%">      <thead>
+                        <table id="dtHorizontalVerticalExample" class="table table-striped table-hover table-sm"
+                               cellspacing="0"
+                               width="100%">
+                            <thead>
                             <tr>
-                               <th>STT</th>
-                               <th>ID</th>
-                               <th>Họ và tên</th>
-                               <th>Email</th>
-                               <th>Địa chỉ</th>
-                               <th>Số điện thoại</th>
-                               <th>Ngày sinh</th>
-                               <th>Quyền</th>
+                                <th>STT</th>
+                                <th>ID</th>
+                                <th>Họ và tên</th>
+                                <th>Email</th>
+                                <th>Địa chỉ</th>
+                                <th>Số điện thoại</th>
+                                <th>Ngày sinh</th>
+                                <th>Quyền</th>
                                 <th scope="col">Hành động</th>
                             </tr>
                             </thead>
@@ -165,11 +185,23 @@
                                     </c:choose>
                                     <td>
                                         <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                data-target="#exampleModal"><i class="fas fa-pen"></i>
+                                                data-target="#exampleModal"
+                                                data-id="${user.id}"
+                                                data-name="${user.name}"
+                                                data-email="${user.email}"
+                                                data-adress="${user.adress}"
+                                                data-phonenumber="${user.phonenumber}"
+                                                data-dateOfBirth="${user.dateOfBirth}"
+                                                data-pass="${user.pass}"
+                                                data-idQuyen="${user.idQuyen}"
+                                                onclick="updateUser(${user.id})"><i
+                                                class="fas fa-pen"></i>
                                             Sửa
                                         </button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#exampleModal1"><i class="fas fa-trash-alt"></i>
+                                                data-target="#exampleModal1"
+                                                onclick="deleteUser(${user.id})"><i class=" fas fa-trash-alt
+                                        "></i>
                                             Xóa
                                         </button>
                                     </td>

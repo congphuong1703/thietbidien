@@ -1,5 +1,6 @@
 function updateProduct(id) {
     $('#id').val($('#' + id).attr('data-id'));
+    $('#increaseId').val($('#' + id).attr('data-increaseId'));
     $('#name').val($('#' + id).attr('data-name'));
     $('#price').val($('#' + id).attr('data-price'));
     $('#image').val($('#' + id).attr('data-image'));
@@ -8,7 +9,7 @@ function updateProduct(id) {
     $('#specification').val($('#' + id).attr('data-specification'));
     $('#guarantee').val($('#' + id).attr('data-guarantee'));
     $('#unit').val($('#' + id).attr('data-unit'));
-    $('#categoryId option[data-id=' + $('#' + id).attr('data-categoryId') + ']')
+    $('#categoryId option[data-id=' + $('#' + id).attr('data-categoryId') + ']').attr('selected','selected');;
     if ($('#status').val() === "true") {
         $('#status input#status1').prop('checked', true);
     } else {

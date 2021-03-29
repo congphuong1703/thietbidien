@@ -19,16 +19,16 @@ public class ProductDao_impl implements ProductDao {
         List<Product> list = new ArrayList<>();
         String sql = "select * from tblSanPham where sMasanpham = ? or sTensanpham like ? or fGiaban = ? and bTinhtrang = ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
-        preparedStatement.setString(1,id);
-        preparedStatement.setString(2,name);
-        preparedStatement.setFloat(3,price);
-        preparedStatement.setBoolean(4,status);
+        preparedStatement.setString(1, id);
+        preparedStatement.setString(2, name);
+        preparedStatement.setFloat(3, price);
+        preparedStatement.setBoolean(4, status);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.first()){
-            do{
+        if (resultSet.first()) {
+            do {
                 Product product = getObject(resultSet);
-                if(product != null) list.add(product);
-            }while(resultSet.next());
+                if (product != null) list.add(product);
+            } while (resultSet.next());
         }
         return list;
     }
@@ -41,12 +41,14 @@ public class ProductDao_impl implements ProductDao {
         PreparedStatement preparedStatement = myConnection.prepare(sql);
         preparedStatement.setInt(1, idCategory);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.first()){{
-            do{
-                Product product = getObject(resultSet);
-                if(product != null) list.add(product);
-            }while(resultSet.next());
-        }}
+        if (resultSet.first()) {
+            {
+                do {
+                    Product product = getObject(resultSet);
+                    if (product != null) list.add(product);
+                } while (resultSet.next());
+            }
+        }
         return list;
     }
 
@@ -55,13 +57,13 @@ public class ProductDao_impl implements ProductDao {
         List<Product> list = new ArrayList<>();
         String sql = "select * from tblSanPham where sTensanpham like ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
-        preparedStatement.setString(1,"%"+name+"%");
+        preparedStatement.setString(1, "%" + name + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.first()){
-            do{
+        if (resultSet.first()) {
+            do {
                 Product product = getObject(resultSet);
-                if(product != null) list.add(product);
-            }while(resultSet.next());
+                if (product != null) list.add(product);
+            } while (resultSet.next());
         }
         return list;
     }
@@ -69,10 +71,10 @@ public class ProductDao_impl implements ProductDao {
     @Override
     public Product getObject(ResultSet resultSet) throws SQLException {
         Product product = null;
-        product = new Product(resultSet.getInt("iId_sanpham"),resultSet.getString("sMasanpham"),resultSet.getString("sTensanpham"),
-                resultSet.getFloat("fGiaban"),resultSet.getString("sAnhsanpham"),resultSet.getBoolean("bTinhtrang"),resultSet.getString("sMota"),
-                resultSet.getInt("iSoluong"),resultSet.getString("sThongsokythuat"),resultSet.getInt("iBaohanh"),
-                resultSet.getString("sDonvitinh"),resultSet.getInt("iMadanhmucsp"));
+        product = new Product(resultSet.getInt("iId_sanpham"), resultSet.getString("sMasanpham"), resultSet.getString("sTensanpham"),
+                resultSet.getFloat("fGiaban"), resultSet.getString("sAnhsanpham"), resultSet.getBoolean("bTinhtrang"), resultSet.getString("sMota"),
+                resultSet.getInt("iSoluong"), resultSet.getString("sThongsokythuat"), resultSet.getInt("iBaohanh"),
+                resultSet.getString("sDonvitinh"), resultSet.getInt("iMadanhmucsp"));
         return product;
     }
 
@@ -84,14 +86,14 @@ public class ProductDao_impl implements ProductDao {
     @Override
     public List<Product> findAll() throws SQLException, ClassNotFoundException {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from tblSanPham";
+        String sql = "select * from tblSanPham order by iId_sanpham";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.first()){
-            do{
+        if (resultSet.first()) {
+            do {
                 Product product = getObject(resultSet);
-                if(product!=null) list.add(product);
-            }while (resultSet.next());
+                if (product != null) list.add(product);
+            } while (resultSet.next());
         }
         return list;
     }
@@ -101,12 +103,12 @@ public class ProductDao_impl implements ProductDao {
         Product product = new Product();
         String sql = "select * from tblSanPham where iId_sanpham = ?";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
-        preparedStatement.setInt(1,id);
+        preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if(resultSet.first()){
-            do{
+        if (resultSet.first()) {
+            do {
                 product = getObject(resultSet);
-            }while(resultSet.next());
+            } while (resultSet.next());
         }
         return product;
     }
@@ -116,21 +118,21 @@ public class ProductDao_impl implements ProductDao {
         Product productnew = null;
         String sql = "insert tblSanPham values(?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
-        preparedStatement.setString(1,product.getId());
-        preparedStatement.setString(2,product.getName());
-        preparedStatement.setFloat(3,product.getPrice());
-        preparedStatement.setString(4,product.getImage());
-        preparedStatement.setBoolean(5,product.isStatus());
-        preparedStatement.setString(6,product.getDescription());
-        preparedStatement.setInt(7,product.getAmount());
-        preparedStatement.setString(8,product.getSpecification());
-        preparedStatement.setInt(9,product.getGuarantee());
-        preparedStatement.setString(10,product.getUnit());
-        preparedStatement.setInt(11,product.getCategoryId());
+        preparedStatement.setString(1, product.getId());
+        preparedStatement.setString(2, product.getName());
+        preparedStatement.setFloat(3, product.getPrice());
+        preparedStatement.setString(4, product.getImage());
+        preparedStatement.setBoolean(5, product.isStatus());
+        preparedStatement.setString(6, product.getDescription());
+        preparedStatement.setInt(7, product.getAmount());
+        preparedStatement.setString(8, product.getSpecification());
+        preparedStatement.setInt(9, product.getGuarantee());
+        preparedStatement.setString(10, product.getUnit());
+        preparedStatement.setInt(11, product.getCategoryId());
         int rs = preparedStatement.executeUpdate();
-        if(rs > 0){
+        if(rs > 0) {
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            if(resultSet.first()){
+            if(resultSet.next()) {
                 productnew = findById((int) resultSet.getLong(1));
             }
         }
@@ -142,32 +144,32 @@ public class ProductDao_impl implements ProductDao {
         boolean result = false;
         String sql = "update tblSanPham set sMasanpham = ?, sTensanpham = ?, fGiaban = ?, sAnhsanpham = ?," +
                 " bTinhtrang = ?, sMota = ?, iSoluong = ?, sThongsokythuat = ?, iBaohanh = ?, sDonvitinh = ?, iMadanhmucsp = ? where iId_sanpham = ? ";
-                PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
-                preparedStatement.setString(1,product.getId());
-                preparedStatement.setString(2,product.getName());
-                preparedStatement.setFloat(3,product.getPrice());
-                preparedStatement.setString(4,product.getImage());
-                preparedStatement.setBoolean(5,product.isStatus());
-                preparedStatement.setString(6,product.getDescription());
-                preparedStatement.setInt(7,product.getAmount());
-                preparedStatement.setString(8,product.getSpecification());
-                preparedStatement.setInt(9,product.getGuarantee());
-                preparedStatement.setString(10,product.getUnit());
-                preparedStatement.setInt(11,product.getCategoryId());
-                preparedStatement.setInt(12,product.getIncreaseId());
-                int rs = preparedStatement.executeUpdate();
-                if(rs>0) result = true;
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setString(1, product.getId());
+        preparedStatement.setString(2, product.getName());
+        preparedStatement.setFloat(3, product.getPrice());
+        preparedStatement.setString(4, product.getImage());
+        preparedStatement.setBoolean(5, product.isStatus());
+        preparedStatement.setString(6, product.getDescription());
+        preparedStatement.setInt(7, product.getAmount());
+        preparedStatement.setString(8, product.getSpecification());
+        preparedStatement.setInt(9, product.getGuarantee());
+        preparedStatement.setString(10, product.getUnit());
+        preparedStatement.setInt(11, product.getCategoryId());
+        preparedStatement.setInt(12, product.getIncreaseId());
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
         return result;
     }
 
     @Override
     public boolean delete(int id) throws SQLException {
         boolean result = false;
-        String sql ="delete from tblSanPham where iId_sanpham = ?";
+        String sql = "delete from tblSanPham where iId_sanpham = ?";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
-        preparedStatement.setInt(1,id);
+        preparedStatement.setInt(1, id);
         int rs = preparedStatement.executeUpdate();
-        if(rs >0) result = true;
+        if (rs > 0) result = true;
         return result;
     }
 
@@ -185,11 +187,11 @@ public class ProductDao_impl implements ProductDao {
     @Override
     public boolean deleteByCategoryId(int id) throws SQLException {
         boolean result = false;
-        String sql ="delete from tblSanPham where iMadanhmucsp = ?";
+        String sql = "delete from tblSanPham where iMadanhmucsp = ?";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
-        preparedStatement.setInt(1,id);
+        preparedStatement.setInt(1, id);
         int rs = preparedStatement.executeUpdate();
-        if(rs >0) result = true;
+        if (rs > 0) result = true;
         return result;
     }
 

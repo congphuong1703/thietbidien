@@ -25,6 +25,16 @@
                 <div class="card">
                     <div class="card-header">Đăng nhập</div>
                     <div class="card-body">
+                        <c:if test="${logoutSuccess}">
+                            <div class="alert alert-success">
+                                <strong>Success!</strong> Đăng xuất thành công
+                            </div>
+                        </c:if>
+                        <c:if test="${loginFail}">
+                            <div class="alert alert-danger">
+                                <strong>Danger!</strong>Đăng nhập thất bại
+                            </div>
+                        </c:if>
                         <form action="actionlogin">
                             <div class="form-group row">
                                 <label for="Email" class="col-md-4 col-form-label text-md-right">Email</label>
@@ -34,7 +44,6 @@
                                            autocomplete="off">
                                 </div>
                             </div>
-
                             <div class="form-group row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                                 <div class="col-md-6">

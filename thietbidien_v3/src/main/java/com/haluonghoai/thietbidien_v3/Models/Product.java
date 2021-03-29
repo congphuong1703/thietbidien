@@ -18,6 +18,20 @@ public class Product {
     public Product() {
     }
 
+    public Product(Product product) {
+        this.id = product.getId();
+        this.name = product.getName();
+        this.price = product.getPrice();
+        this.image = product.getImage();
+        this.status = product.isStatus();
+        this.description = product.getDescription();
+        this.amount = product.getAmount();
+        this.specification = product.getSpecification();
+        this.guarantee = product.getGuarantee();
+        this.unit = product.getUnit();
+        this.categoryId = product.getCategoryId();
+    }
+
     public Product(int increaseId, String id, String name, float price, String image, boolean status, String description, int amount, String specification, int guarantee, String unit, int categoryId) {
         this.increaseId = increaseId;
         this.id = id;

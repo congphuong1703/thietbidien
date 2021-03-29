@@ -61,12 +61,29 @@ public class CustomerDao_impl implements CustomerDao {
 
     @Override
     public boolean update(Customer object) throws SQLException {
-        return false;
+        boolean result = false;
+        String sql = "update tblKhachHang set sHoten = ?, sEmail = ?, sDiachi = ?, sSodienthoai = ?," +
+                " sTendangnhap = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setString(1, object.getName());
+        preparedStatement.setString(2, object.getEmail());
+        preparedStatement.setString(3, object.getAdress());
+        preparedStatement.setString(4, object.getPhoneNumber());
+        preparedStatement.setString(5, object.getUsername());
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
+        return result;
     }
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return false;
+        boolean result = false;
+        String sql = "delete from tblKhachHang where iMakhachhang = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1,id);
+        int rs = preparedStatement.executeUpdate();
+        if(rs > 0) result = true;
+        return result;
     }
 
     @Override
