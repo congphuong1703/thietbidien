@@ -84,6 +84,18 @@ public class ProductAPI {
         }
         return ResponseEntity.ok(rs);
     }
+    @GetMapping(value = "/find-by-id")
+    protected ResponseEntity<String> searchProductById(@RequestParam("id") int idProduct) {
+        String rs = "";
+        try {
+            Product product = productService.findProductById(idProduct);
+            rs = jsonResult.jsonSuccess(product);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            rs = jsonResult.jsonFail("find-san-pham-by-id-fail");
+        }
+        return ResponseEntity.ok(rs);
+    }
 
     @GetMapping(value = "/find-by-category")
     protected ResponseEntity<String> findByCategory(@RequestParam("idCategory") int idCategory) {

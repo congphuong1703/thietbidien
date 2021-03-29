@@ -48,6 +48,11 @@ public class ProductService_impl implements ProductService {
     }
 
     @Override
+    public Product findProductById(int id) throws SQLException, ClassNotFoundException {
+        return productDao.searchProductById(id);
+    }
+
+    @Override
     public List<Product> searchByName(String name) throws SQLException, ClassNotFoundException {
         return productDao.searchProductByName(name);
     }

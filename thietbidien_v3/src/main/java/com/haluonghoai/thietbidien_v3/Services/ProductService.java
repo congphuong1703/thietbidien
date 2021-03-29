@@ -16,4 +16,5 @@ public interface ProductService {
     int count() throws SQLException, ClassNotFoundException;
     List<Product> findByCategory(int idCategory) throws SQLException, ClassNotFoundException;
     List<Product> searchByName(String name) throws SQLException, ClassNotFoundException;
+    Product findProductById(int id) throws SQLException, ClassNotFoundException;
 }
