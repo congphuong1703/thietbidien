@@ -43,7 +43,7 @@ public class UserDao_impl implements UserDao {
     @Override
     public List<User> findAll() throws SQLException, ClassNotFoundException {
         List<User> list = new ArrayList<>();
-        String sql = "{call sp_select_nguoidung}";
+        String sql = "select * from tblNguoiDung order by iManguoidung desc";
         Connection connection = myConnection.connectDb();
         CallableStatement sttm = connection.prepareCall(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet resultSet = sttm.executeQuery();

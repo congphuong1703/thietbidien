@@ -36,11 +36,9 @@ public class ReportRevenueController {
     private OrderDetailDao orderDetailDao = new OrderDetailDao_Impl();
     private ProductDao productDao = new ProductDao_impl();
 
-
     @GetMapping
     public String go(ModelMap model) throws Exception {
         List<Map<String, String>> list = new ArrayList<>();
-        Map<String, String> map = new HashMap<>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         DecimalFormat format = new DecimalFormat("#,##0");
 
@@ -56,6 +54,7 @@ public class ReportRevenueController {
                 revenue += product.getPrice() * orderDetails.getAmount();
                 totalRevenue += revenue;
             }
+            Map<String, String> map = new HashMap<>();
 
             map.put("idOrder", String.valueOf(order.getId()));
             map.put("totalProduct", String.valueOf(totalProduct));
