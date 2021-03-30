@@ -14,7 +14,8 @@
          aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form:form modelAttribute="productModel" action="/product/add" method="get" onsubmit="return simpleValidation()">
+                <form:form modelAttribute="productModel" action="/product/add" method="get"
+                           onsubmit="return simpleValidation()">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Sản phẩm</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -174,18 +175,26 @@
                     Thêm sản phẩm
                 </button>
             </div>
-            <div class="alert alert-success" hidden="${insertSuccess}">
-                <strong>Success!</strong> Thêm mới thành công
-            </div>
-            <div class="alert alert-success" hidden="${updateSuccess}">
-                <strong>Success!</strong> Cập nhật thành công
-            </div>
-            <div class="alert alert-success" hidden="${deleteSuccess}">
-                <strong>Success!</strong> Xóa thành công
-            </div>
-            <div class="alert alert-danger" hidden="${fail}">
-                <strong>Danger!</strong> Thất bại.
-            </div>
+            <c:if test="${insertSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Thêm mới thành công
+                </div>
+            </c:if>
+            <c:if test="${updateSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Cập nhật thành công
+                </div>
+            </c:if>
+            <c:if test="${deleteSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Xóa thành công
+                </div>
+            </c:if>
+            <c:if test="${fail}">
+                <div class="alert alert-danger">
+                    <strong>Danger!</strong> Thất bại.
+                </div>
+            </c:if>
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">

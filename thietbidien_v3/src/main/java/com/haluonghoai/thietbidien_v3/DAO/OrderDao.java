@@ -29,4 +29,9 @@ public interface OrderDao extends BaseDao<Order> {
 
     public List<Integer> getAllYear() throws SQLException;
 
-}
+    public boolean deleteAllByUserId(int id) throws SQLException, ClassNotFoundException;
+
+    public List<Order> findAllByUserId(int id) throws SQLException, ClassNotFoundException;
+
+
+    }

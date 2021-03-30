@@ -8,7 +8,7 @@
          aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form:form modelAttribute="userModel" action="/user/add" method="get">
+                <form:form modelAttribute="userModel" action="/user/add" method="post">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Người dùng</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -135,18 +135,26 @@
                     Thêm người dùng
                 </button>
             </div>
-            <div class="alert alert-success" hidden="${insertSuccess}">
-                <strong>Success!</strong> Thêm mới thành công
-            </div>
-            <div class="alert alert-success" hidden="${updateSuccess}">
-                <strong>Success!</strong> Cập nhật thành công
-            </div>
-            <div class="alert alert-success" hidden="${deleteSuccess}">
-                <strong>Success!</strong> Xóa thành công
-            </div>
-            <div class="alert alert-danger" hidden="${fail}">
-                <strong>Danger!</strong> Thất bại.
-            </div>
+            <c:if test="${insertSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Thêm mới thành công
+                </div>
+            </c:if>
+            <c:if test="${updateSuccess}">
+                <div class="alert alert-success" >
+                    <strong>Success!</strong> Cập nhật thành công
+                </div>
+            </c:if>
+            <c:if test="${deleteSuccess}">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Xóa thành công
+                </div>
+            </c:if>
+            <c:if test="${fail}">
+                <div class="alert alert-danger">
+                    <strong>Danger!</strong> Thất bại.
+                </div>
+            </c:if>
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
@@ -218,3 +226,29 @@
     </div>
 </main>
 <script src="/js/user.js"></script>
+<div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="notify">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body form-custom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Xóa thành công</label><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeNotify" onclick="reloadPage()" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+

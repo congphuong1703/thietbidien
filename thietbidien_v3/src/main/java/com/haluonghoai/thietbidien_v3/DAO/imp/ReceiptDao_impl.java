@@ -2,6 +2,7 @@ package com.haluonghoai.thietbidien_v3.DAO.imp;
 
 import com.haluonghoai.thietbidien_v3.DAO.ReceiptDao;
 import com.haluonghoai.thietbidien_v3.Models.MyConnection;
+import com.haluonghoai.thietbidien_v3.Models.Order;
 import com.haluonghoai.thietbidien_v3.Models.Receipt;
 
 import java.sql.Date;
@@ -175,6 +176,29 @@ public class ReceiptDao_impl implements ReceiptDao {
         }
         return receipts;
     }
+
+    @Override
+    public boolean deleteAllByUserId(int id) throws SQLException, ClassNotFoundException {
+        boolean result = false;
+        String sql = "delete from tblPhieuNhap where iManguoidung = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1, id);
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
+        return result;
+    }
+
+    @Override
+    public boolean deleteAllBySupplierId(int id) throws SQLException, ClassNotFoundException {
+        boolean result = false;
+        String sql = "delete from tblPhieuNhap where iManhacungcap = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1, id);
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
+        return result;
+    }
+
 
 
 }

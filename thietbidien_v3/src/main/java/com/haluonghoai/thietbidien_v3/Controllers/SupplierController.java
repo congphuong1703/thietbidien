@@ -1,9 +1,12 @@
 package com.haluonghoai.thietbidien_v3.Controllers;
 
+import com.haluonghoai.thietbidien_v3.DAO.ReceiptDao;
+import com.haluonghoai.thietbidien_v3.DAO.ReceiptDetailDao;
 import com.haluonghoai.thietbidien_v3.DAO.SupplierDao;
+import com.haluonghoai.thietbidien_v3.DAO.imp.ReceiptDao_impl;
+import com.haluonghoai.thietbidien_v3.DAO.imp.ReceiptDetailDao_Impl;
 import com.haluonghoai.thietbidien_v3.DAO.imp.SupplierDap_impl;
-import com.haluonghoai.thietbidien_v3.Models.Order;
-import com.haluonghoai.thietbidien_v3.Models.Supplier;
+import com.haluonghoai.thietbidien_v3.Models.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.SQLException;
+import java.util.List;
 
 
 @Controller
@@ -25,6 +29,8 @@ public class SupplierController {
     }
 
     SupplierDao supplierDao = new SupplierDap_impl();
+    ReceiptDetailDao receiptDetailDao = new ReceiptDetailDao_Impl();
+    ReceiptDao receiptDao = new ReceiptDao_impl();
 
     @GetMapping
     public String go(ModelMap model) {
@@ -60,16 +66,18 @@ public class SupplierController {
     public String delete(Model model,
                          @RequestParam("id") int id) throws SQLException, ClassNotFoundException {
         try {
+            List<Receipt> receipts = receiptDao.findByIdSupplier(id);
+            for (Receipt receipt : receipts) {
+                receiptDetailDao.delete(receipt.getId());
+            }
+            receiptDao.deleteAllBySupplierId(id);
             supplierDao.delete(id);
             model.addAttribute("deleteSuccess", true);
         } catch (Exception e) {
             model.addAttribute("fail", true);
         }
-
         model.addAttribute("suppliers", supplierDao.findAll());
         model.addAttribute("supplierModel", new Supplier());
         return "quan_ly_nha_cung_cap";
     }
-
-
 }

@@ -2,8 +2,7 @@ package com.haluonghoai.thietbidien_v3.Controllers;
 
 import com.haluonghoai.thietbidien_v3.DAO.*;
 import com.haluonghoai.thietbidien_v3.DAO.imp.*;
-import com.haluonghoai.thietbidien_v3.Models.Category;
-import com.haluonghoai.thietbidien_v3.Models.Product;
+import com.haluonghoai.thietbidien_v3.Models.*;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,16 +61,27 @@ public class CategoryController {
     public String delete(Model model,
                          @RequestParam("id") int id) throws SQLException, ClassNotFoundException {
         try {
-            List<Product> products = productDao.findByCategory(id);
+            List<Product> products = productDao.findAllByCategoryId(id);
             for (Product product : products) {
+                List<OrderDetails> orderDetailsList = orderDetailDao.findAllByProductId(product.getIncreaseId());
+                orderDetailDao.deleteAllByProductId(product.getIncreaseId());
+                for (OrderDetails orderDetails : orderDetailsList) {
+                    orderDao.delete(orderDetails.getIdOrder());
+                }
             }
-            productDao.deleteByCategoryId(id);
+            for (Product product : products) {
+                List<ReceiptDetails> receiptDetailsList = receiptDetailDao.findAllByProductId(product.getIncreaseId());
+                receiptDetailDao.deleteAllByProductId(product.getIncreaseId());
+                for (ReceiptDetails receiptDetails : receiptDetailsList) {
+                    receiptDao.delete(receiptDetails.getIdReceipt());
+                }
+            }
+            productDao.deleteAllByCategoryId(id);
             categoryDao.delete(id);
             model.addAttribute("deleteSuccess", true);
         } catch (Exception e) {
             model.addAttribute("fail", true);
         }
-
         List<Category> categoryList = categoryDao.findAll();
         model.addAttribute("categories", categoryList);
         model.addAttribute("categoryModel", new Category());

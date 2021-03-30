@@ -104,4 +104,41 @@ public class OrderDetailDao_Impl implements OrderDetailDao {
 
         return total;
     }
+
+    @Override
+    public List<OrderDetails> findAllByProductId(int id) throws SQLException {
+        List<OrderDetails> orderDetailsList = new ArrayList<>();
+        String sql = "select * from tblChiTietDonHang where iId_sanpham = ?";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                OrderDetails orderDetails = getObject(resultSet);
+                if (orderDetails != null) orderDetailsList.add(orderDetails);
+            } while (resultSet.next());
+        }
+        return orderDetailsList;
+    }
+    @Override
+    public boolean deleteAllByOrderId(int id) throws SQLException, ClassNotFoundException {
+        boolean result = false;
+        String sql = "delete from tblChiTietDonHang where iMadonhang = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1, id);
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
+        return result;
+    }
+
+    @Override
+    public boolean deleteAllByProductId(int id) throws SQLException, ClassNotFoundException {
+        boolean result = false;
+        String sql = "delete from tblChiTietDonHang where iId_sanpham = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1, id);
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
+        return result;
+    }
 }

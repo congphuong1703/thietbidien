@@ -9,4 +9,9 @@ public interface ReceiptDetailDao extends BaseDao<ReceiptDetails> {
 
     public List<ReceiptDetails> seeDetails(int id) throws SQLException;
 
+    public List<ReceiptDetails> findAllByProductId(int id) throws SQLException;
+    public boolean deleteAllByProductId(int id) throws SQLException, ClassNotFoundException;
+
 }
+
+

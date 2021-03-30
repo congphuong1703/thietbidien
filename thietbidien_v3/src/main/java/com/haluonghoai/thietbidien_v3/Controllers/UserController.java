@@ -1,19 +1,17 @@
 package com.haluonghoai.thietbidien_v3.Controllers;
 
 import com.haluonghoai.thietbidien_v3.Config.Common;
-import com.haluonghoai.thietbidien_v3.DAO.UserDao;
-import com.haluonghoai.thietbidien_v3.DAO.imp.UserDao_impl;
-import com.haluonghoai.thietbidien_v3.Models.Customer;
-import com.haluonghoai.thietbidien_v3.Models.User;
+import com.haluonghoai.thietbidien_v3.DAO.*;
+import com.haluonghoai.thietbidien_v3.DAO.imp.*;
+import com.haluonghoai.thietbidien_v3.Models.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -25,6 +23,10 @@ public class UserController {
     }
 
     UserDao userDao = new UserDao_impl();
+    ReceiptDetailDao receiptDetailDao = new ReceiptDetailDao_Impl();
+    ReceiptDao receiptDao = new ReceiptDao_impl();
+    OrderDetailDao orderDetailDao = new OrderDetailDao_Impl();
+    OrderDao orderDao = new OrderDao_impl();
 
     @GetMapping
     public String go(ModelMap model) {
@@ -37,7 +39,7 @@ public class UserController {
         return "quan_ly_nguoi_dung";
     }
 
-    @GetMapping("/add")
+    @PostMapping("/add")
     public String add(Model model,
                       @ModelAttribute("userModel") User user) throws Exception {
 
@@ -61,6 +63,16 @@ public class UserController {
     public String delete(Model model,
                          @RequestParam("id") int id) throws SQLException, ClassNotFoundException {
         try {
+            List<Order> orders = orderDao.findAllByUserId(id);
+            List<Receipt> receipts = receiptDao.findByIdUser(id);
+            for (Order order : orders) {
+                orderDetailDao.deleteAllByOrderId(order.getId());
+            }
+            for (Receipt receipt : receipts) {
+                receiptDetailDao.delete(receipt.getId());
+            }
+            receiptDao.deleteAllByUserId(id);
+            orderDao.deleteAllByUserId(id);
             userDao.delete(id);
             model.addAttribute("deleteSuccess", true);
         } catch (Exception e) {

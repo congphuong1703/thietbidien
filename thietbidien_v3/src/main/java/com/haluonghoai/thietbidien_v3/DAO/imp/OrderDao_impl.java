@@ -216,9 +216,9 @@ public class OrderDao_impl implements OrderDao {
         boolean result = false;
         String sql = "delete from tblDonHang where iMadonhang = ?";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
-        preparedStatement.setInt(1,id);
+        preparedStatement.setInt(1, id);
         int rs = preparedStatement.executeUpdate();
-        if(rs > 0) result = true;
+        if (rs > 0) result = true;
         return result;
     }
 
@@ -247,4 +247,32 @@ public class OrderDao_impl implements OrderDao {
         }
         return years;
     }
+
+    @Override
+    public boolean deleteAllByUserId(int id) throws SQLException, ClassNotFoundException {
+        boolean result = false;
+        String sql = "delete from tblDonHang where iManguoidung = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1, id);
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
+        return result;
+    }
+
+    @Override
+    public List<Order> findAllByUserId(int id) throws SQLException, ClassNotFoundException {
+        List<Order> list = new ArrayList<>();
+        String sql = "select * from tblDonHang where iManguoidung = ?";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                Order order = getObject(resultSet);
+                if (order != null) list.add(order);
+            } while (resultSet.next());
+        }
+        return list;
+    }
+
 }

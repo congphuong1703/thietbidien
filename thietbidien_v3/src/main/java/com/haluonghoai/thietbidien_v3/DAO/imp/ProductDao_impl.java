@@ -2,6 +2,7 @@ package com.haluonghoai.thietbidien_v3.DAO.imp;
 
 import com.haluonghoai.thietbidien_v3.DAO.ProductDao;
 import com.haluonghoai.thietbidien_v3.Models.MyConnection;
+import com.haluonghoai.thietbidien_v3.Models.Order;
 import com.haluonghoai.thietbidien_v3.Models.Product;
 
 import java.sql.PreparedStatement;
@@ -64,11 +65,6 @@ public class ProductDao_impl implements ProductDao {
             }while(resultSet.next());
         }
         return list;
-    }
-
-    @Override
-    public boolean deleteByCategoryId(int id) throws SQLException {
-        return false;
     }
 
     @Override
@@ -201,4 +197,32 @@ public class ProductDao_impl implements ProductDao {
         banghi = resultSet.getInt(1);
         return banghi;
     }
+
+    @Override
+    public boolean deleteAllByCategoryId(int id) throws SQLException, ClassNotFoundException {
+        boolean result = false;
+        String sql = "delete from tblSanPham where iMadanhmucsp = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1, id);
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
+        return result;
+    }
+
+    @Override
+    public List<Product> findAllByCategoryId(int id) throws SQLException, ClassNotFoundException {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from tblSanPham where iMadanhmucsp = ?";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                Product product = getObject(resultSet);
+                if (product != null) list.add(product);
+            } while (resultSet.next());
+        }
+        return list;
+    }
+
 }

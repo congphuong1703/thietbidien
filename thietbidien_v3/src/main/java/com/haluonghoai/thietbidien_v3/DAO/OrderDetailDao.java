@@ -11,4 +11,10 @@ public interface OrderDetailDao extends BaseDao<OrderDetails> {
 
     int sumProductByIdOrder(int id) throws SQLException;
 
-}
+    public boolean deleteAllByOrderId(int id) throws SQLException, ClassNotFoundException;
+
+    public List<OrderDetails> findAllByProductId(int id) throws SQLException;
+
+    public boolean deleteAllByProductId(int id) throws SQLException, ClassNotFoundException;
+
+    }

@@ -15,5 +15,11 @@ public interface ReceiptDao extends BaseDao<Receipt> {
     public List<Receipt> findByIdSupplier(int id) throws Exception;
 
     public List<Integer> getAllYear() throws SQLException;
+
+    public boolean deleteAllByUserId(int id) throws SQLException, ClassNotFoundException;
+
+    public boolean deleteAllBySupplierId(int id) throws SQLException, ClassNotFoundException;
+
+
 }
 

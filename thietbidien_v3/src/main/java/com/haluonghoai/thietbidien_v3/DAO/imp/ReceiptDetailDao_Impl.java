@@ -111,4 +111,31 @@ public class ReceiptDetailDao_Impl implements ReceiptDetailDao {
         }
         return receiptDetailsList;
     }
+
+    @Override
+    public List<ReceiptDetails> findAllByProductId(int id) throws SQLException {
+        List<ReceiptDetails> receiptDetailsList = new ArrayList<>();
+        String sql = "select * from tblChiTietPhieuNhap where iId_sanpham = ?";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                ReceiptDetails receiptDetails = getObject(resultSet);
+                if (receiptDetails != null) receiptDetailsList.add(receiptDetails);
+            } while (resultSet.next());
+        }
+        return receiptDetailsList;
+    }
+
+    @Override
+    public boolean deleteAllByProductId(int id) throws SQLException, ClassNotFoundException {
+        boolean result = false;
+        String sql = "delete from tblChiTietPhieuNhap where iId_sanpham = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1, id);
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
+        return result;
+    }
 }

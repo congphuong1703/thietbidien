@@ -1,12 +1,12 @@
 package com.haluonghoai.thietbidien_v3.Controllers;
 
 
-import com.haluonghoai.thietbidien_v3.DAO.CategoryDao;
-import com.haluonghoai.thietbidien_v3.DAO.ProductDao;
-import com.haluonghoai.thietbidien_v3.DAO.imp.CategoryDao_impl;
-import com.haluonghoai.thietbidien_v3.DAO.imp.ProductDao_impl;
+import com.haluonghoai.thietbidien_v3.DAO.*;
+import com.haluonghoai.thietbidien_v3.DAO.imp.*;
 import com.haluonghoai.thietbidien_v3.Models.Category;
+import com.haluonghoai.thietbidien_v3.Models.OrderDetails;
 import com.haluonghoai.thietbidien_v3.Models.Product;
+import com.haluonghoai.thietbidien_v3.Models.ReceiptDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -30,7 +30,10 @@ public class ProductController {
     }
 
     ProductDao productDao = new ProductDao_impl();
-
+    OrderDao orderDao = new OrderDao_impl();
+    OrderDetailDao orderDetailDao = new OrderDetailDao_Impl();
+    ReceiptDao receiptDao = new ReceiptDao_impl();
+    ReceiptDetailDao receiptDetailDao = new ReceiptDetailDao_Impl();
     CategoryDao categoryDao = new CategoryDao_impl();
 
     @GetMapping
@@ -72,6 +75,16 @@ public class ProductController {
     public String delete(Model model,
                          @RequestParam("id") int id) throws SQLException, ClassNotFoundException {
         try {
+            List<OrderDetails> orderDetailsList = orderDetailDao.findAllByProductId(id);
+            orderDetailDao.deleteAllByProductId(id);
+            for (OrderDetails orderDetails : orderDetailsList) {
+                orderDao.delete(orderDetails.getIdOrder());
+            }
+            List<ReceiptDetails> receiptDetailsList = receiptDetailDao.findAllByProductId(id);
+            receiptDetailDao.deleteAllByProductId(id);
+            for (ReceiptDetails receiptDetails : receiptDetailsList) {
+                receiptDao.delete(receiptDetails.getIdReceipt());
+            }
             productDao.delete(id);
             model.addAttribute("deleteSuccess", true);
         } catch (Exception e) {
