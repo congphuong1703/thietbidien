@@ -68,11 +68,6 @@
                         <i class="fas fa-user"></i> <span class="align-middle">Người dùng</span>
                     </a>
                 </li>
-
-                <li class="sidebar-header">
-                    <i class="fas fa-tasks"></i>
-                    Quản trị thống kê
-                </li>
                 <li class="sidebar-item">
                     <a data-target="#ui" data-toggle="collapse" class="sidebar-link collapsed">
                         <span class="align-middle" style="

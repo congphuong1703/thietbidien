@@ -84,7 +84,7 @@ public class UserDao_impl implements UserDao {
         int rs = preparedStatement.executeUpdate();
         if (rs > 0) {
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            if (resultSet.first()) {
+            if (resultSet.next()) {
                 newUser = findById((int) resultSet.getLong(1));
             }
         }

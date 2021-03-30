@@ -146,7 +146,7 @@ public class ProductDao_impl implements ProductDao {
         int rs = preparedStatement.executeUpdate();
         if(rs > 0){
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            if(resultSet.first()){
+            if(resultSet.next()){
                 productnew = findById((int) resultSet.getLong(1));
             }
         }
