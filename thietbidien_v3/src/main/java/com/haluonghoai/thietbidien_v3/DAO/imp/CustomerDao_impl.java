@@ -56,7 +56,23 @@ public class CustomerDao_impl implements CustomerDao {
 
     @Override
     public Customer insert(Customer customer) throws Exception {
-        return null;
+        Customer newCustomer = null;
+        String sql = "insert tblKhachHang values (?,?,?,?,?,?)";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setString(1,customer.getName());
+        preparedStatement.setString(2,customer.getEmail());
+        preparedStatement.setString(3,customer.getAdress());
+        preparedStatement.setString(4,customer.getPhoneNumber());
+        preparedStatement.setString(5,customer.getUsername());
+        preparedStatement.setString(6,customer.getPassword());
+        int rs = preparedStatement.executeUpdate();
+        if(rs > 0) {
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if(resultSet.next()) {
+                newCustomer = findById((int) resultSet.getLong(1));
+            }
+        }
+        return newCustomer;
     }
 
     @Override
