@@ -53,4 +53,3 @@
         </div>
     </div>
 </main>
-<script src="/js/customer.js"></script>
