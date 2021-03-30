@@ -18,5 +18,5 @@ public interface ProductDao extends BaseDao<Product> {
     public List<Product> findAllByCategoryId(int id) throws SQLException, ClassNotFoundException;
 
     public boolean deleteAllByCategoryId(int id) throws SQLException, ClassNotFoundException;
-
+    public List<Product> findAllByStock() throws SQLException, ClassNotFoundException;
 }

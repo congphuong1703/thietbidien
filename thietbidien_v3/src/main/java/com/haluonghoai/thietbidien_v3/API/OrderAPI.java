@@ -4,9 +4,11 @@ import com.google.gson.Gson;
 import com.haluonghoai.thietbidien_v3.DAO.CustomerDao;
 import com.haluonghoai.thietbidien_v3.DAO.OrderDao;
 import com.haluonghoai.thietbidien_v3.DAO.OrderDetailDao;
+import com.haluonghoai.thietbidien_v3.DAO.ProductDao;
 import com.haluonghoai.thietbidien_v3.DAO.imp.CustomerDao_impl;
 import com.haluonghoai.thietbidien_v3.DAO.imp.OrderDao_impl;
 import com.haluonghoai.thietbidien_v3.DAO.imp.OrderDetailDao_Impl;
+import com.haluonghoai.thietbidien_v3.DAO.imp.ProductDao_impl;
 import com.haluonghoai.thietbidien_v3.DTO.OrderDTO;
 import com.haluonghoai.thietbidien_v3.Models.JsonResult;
 import com.haluonghoai.thietbidien_v3.Models.Order;
@@ -33,7 +35,7 @@ public class OrderAPI {
 
     private OrderDao orderDao = new OrderDao_impl();
     private OrderDetailDao orderDetailDao = new OrderDetailDao_Impl();
-
+    private ProductDao productDao = new ProductDao_impl();
     private JsonResult jsonResult = new JsonResult();
 
     @GetMapping(value = "/find-all")
@@ -131,6 +133,22 @@ public class OrderAPI {
     public ResponseEntity<String> updateStatusOrder(@RequestBody Order order) {
         String rs = "";
         try {
+            List<OrderDetails> orderDetailsList = orderDetailDao.seeDetails(order.getId());
+            if (order.getIdOrderstatus() == 1) {
+                for (OrderDetails orderDetails : orderDetailsList) {
+                    Product product = productDao.findById(orderDetails.getIdProduct());
+                    int amount = product.getAmount() + orderDetails.getAmount();
+                    product.setAmount(amount);
+                    productDao.update(product);
+                }
+            }else{
+                for (OrderDetails orderDetails : orderDetailsList) {
+                    Product product = productDao.findById(orderDetails.getIdProduct());
+                    int amount = product.getAmount() - orderDetails.getAmount();
+                    product.setAmount(amount);
+                    productDao.update(product);
+                }
+            }
             rs = jsonResult.jsonSuccess(orderDao.updateStatusOrder(order.getIdOrderstatus(), order.getId()));
         } catch (Exception e) {
             e.printStackTrace();
@@ -152,7 +170,7 @@ public class OrderAPI {
                 orderDetails.setIdOrder(newOrder.getId());
                 orderDetailDao.insert(orderDetails);
             }
-            rs =jsonResult.jsonSuccess("Success");
+            rs = jsonResult.jsonSuccess("Success");
         } catch (Exception e) {
             e.printStackTrace();
             rs = jsonResult.jsonSuccess("Not Success");

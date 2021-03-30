@@ -16,5 +16,7 @@ public interface OrderDetailDao extends BaseDao<OrderDetails> {
     public List<OrderDetails> findAllByProductId(int id) throws SQLException;
 
     public boolean deleteAllByProductId(int id) throws SQLException, ClassNotFoundException;
+    public OrderDetails findByOrderIdAndProductId(int orderId,int productId) throws Exception;
+    public boolean deleteByOrderIdAndProductId(int orderId,int productId) throws SQLException;
 
     }

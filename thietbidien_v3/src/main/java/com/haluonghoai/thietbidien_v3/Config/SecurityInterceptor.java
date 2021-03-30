@@ -31,6 +31,7 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
             if (session.getAttribute("role") != null && session.getAttribute("role").equals(2))
                 if (request.getServletPath().equalsIgnoreCase("/reportCost")
                         || request.getServletPath().equalsIgnoreCase("/reportProduct")
+                        || request.getServletPath().equalsIgnoreCase("/receipt")
                         || request.getServletPath().equalsIgnoreCase("/reportProfit")
                         || request.getServletPath().equalsIgnoreCase("/reportRevenue")
                         || request.getServletPath().equalsIgnoreCase("/user")) {

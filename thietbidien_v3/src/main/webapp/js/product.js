@@ -49,7 +49,6 @@ function simpleValidation() {
     var unitEle = $('#unit')
 
     if (idEle.val() === '') {
-        idEle.val("Bạn phải nhập id sản phẩm");
         idEle.focus(function () {
             idEle.val('');
         })
@@ -58,7 +57,6 @@ function simpleValidation() {
     }
 
     if (nameEle.val() === '') {
-        nameEle.val("Bạn phải nhập tên sản phẩm");
         nameEle.focus(function () {
             nameEle.val('');
         })
@@ -66,7 +64,6 @@ function simpleValidation() {
         return false;
     }
     if (imageEle.val() === '') {
-        imageEle.val("Bạn phải nhập đường dẫn ảnh");
         imageEle.focus(function () {
             imageEle.val('');
         })
@@ -75,7 +72,6 @@ function simpleValidation() {
     }
 
     if (unitEle.val() === '') {
-        unitEle.val("Bạn phải nhập đơn vị");
         unitEle.focus(function () {
             unitEle.val('');
         })

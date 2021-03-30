@@ -50,9 +50,18 @@ public class OrderDetailDao_Impl implements OrderDetailDao {
 
     @Override
     public OrderDetails findById(int id) throws Exception {
-        return null;
+        OrderDetails orderDetails = new OrderDetails();
+        String sql = "select * from tblChiTietDonHang where iMadonhang = ?";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setInt(1,id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if(resultSet.first()){
+            do{
+                orderDetails = getObject(resultSet);
+            }while(resultSet.next());
+        }
+        return orderDetails;
     }
-
     @Override
     public OrderDetails insert(OrderDetails orderDetails) throws Exception {
         String sql = "insert tblChiTietDonHang values(?,?,?)";
@@ -73,12 +82,26 @@ public class OrderDetailDao_Impl implements OrderDetailDao {
 
     @Override
     public boolean update(OrderDetails object) throws SQLException {
-        return false;
+        boolean result = false;
+        String sql = "update tblChiTietDonHang set iSoluong = ? where iMadonhang = ? and iId_sanpham = ? ";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1,object.getAmount());
+        preparedStatement.setInt(2,object.getIdOrder());
+        preparedStatement.setInt(3,object.getIdProduct());
+        int rs = preparedStatement.executeUpdate();
+        if(rs>0) result = true;
+        return result;
     }
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return false;
+        boolean result = false;
+        String sql = "delete from tblChiTietDonHang where iMadonhang = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1, id);
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
+        return result;
     }
 
     @Override
@@ -141,4 +164,33 @@ public class OrderDetailDao_Impl implements OrderDetailDao {
         if (rs > 0) result = true;
         return result;
     }
+
+    @Override
+    public OrderDetails findByOrderIdAndProductId(int orderId,int productId) throws Exception {
+        OrderDetails orderDetails = null;
+        String sql = "select * from tblChiTietDonHang where iMadonhang = ? and iId_sanpham = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1,orderId);
+        preparedStatement.setInt(2,productId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if(resultSet.next()){
+            do{
+                orderDetails = getObject(resultSet);
+            }while(resultSet.next());
+        }
+        return orderDetails;
+    }
+
+    @Override
+    public boolean deleteByOrderIdAndProductId(int orderId,int productId) throws SQLException {
+        boolean result = false;
+        String sql = "delete from tblChiTietDonHang where iMadonhang = ? and iId_sanpham = ?";
+        PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
+        preparedStatement.setInt(1, orderId);
+        preparedStatement.setInt(2, productId);
+        int rs = preparedStatement.executeUpdate();
+        if (rs > 0) result = true;
+        return result;
+    }
+
 }

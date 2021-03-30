@@ -1,11 +1,14 @@
 package com.haluonghoai.thietbidien_v3.API;
 
+import com.haluonghoai.thietbidien_v3.DAO.ProductDao;
 import com.haluonghoai.thietbidien_v3.DAO.ReceiptDao;
 import com.haluonghoai.thietbidien_v3.DAO.ReceiptDetailDao;
+import com.haluonghoai.thietbidien_v3.DAO.imp.ProductDao_impl;
 import com.haluonghoai.thietbidien_v3.DAO.imp.ReceiptDao_impl;
 import com.haluonghoai.thietbidien_v3.DAO.imp.ReceiptDetailDao_Impl;
 import com.haluonghoai.thietbidien_v3.DTO.ReceiptDTO;
 import com.haluonghoai.thietbidien_v3.Models.JsonResult;
+import com.haluonghoai.thietbidien_v3.Models.Product;
 import com.haluonghoai.thietbidien_v3.Models.Receipt;
 import com.haluonghoai.thietbidien_v3.Models.ReceiptDetails;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServlet;
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -22,6 +27,7 @@ public class ReceiptAPI extends HttpServlet {
 
     private ReceiptDetailDao receiptDetailDao = new ReceiptDetailDao_Impl();
     private ReceiptDao receiptDao = new ReceiptDao_impl();
+    private ProductDao productDao = new ProductDao_impl();
 
     private JsonResult jsonResult = new JsonResult();
 
@@ -89,6 +95,24 @@ public class ReceiptAPI extends HttpServlet {
     protected ResponseEntity<String> update(@RequestBody Receipt receipt) {
         String rs = "";
         try {
+            List<ReceiptDetails> receiptDetailsList = receiptDetailDao.seeDetails(receipt.getId());
+            if (receipt.getStatusEnter() == true)
+                for (ReceiptDetails receiptDetails : receiptDetailsList) {
+                    Product product = productDao.findById(receiptDetails.getIdProduct());
+                    int amount = product.getAmount() + receiptDetails.getAmount();
+                    product.setAmount(amount);
+                    product.setPrice(receiptDetails.getPrice());
+                    productDao.update(product);
+                }
+            else {
+                for (ReceiptDetails receiptDetails : receiptDetailsList) {
+                    Product product = productDao.findById(receiptDetails.getIdProduct());
+                    int amount = product.getAmount() - receiptDetails.getAmount();
+                    product.setAmount(amount);
+                    product.setPrice(receiptDetails.getPrice());
+                    productDao.update(product);
+                }
+            }
             rs = jsonResult.jsonSuccess(receiptDao.updateTinhTrang(receipt.getStatusEnter(), receipt.getId()));
         } catch (Exception e) {
             e.printStackTrace();

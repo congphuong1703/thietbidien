@@ -75,26 +75,31 @@
 "><i class="fas fa-receipt"></i>Phiếu nhập</span>
                     </a>
                     <ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
-                        <li class="sidebar-item"><a class="sidebar-link" href="/receipt/add"><i class="fas fa-plus-circle"></i>Thêm phiếu nhập</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="/receipt"><i class="fas fa-list"></i>Danh sách phiếu nhập</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link" href="/receipt/add"><i
+                                class="fas fa-plus-circle"></i>Thêm phiếu nhập</a></li>
+                        <li class="sidebar-item"><a class="sidebar-link" href="/receipt"><i class="fas fa-list"></i>Danh
+                            sách phiếu nhập</a></li>
                     </ul>
                 </li>
 
                 <li class="sidebar-item">
                     <a data-target="#forms" data-toggle="collapse" class="sidebar-link collapsed">
-                        <i class="align-middle" data-feather="check-circle"></i>
                         <span class="align-middle" style="
     color: rgba(233,236,239,.5);
 "><i class="fas fa-comments-dollar"></i>Thống kê</span>
                     </a>
                     <ul id="forms" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
-                        <li class="sidebar-item"><a class="sidebar-link" href="/reportRevenue"><i class="fas fa-donate"></i>Thống kê doanh thu</a>
+                        <li class="sidebar-item"><a class="sidebar-link" href="/reportRevenue"><i
+                                class="fas fa-donate"></i>Thống kê doanh thu</a>
                         </li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="/reportProduct"><i class="fas fa-box-open"></i>Thống kê hàng hóa</a>
+                        <li class="sidebar-item"><a class="sidebar-link" href="/reportProduct"><i
+                                class="fas fa-box-open"></i>Thống kê hàng hóa</a>
                         </li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="/reportCost"><i class="fas fa-donate"></i>Thống kê chi phí nhập
+                        <li class="sidebar-item"><a class="sidebar-link" href="/reportCost"><i
+                                class="fas fa-donate"></i>Thống kê chi phí nhập
                             hàng</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="/reportProfit"><i class="fas fa-percentage"></i>Thống kê lợi nhuận</a>
+                        <li class="sidebar-item"><a class="sidebar-link" href="/reportProfit"><i
+                                class="fas fa-percentage"></i>Thống kê lợi nhuận</a>
                         </li>
                     </ul>
                 </li>

@@ -225,4 +225,19 @@ public class ProductDao_impl implements ProductDao {
         return list;
     }
 
+    @Override
+    public List<Product> findAllByStock() throws SQLException, ClassNotFoundException {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from tblSanPham where iSoluong > 0";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if(resultSet.first()){
+            do{
+                Product product = getObject(resultSet);
+                if(product!=null) list.add(product);
+            }while (resultSet.next());
+        }
+        return list;
+    }
+
 }
