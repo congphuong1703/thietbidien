@@ -28,3 +28,45 @@ $('#add').click(function () {
     $('#idQuyen').val(0);
     $('#pass').val("");
 })
+
+
+function simpleValidation() {
+    var name = $('#name');
+    var sdt = $('#sdt');
+    var email = $('#email');
+    var pass = $('#pass');
+
+
+    if (name.val().trim() === '') {
+        name.focus(function () {
+            name.val('');
+        })
+        name.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+
+    if (sdt.val() === '') {
+        sdt.focus(function () {
+            sdt.val('');
+        })
+        sdt.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+
+    if (email.val() === '') {
+        email.focus(function () {
+            email.val('');
+        })
+        email.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+    if (pass.val() === '') {
+        pass.focus(function () {
+            pass.val('');
+        })
+        pass.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+    return  true;
+
+}

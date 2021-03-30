@@ -6,7 +6,6 @@ function addReceipt() {
     var validReciept = validateReceipt();
 
     if (!validReciept) {
-        alert('Wrong');
         return;
     }
 
@@ -100,7 +99,6 @@ function simpleValidation() {
     var conditionProduct = $('#select-product option#-1').prop('selected');
 
     if (conditionProduct) {
-        $('#select-product').next().text('Bạn phải chọn sản phẩm')
         $('#select-product').css({'border-color': 'red'})
         return false;
     }
@@ -114,13 +112,11 @@ function validateReceipt() {
     var conditionSupplier = $('#select-ma-nha-cung-cap option#-1').prop('selected');
 
     if (conditionUser) {
-        $('#select-ma-nguoi-lap').next().text('Bạn phải chọn sản phẩm')
         $('#select-ma-nguoi-lap').css({'border-color': 'red'})
         return false;
     }
 
     if (conditionSupplier) {
-        $('#select-ma-nha-cung-cap').next().text('Bạn phải chọn sản phẩm')
         $('#select-ma-nha-cung-cap').css({'border-color': 'red'})
         return false;
     }

@@ -23,7 +23,6 @@ function simpleValidation() {
     var nameEle = $('#name');
 
     if (nameEle.val() === '') {
-        nameEle.val("Bạn phải nhập tên danh mục");
         nameEle.focus(function () {
             nameEle.val('');
         })

@@ -15,3 +15,26 @@ $('#add').click(function () {
     $('#amount').val(0);
     $('#idProduct option#-1').prop("selected", true);
 })
+
+
+function simpleValidation() {
+    var idProduct = $('#idProduct');
+    var amount = $('#amount');
+
+    if (amount.val() === '' || amount.val() < 1) {
+        amount.focus(function () {
+            amount.val('');
+        })
+        amount.css({'border-color': 'red','color': 'red'});
+        return false;
+    }
+
+    if (idProduct.val() == null) {
+        idProduct.focus(function () {
+            idProduct.val('');
+        })
+        idProduct.css({'border-color': 'red','color': 'red'});
+        return false;
+    }
+
+}

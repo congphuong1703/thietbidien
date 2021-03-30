@@ -139,7 +139,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="nut-cap-nhat">
-                        <button id="btn-add-receipt" onclick="addReceipt()" type="button" class="btn btn-primary"
+                        <button id="btn-add-receipt" onclick="addReceipt()"  type="button" class="btn btn-primary"
                                 data-toggle="modal">Lưu phiếu nhập
                         </button>
                     </div>

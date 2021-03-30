@@ -25,7 +25,6 @@ function simpleValidation() {
 
 
     if (nameEle.val() === '') {
-        nameEle.val("Bạn phải nhập tên nhà cung cấp");
         nameEle.focus(function () {
             nameEle.val('');
         })
@@ -34,7 +33,6 @@ function simpleValidation() {
     }
 
     if (emailELe.val() === '') {
-        emailELe.val("Bạn phải nhập email nhà cung cấp");
         emailELe.focus(function () {
             emailELe.val('');
         })

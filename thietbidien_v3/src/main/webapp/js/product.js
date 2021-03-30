@@ -23,7 +23,7 @@ function deleteProduct(id) {
 }
 
 $('#add').click(function () {
-    $('#id').val(0);
+    $('#id').val("");
     $('#name').val("");
     $('#price').val(0);
     $('#image').val("");
@@ -47,12 +47,21 @@ function simpleValidation() {
     var specificEle = $('#specification')
     var guaranteeEle = $('#guarantee')
     var unitEle = $('#unit')
+    var category = $('#categoryId');
 
     if (idEle.val() === '') {
         idEle.focus(function () {
             idEle.val('');
         })
         idEle.css({'border-color': 'red','color': 'red'});
+        return false;
+    }
+
+    if (category.val() == null) {
+        category.focus(function () {
+            category.val('');
+        })
+        category.css({'border-color': 'red','color': 'red'});
         return false;
     }
 
