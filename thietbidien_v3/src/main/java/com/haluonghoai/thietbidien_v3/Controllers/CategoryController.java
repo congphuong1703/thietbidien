@@ -41,8 +41,7 @@ public class CategoryController {
     }
 
     @GetMapping("/add")
-    public String add(Model model,
-                      @ModelAttribute("categoryModel") Category category) throws Exception {
+    public String add(Model model, @ModelAttribute("categoryModel") Category category) throws Exception {
         try {
             if (category.getId() == 0) {
                 categoryDao.insert(category);
@@ -64,7 +63,7 @@ public class CategoryController {
                          @RequestParam("id") int id) throws SQLException, ClassNotFoundException {
         try {
             List<Product> products = productDao.findByCategory(id);
-            for(Product product : products){
+            for (Product product : products) {
             }
             productDao.deleteByCategoryId(id);
             categoryDao.delete(id);

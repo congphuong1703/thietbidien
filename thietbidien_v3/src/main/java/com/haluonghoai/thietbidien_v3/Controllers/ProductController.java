@@ -45,23 +45,6 @@ public class ProductController {
         return "quan_ly_san_pham";
     }
 
-    @GetMapping(value = "/search")
-    public String findByName(Model model, @QueryParam("code") String code,
-                             @QueryParam("name") String name,
-                             @QueryParam("price") int price,
-                             @QueryParam("status") String status) {
-        if (code == null)
-            code = "";
-        if (name == null)
-            name = "";
-        try {
-            model.addAttribute("products", productDao.search(code, name, price, status == "1" ? true : false));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "quan_ly_san_pham";
-    }
-
     @GetMapping("/add")
     public String add(Model model,
                       @ModelAttribute("productModel") Product product) throws Exception {

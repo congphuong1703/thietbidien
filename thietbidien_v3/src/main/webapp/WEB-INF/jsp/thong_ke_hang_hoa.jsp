@@ -38,10 +38,8 @@
                                 <th scope="col">Tên sản phẩm</th>
                                 <th scope="col">Giá bán</th>
                                 <th scope="col">Số lượng</th>
-                                <th scope="col">Mô tả</th>
-                                <th scope="col">Thông số kỹ thuật</th>
-                                <th scope="col">Bảo hành</th>
                                 <th scope="col">Đơn vị tính</th>
+                                <th style="width: 150px;">Tình trạng bán</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -53,10 +51,17 @@
                                     <td value="${product.name}">${product.name}</td>
                                     <td value="${product.price}">${product.price}</td>
                                     <td value="${product.amount}">${product.amount}</td>
-                                    <td value="${product.description}">${product.description}</td>
-                                    <td value="${product.specification}">${product.specification}</td>
-                                    <td value="${product.guarantee}">${product.guarantee}</td>
                                     <td value="${product.unit}">${product.unit}</td>
+                                    <c:choose>
+                                        <c:when test="${product.status}">
+                                            <td class="text-center"><span class="badge badge-success">Còn hàng</span>
+                                            </td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td class="text-center"><span class="badge badge-warning">Hết hàng</span>
+                                            </td>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -65,5 +70,10 @@
                 </div>
             </div>
         </div>
+    </div>
+    <br>
+    <div class="tong-chi-phi text-center" style="color: brown; font-size: 18px;">
+        <label>Còn hàng:</label>&nbsp;&nbsp;<span>${stock}</span>
+        <label>Hết hàng:</label>&nbsp;<span>${outOfStock}</span>
     </div>
 </main>

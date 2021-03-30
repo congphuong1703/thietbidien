@@ -31,7 +31,7 @@ public class ReceiptDao_impl implements ReceiptDao {
     @Override
     public List<Receipt> findAll() throws SQLException, ClassNotFoundException {
         List<Receipt> receipts = new ArrayList<>();
-        String sql = "select * from tblPhieuNhap";
+        String sql = "select * from tblPhieuNhap order by iMaphieunhap desc ";
         PreparedStatement preparedStatement = myConnection.prepare(sql);
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.first()) {

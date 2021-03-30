@@ -65,7 +65,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Mật khẩu</label>
-                                    <form:input path="pass" id="pass" type="text" class="form-control"
+                                    <form:input path="pass" id="pass" type="password" class="form-control"
                                                 placeholder="Mật khẩu"/>
                                 </div>
                             </div>

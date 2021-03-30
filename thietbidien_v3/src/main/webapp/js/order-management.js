@@ -33,10 +33,9 @@ function updateStatusPayment(id) {
     })
 }
 
-
-$('#closeNotify').click(function(){
+function reloadPage() {
     window.location.reload();
-})
+}
 
 $('#add').click(function () {
     $('#id').val(0);

@@ -35,7 +35,6 @@ public class ReportCostController {
     @GetMapping
     public String go(ModelMap model) throws Exception {
         List<Map<String, String>> list = new ArrayList<>();
-        Map<String, String> map = new HashMap<>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         DecimalFormat format = new DecimalFormat("#,##0");
         List<Receipt> receipts = receiptDao.findAll();
@@ -43,7 +42,7 @@ public class ReportCostController {
         long total = 0;
         for (Receipt receipt : receipts) {
             int cost = 0;
-            List<ReceiptDetails> receiptDetailsList = receiptDetailDao.findAll();
+            List<ReceiptDetails> receiptDetailsList = receiptDetailDao.seeDetails(receipt.getId());
             User user = userDao.findById(receipt.getIdUser());
             Supplier supplier = supplierDao.findById(receipt.getIdSupplier());
 
@@ -51,6 +50,8 @@ public class ReportCostController {
                 cost += receiptDetails.getPrice() * receiptDetails.getAmount();
                 total += cost;
             }
+            Map<String, String> map = new HashMap<>();
+
             map.put("idReceipt", String.valueOf(receipt.getId()));
             map.put("userName", user.getName());
             map.put("supplierName", supplier.getName());

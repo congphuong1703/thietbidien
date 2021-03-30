@@ -32,6 +32,7 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
                 if (request.getServletPath().equalsIgnoreCase("/reportCost")
                         || request.getServletPath().equalsIgnoreCase("/reportProduct")
                         || request.getServletPath().equalsIgnoreCase("/reportProfit")
+                        || request.getServletPath().equalsIgnoreCase("/reportRevenue")
                         || request.getServletPath().equalsIgnoreCase("/user")) {
                     response.sendRedirect(request.getContextPath() + "/login");
                     return false;

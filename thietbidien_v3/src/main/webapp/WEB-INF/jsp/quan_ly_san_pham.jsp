@@ -213,7 +213,7 @@
                             <c:forEach items="${products}" var="product" varStatus="stt">
                                 <tr>
                                     <th scope="col">${stt.index}</th>
-                                    <td><img src="${product.image}"></td>
+                                    <td><img width="50%" src="${product.image}"></td>
                                     <td>${product.id}</td>
                                     <td>${product.name}</td>
                                     <td>${product.price}</td>
@@ -225,17 +225,19 @@
                                     <td>${product.categoryId}</td>
                                     <c:choose>
                                         <c:when test="${product.status}">
-                                            <td class="text-center"><span class="badge badge-success">Còn bán</span>
+                                            <td class="text-center"><span class="badge badge-success">Còn hàng</span>
                                             </td>
                                         </c:when>
                                         <c:otherwise>
-                                            <td class="text-center"><span class="badge badge-warning">Không bán</span>
+                                            <td class="text-center"><span class="badge badge-warning">Hết hàng</span>
                                             </td>
                                         </c:otherwise>
                                     </c:choose>
                                     <td>
                                         <button type="button" class="btn btn-warning" data-toggle="modal"
                                                 data-target="#exampleModal"
+                                                id="${product.increaseId}"
+                                                data-increaseId="${product.increaseId}"
                                                 data-id="${product.id}"
                                                 data-name="${product.name}"
                                                 data-price="${product.price}"
@@ -247,13 +249,13 @@
                                                 data-guarantee="${product.guarantee}"
                                                 data-unit="${product.unit}"
                                                 data-categoryId="${product.categoryId}"
-                                                onclick="updateProduct(${product.id})"><i
+                                                onclick="updateProduct(${product.increaseId})"><i
                                                 class="fas fa-pen"></i>
                                             Sửa
                                         </button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal"
                                                 data-target="#exampleModal1"
-                                                onclick="deleteProduct(${product.id})"><i class=" fas fa-trash-alt
+                                                onclick="deleteProduct(${product.increaseId})"><i class=" fas fa-trash-alt
                                         "></i>
                                             Xóa
                                         </button>

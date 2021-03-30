@@ -38,9 +38,6 @@ public class OrderController {
 
     ProductDao productDao = new ProductDao_impl();
 
-    OrderStatusDao orderStatusDao = new OrderStatusDao_impl();
-
-    UserDao userDao = new UserDao_impl();
 
     @GetMapping(value = "/orderDetail")
     public String orderDetail(Model model, @RequestParam("id") int id) {
@@ -71,65 +68,9 @@ public class OrderController {
     public String go(Model model) {
         try {
             model.addAttribute("orders", orderDao.findAll());
-            model.addAttribute("orderModel", new Order());
-            model.addAttribute("users", userDao.findAll());
-            model.addAttribute("customers", customerDao.findAll());
-            model.addAttribute("orderStatuses", orderStatusDao.findAll());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "quan_ly_don_hang";
-    }
-
-    @GetMapping(value = "/order/findById")
-    public String findById(@QueryParam("id") int id, Model model) {
-        if (id > 0) {
-            List<Order> orders = new ArrayList<>();
-            try {
-                orders.add(orderDao.findById(id));
-                model.addAttribute("orders", orders);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else
-            return "redirect:/order";
-        return "quan_ly_don_hang";
-    }
-
-    @GetMapping("/add")
-    public String add(Model model,
-                      @ModelAttribute("orderModel") Order order) throws Exception {
-
-        try {
-            order.setTimecreate(new Date(System.currentTimeMillis()));
-            orderDao.insert(order);
-            model.addAttribute("insertSuccess", true);
-        } catch (Exception e) {
-            model.addAttribute("fail", true);
-        }
-        model.addAttribute("orders", orderDao.findAll());
-        model.addAttribute("orderModel", new Order());
-        model.addAttribute("users", userDao.findAll());
-        model.addAttribute("customers", customerDao.findAll());
-        model.addAttribute("orderStatuses", orderStatusDao.findAll());
-        return "quan_ly_don_hang";
-    }
-
-    @GetMapping(value = "/deleteById")
-    public String delete(Model model,
-                         @RequestParam("id") int id) throws SQLException, ClassNotFoundException {
-        try {
-            orderDao.delete(id);
-            model.addAttribute("deleteSuccess", false);
-        } catch (Exception e) {
-            model.addAttribute("fail", false);
-        }
-
-        model.addAttribute("orders", orderDao.findAll());
-        model.addAttribute("orderModel", new Order());
-        model.addAttribute("users", userDao.findAll());
-        model.addAttribute("customers", customerDao.findAll());
-        model.addAttribute("orderStatuses", orderStatusDao.findAll());
         return "quan_ly_don_hang";
     }
 
