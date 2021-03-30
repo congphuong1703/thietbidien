@@ -37,7 +37,7 @@
                                     <form:select path="idProduct" id="idProduct" class="form-control">
                                         <option selected value disabled id="-1">Sản phẩm</option>
                                         <c:forEach items="${products}" var="product">
-                                            <form:option value="${product.increaseId}" data-id="${product.increaseId}">${product.id}
+                                            <form:option value="${product.increaseId}" data-amount="${product.amount}" data-id="${product.increaseId}">${product.id}
                                                 || ${product.name}</form:option>
                                         </c:forEach>
                                     </form:select>
