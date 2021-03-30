@@ -26,7 +26,7 @@
                             <div class="form-group">
                                 <label>Sản phẩm</label>
                                 <select id="select-product" class="form-control">
-                                    <option id="-1" selected value disabled>Sản phẩm</option>
+                                    <option id="-1" selected value disabled></option>
                                     <c:forEach items="${products}" varStatus="stt" var="product">
                                         <option name="${product.name}" value="${product.id}"
                                                 data-increaseId="${product.increaseId}" data-name="${product.name}"
@@ -35,6 +35,7 @@
                                             || ${product.name}</option>
                                     </c:forEach>
                                 </select>
+                                <span class="text-danger invalidData"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -76,21 +77,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 pb-3">
-                    <select id="select-ma-nguoi-lap" class="form-control" style="width:200px;margin-left:250px">
-                        <option selected value disabled>Người lập</option>
+                    <select id="select-ma-nguoi-lap" class="form-control mx-auto w-50">
+                        <option id="-1" selected value disabled>Người lập</option>
                         <c:forEach items="${users}" var="user">
                             <option value="${user.id}" data-id="${user.id}">${user.id} || ${user.name}</option>
                         </c:forEach>
                     </select>
+                    <span class="d-block text-danger invalidData mx-auto  w-50"></span>
                 </div>
-                <div class="col-md-6 pb-3">
-                    <select id="select-ma-nha-cung-cap" class="form-control" style="width:200px;margin-left:145px">
-                        <option selected value disabled>Nhà cung cấp</option>
+                <div class="col-md-6 pb-3" >
+                    <select id="select-ma-nha-cung-cap" class="form-control mx-auto w-50" >
+                        <option id="-1" selected value disabled>Nhà cung cấp</option>
                         <c:forEach items="${suppliers}" var="supplier">
                             <option value="${supplier.id}" data-id="${supplier.id}">${supplier.id}
                                 || ${supplier.name}</option>
                         </c:forEach>
                     </select>
+                    <span class="d-block text-danger invalidData mx-auto w-50"></span>
                 </div>
             </div>
             <div class="row">

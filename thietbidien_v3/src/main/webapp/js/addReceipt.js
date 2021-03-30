@@ -1,6 +1,15 @@
 var URLAPI = "http://localhost:8080/api/v1";
 
 function addReceipt() {
+
+    // Validate combo box
+    var validReciept = validateReceipt();
+
+    if (!validReciept) {
+        alert('Wrong');
+        return;
+    }
+
     var idUser = $('#select-ma-nguoi-lap').val();
     var idSupplier = $('#select-ma-nha-cung-cap').val();
     var note = $('#textarea-note').val();
@@ -61,6 +70,13 @@ $('#btn-luu-lai').click(function () {
     var price = $('#input-price').val();
     var total = number * price;
 
+
+    var validData = simpleValidation();
+
+    if (!validData) {
+        return;
+    }
+
     $('#receiptTable').append(
         "<tr><td name=\"increaseId\" data-id=\"" + increaseId + "\" value=\"" + increaseId + "\">" + increaseId +
         "</td><td name=\"idProduct\" data-id=\"" + idProduct + "\" value=\"" + idProduct + "\">" + idProduct +
@@ -70,6 +86,7 @@ $('#btn-luu-lai').click(function () {
         "<td name=\"total\" data-total=\"" + total + "\" value=\"" + total + "\">" + total + "</td><td>" +
         "</tr>"
     )
+
 })
 
 $('#closeNotify').click(function () {
@@ -77,3 +94,37 @@ $('#closeNotify').click(function () {
 })
 
 
+
+
+function simpleValidation() {
+    var conditionProduct = $('#select-product option#-1').prop('selected');
+
+    if (conditionProduct) {
+        $('#select-product').next().text('Bạn phải chọn sản phẩm')
+        $('#select-product').css({'border-color': 'red'})
+        return false;
+    }
+
+    return true;
+}
+
+function validateReceipt() {
+
+    var conditionUser = $('#select-ma-nguoi-lap option#-1').prop('selected');
+    var conditionSupplier = $('#select-ma-nha-cung-cap option#-1').prop('selected');
+
+    if (conditionUser) {
+        $('#select-ma-nguoi-lap').next().text('Bạn phải chọn sản phẩm')
+        $('#select-ma-nguoi-lap').css({'border-color': 'red'})
+        return false;
+    }
+
+    if (conditionSupplier) {
+        $('#select-ma-nha-cung-cap').next().text('Bạn phải chọn sản phẩm')
+        $('#select-ma-nha-cung-cap').css({'border-color': 'red'})
+        return false;
+    }
+
+
+    return true;
+}

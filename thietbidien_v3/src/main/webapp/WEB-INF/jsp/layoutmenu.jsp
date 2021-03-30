@@ -84,6 +84,7 @@
 
                 <li class="sidebar-item">
                     <a data-target="#forms" data-toggle="collapse" class="sidebar-link collapsed">
+                        <i class="align-middle" data-feather="check-circle"></i>
                         <span class="align-middle" style="
     color: rgba(233,236,239,.5);
 "><i class="fas fa-comments-dollar"></i>Thống kê</span>
