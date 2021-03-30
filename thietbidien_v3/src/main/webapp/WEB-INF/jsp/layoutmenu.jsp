@@ -35,37 +35,37 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/category">
-                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Danh mục</span>
+                        <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Danh mục</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/product">
-                        <i class="align-middle" data-feather="user"></i> <span class="align-middle">Sản phẩm</span>
+                        <i class="align-middle" data-feather="box"></i> <span class="align-middle">Sản phẩm</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/order">
-                        <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Đơn hàng</span>
+                        <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Đơn hàng</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/supplier">
-                        <i class="align-middle" data-feather="credit-card"></i> <span
+                        <i class="align-middle" data-feather="home"></i> <span
                             class="align-middle">Nhà cung cấp</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/customer">
-                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">Khách hàng</span>
+                        <i class="align-middle" data-feather="users"></i> <span class="align-middle">Khách hàng</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/user">
-                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">Người dùng</span>
+                        <i class="align-middle" data-feather="user"></i> <span class="align-middle">Người dùng</span>
                     </a>
                 </li>
 
