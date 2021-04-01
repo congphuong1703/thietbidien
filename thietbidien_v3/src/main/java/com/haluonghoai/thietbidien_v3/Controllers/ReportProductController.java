@@ -28,12 +28,16 @@ public class ReportProductController {
         List<Product> products = productDao.findAll();
         int stock = 0;
         int outOfStock = 0;
+        int numberStock = 0;
         for (Product product : products) {
-            if (product.isStatus())
+            if (product.isStatus()) {
                 stock++;
+                numberStock += product.getAmount();
+            }
             else
                 outOfStock++;
         }
+        model.addAttribute("numberStock",numberStock);
         model.addAttribute("stock", stock);
         model.addAttribute("outOfStock", outOfStock);
         model.addAttribute("products", productDao.findAll());

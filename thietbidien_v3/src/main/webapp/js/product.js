@@ -11,12 +11,6 @@ function updateProduct(id) {
     $('#guarantee').val($('#' + id).attr('data-guarantee'));
     $('#unit').val($('#' + id).attr('data-unit'));
     $('#categoryId option[data-id=' + $('#' + id).attr('data-categoryId') + ']').attr('selected', 'selected');
-    ;
-    if ($('#status').val() === "true") {
-        $('#status input#status2').prop('checked', true);
-    } else {
-        $('#status input#status1').prop('checked', true);
-    }
     $('#price').attr("readonly", true);
 }
 
@@ -35,7 +29,6 @@ $('#add').click(function () {
     $('#specification').val("");
     $('#guarantee').val(0);
     $('#amount').val(0);
-    $('#status input#status1').prop('checked', true);
     $('#categoryId option#-1').prop('selected', true);
 })
 
@@ -59,6 +52,14 @@ function simpleValidation() {
         return false;
     }
 
+    if (nameEle.val() === '') {
+        nameEle.focus(function () {
+            nameEle.val('');
+        })
+        nameEle.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+
     if (category.val() == null) {
         category.focus(function () {
             category.val('');
@@ -67,13 +68,7 @@ function simpleValidation() {
         return false;
     }
 
-    if (nameEle.val() === '') {
-        nameEle.focus(function () {
-            nameEle.val('');
-        })
-        nameEle.css({'border-color': 'red', 'color': 'red'});
-        return false;
-    }
+
     if (imageEle.val() === '') {
         imageEle.focus(function () {
             imageEle.val('');
@@ -87,6 +82,20 @@ function simpleValidation() {
             unitEle.val('');
         })
         unitEle.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+    if (amountEle.val() < 0) {
+        amountEle.focus(function () {
+            amountEle.val(0);
+        })
+        amountEle.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+    if (priceEle.val() < 1) {
+        priceEle.focus(function () {
+            priceEle.val(0);
+        })
+        priceEle.css({'border-color': 'red', 'color': 'red'});
         return false;
     }
 }

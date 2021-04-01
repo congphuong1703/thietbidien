@@ -75,5 +75,6 @@
     <div class="tong-chi-phi text-center" style="color: brown; font-size: 18px;">
         <label>Còn hàng:</label>&nbsp;&nbsp;<span>${stock}</span>
         <label>Hết hàng:</label>&nbsp;<span>${outOfStock}</span>
+        <label>Số lượng còn hàng:</label>&nbsp;<span>${numberStock}</span>
     </div>
 </main>

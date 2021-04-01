@@ -51,7 +51,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Giá</label>
-                                    <form:input path="price" id="price" type="number" min="1" class="form-control"
+                                    <form:input path="price" id="price" type="number" class="form-control"
                                                 placeholder="Giá"/>
                                 </div>
                             </div>
@@ -64,15 +64,8 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Mô tả</label>
-                                    <form:textarea path="description" id="description" type="text" class="form-control"
-                                                   placeholder="Mô tả"/>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
                                     <label>Số lượng</label>
-                                    <form:input path="amount" id="amount" type="number" min="1" class="form-control"
+                                    <form:input path="amount" id="amount" type="number" class="form-control"
                                                 placeholder="Số lượng"/>
                                 </div>
                             </div>
@@ -107,15 +100,13 @@
                                                          value="${category.id}">${category.id} | ${category.name}</form:option>
                                         </c:forEach>
                                     </form:select>
-
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-check" id="status">
-                                    <label>Còn hàng</label>
-                                    <form:radiobutton path="status" name="status" value="false" checked="true"/> <br>
-                                    <label>hết hàng</label>
-                                    <form:radiobutton path="status" name="status" value="true"/>
+                                <div class="form-group">
+                                    <label>Mô tả</label>
+                                    <form:textarea path="description" id="description" type="text" class="form-control"
+                                                   placeholder="Mô tả"/>
                                 </div>
                             </div>
                         </div>

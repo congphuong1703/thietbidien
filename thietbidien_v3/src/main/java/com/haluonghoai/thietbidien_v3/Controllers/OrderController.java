@@ -78,7 +78,21 @@ public class OrderController {
         try {
             OrderDetails orderDetails1 = orderDetailDao.findByOrderIdAndProductId(orderDetails.getIdOrder(), orderDetails.getIdProduct());
             if (orderDetails1 == null) {
-                orderDetailDao.insert(orderDetails);
+                List<OrderDetails> orderDetailsList = orderDetailDao.findAllByProductIdAndStatusOrder1(orderDetails.getIdProduct());
+                int amount = 0;
+
+                for (OrderDetails orderDetailsExists : orderDetailsList) {
+                    amount += orderDetailsExists.getAmount();
+                }
+
+                Product product = productDao.findById(orderDetails.getIdProduct());
+                amount -= product.getAmount();
+
+                if (amount == 0) {
+                    product.setStatus(false);
+                    productDao.update(product);
+                } else if (amount > 0)
+                    orderDetailDao.insert(orderDetails);
             } else {
                 int amount = orderDetails1.getAmount() + orderDetails.getAmount();
                 orderDetails.setAmount(amount);
@@ -99,7 +113,7 @@ public class OrderController {
         try {
             OrderDetails orderDetails = orderDetailDao.findByOrderIdAndProductId(idOrder, idProduct);
             Order order = orderDao.findById(idOrder);
-            if(order.getIdOrderstatus() != 1) {
+            if (order.getIdOrderstatus() != 1) {
                 Product product = productDao.findById(idProduct);
                 int amount = product.getAmount() + orderDetails.getAmount();
                 product.setAmount(amount);
