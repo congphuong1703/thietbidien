@@ -54,9 +54,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-success" id="btn-luu-lai">Lưu</button>
+                <div class="modal-footer" >
+                    <button type="button" class="btn btn-default" id="closeAdd" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" id="btn-luu-lai">Lưu</button>
                 </div>
             </div>
         </div>
@@ -85,8 +85,8 @@
                     </select>
                     <span class="d-block text-danger invalidData mx-auto  w-50"></span>
                 </div>
-                <div class="col-md-6 pb-3" >
-                    <select id="select-ma-nha-cung-cap" class="form-control mx-auto w-50" >
+                <div class="col-md-6 pb-3">
+                    <select id="select-ma-nha-cung-cap" class="form-control mx-auto w-50">
                         <option id="-1" selected value disabled>Nhà cung cấp</option>
                         <c:forEach items="${suppliers}" var="supplier">
                             <option value="${supplier.id}" data-id="${supplier.id}">${supplier.id}
@@ -139,7 +139,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="nut-cap-nhat">
-                        <button id="btn-add-receipt" onclick="addReceipt()"  type="button" class="btn btn-primary"
+                        <button id="btn-add-receipt" onclick="addReceipt()" type="button" class="btn btn-primary"
                                 data-toggle="modal">Lưu phiếu nhập
                         </button>
                     </div>

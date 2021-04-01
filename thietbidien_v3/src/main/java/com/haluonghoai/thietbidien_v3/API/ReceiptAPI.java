@@ -1,5 +1,6 @@
 package com.haluonghoai.thietbidien_v3.API;
 
+import com.haluonghoai.thietbidien_v3.DAO.OrderDetailDao;
 import com.haluonghoai.thietbidien_v3.DAO.ProductDao;
 import com.haluonghoai.thietbidien_v3.DAO.ReceiptDao;
 import com.haluonghoai.thietbidien_v3.DAO.ReceiptDetailDao;
@@ -7,10 +8,7 @@ import com.haluonghoai.thietbidien_v3.DAO.imp.ProductDao_impl;
 import com.haluonghoai.thietbidien_v3.DAO.imp.ReceiptDao_impl;
 import com.haluonghoai.thietbidien_v3.DAO.imp.ReceiptDetailDao_Impl;
 import com.haluonghoai.thietbidien_v3.DTO.ReceiptDTO;
-import com.haluonghoai.thietbidien_v3.Models.JsonResult;
-import com.haluonghoai.thietbidien_v3.Models.Product;
-import com.haluonghoai.thietbidien_v3.Models.Receipt;
-import com.haluonghoai.thietbidien_v3.Models.ReceiptDetails;
+import com.haluonghoai.thietbidien_v3.Models.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,15 +34,32 @@ public class ReceiptAPI extends HttpServlet {
         String rs = "";
         try {
             List<ReceiptDetails> receiptDetailsList = receiptDTO.getReceiptDetailsList();
+            Map<Integer, ReceiptDetails> duplicateProduct = new HashMap<>();
+
             Receipt receipt = receiptDTO.getReceipt();
             receipt.setTimeCreate(new Date(System.currentTimeMillis()));
 
             Receipt newReceipt = receiptDao.insert(receipt);
 
             for (ReceiptDetails receiptDetails : receiptDetailsList) {
+                if (duplicateProduct.containsKey(receiptDetails.getIdProduct())) {
+                    int amount = duplicateProduct.get(receiptDetails.getIdProduct()).getAmount();
+                    amount += receiptDetails.getAmount();
+                    receiptDetails.setAmount(amount);
+
+                    duplicateProduct.put(receiptDetails.getIdProduct(), receiptDetails);
+                } else {
+                    duplicateProduct.put(receiptDetails.getIdProduct(), receiptDetails);
+                }
+            }
+
+            for(Integer integer : duplicateProduct.keySet()){
+                ReceiptDetails receiptDetails = duplicateProduct.get(integer);
+
                 receiptDetails.setIdReceipt(newReceipt.getId());
                 receiptDetailDao.insert(receiptDetails);
             }
+
             rs = jsonResult.jsonSuccess("Success");
         } catch (Exception ex) {
             ex.printStackTrace();

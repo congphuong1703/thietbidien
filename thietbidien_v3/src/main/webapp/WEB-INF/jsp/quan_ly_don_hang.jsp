@@ -98,8 +98,9 @@
                                                 onchange="updateStatusPayment(${order.id})"
                                                 id="${order.id}">
                                             <option value selected disabled>Chọn</option>
-                                            <option value="0">Chưa thanh toán</option>
-                                            <option value="1">Đã thanh toán</option>
+                                            <c:if test="${order.statusPaments == false}">
+                                                <option value="1">Đã thanh toán</option>
+                                            </c:if>
                                         </select>
                                     </td>
                                     <td>
@@ -108,11 +109,18 @@
                                                 id="${order.id}"
                                                 onchange="updateStatusOrder(${order.id})">
                                             <option value selected disabled>Chọn</option>
-                                            <option value="1">Chưa xác nhận</option>
-                                            <option value="2">Xác nhận</option>
-                                            <option value="3">Đang giao</option>
-                                            <option value="4">Hoàn thành</option>
-                                            <option value="5">Đã hủy</option>
+                                            <c:if test="${order.idOrderstatus == 1}">
+                                                <option value="2">Xác nhận</option>
+                                            </c:if>
+                                            <c:if test="${order.idOrderstatus == 2}">
+                                                <option value="3">Đang giao</option>
+                                            </c:if>
+                                            <c:if test="${order.idOrderstatus == 3}">
+                                                <option value="4">Hoàn thành</option>
+                                            </c:if>
+                                            <c:if test="${order.idOrderstatus != 4}">
+                                                <option value="5">Đã hủy</option>
+                                            </c:if>
                                         </select>
                                     </td>
                                 </tr>
@@ -146,7 +154,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="closeNotify" onclick="reloadPage()" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="button" id="closeNotify" onclick="reloadPage()" class="btn btn-default"
+                        data-dismiss="modal">Đóng
+                </button>
             </div>
         </div>
     </div>

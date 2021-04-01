@@ -193,4 +193,26 @@ public class OrderDetailDao_Impl implements OrderDetailDao {
         return result;
     }
 
+    @Override
+    public List<OrderDetails> findAllByProductIdAndStatusOrder1(int id) throws SQLException, ClassNotFoundException {
+        List<OrderDetails> list = new ArrayList<>();
+        String sql = "select * from tblChiTietDonHang where iId_sanpham = ? and exists (SELECT * \n" +
+                "FROM tblDonHang\n" +
+                "WHERE tblDonHang.iMadonhang = tblChiTietDonHang.iMadonhang and tblDonHang.iMatrangthai = ?)";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(2, 1);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                OrderDetails orderDetails = getObject(resultSet);
+                if (orderDetails != null) list.add(orderDetails);
+            } while (resultSet.next());
+        }
+        return list;
+    }
+
+
+
 }

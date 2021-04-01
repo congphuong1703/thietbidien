@@ -17,7 +17,7 @@ public class UserDao_impl implements UserDao {
     @Override
     public User getObject(ResultSet resultSet) throws SQLException {
         User user = null;
-        user = new User(resultSet.getInt("iManguoidung"), resultSet.getString("sHoten"), resultSet.getString("sEmail"), resultSet.getString("sDiachi"), resultSet.getString("sSodienthoai"), resultSet.getString("dNgaysinh"), resultSet.getString("sMatkhau"), resultSet.getInt("iMaquyen"));
+        user = new User(resultSet.getInt("iManguoidung"), resultSet.getString("sHoten"), resultSet.getString("sEmail"), resultSet.getString("sDiachi"), resultSet.getString("sSodienthoai"), resultSet.getDate("dNgaysinh"), resultSet.getString("sMatkhau"), resultSet.getInt("iMaquyen"));
         return user;
     }
 
@@ -78,13 +78,13 @@ public class UserDao_impl implements UserDao {
         preparedStatement.setString(2, user.getEmail());
         preparedStatement.setString(3, user.getAdress());
         preparedStatement.setString(4, user.getPhonenumber());
-        preparedStatement.setString(5, user.getDateOfBirth());
+        preparedStatement.setDate(5, user.getDateOfBirth());
         preparedStatement.setString(6, user.getPass());
         preparedStatement.setInt(7, user.getIdQuyen());
         int rs = preparedStatement.executeUpdate();
-        if (rs > 0) {
+        if(rs > 0){
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            if (resultSet.next()) {
+            if(resultSet.next()){
                 newUser = findById((int) resultSet.getLong(1));
             }
         }
@@ -100,7 +100,7 @@ public class UserDao_impl implements UserDao {
         preparedStatement.setString(2, user.getEmail());
         preparedStatement.setString(3, user.getAdress());
         preparedStatement.setString(4, user.getPhonenumber());
-        preparedStatement.setString(5, user.getDateOfBirth());
+        preparedStatement.setDate(5, user.getDateOfBirth());
         preparedStatement.setString(6, user.getPass());
         preparedStatement.setInt(7, user.getIdQuyen());
         preparedStatement.setInt(8, user.getId());

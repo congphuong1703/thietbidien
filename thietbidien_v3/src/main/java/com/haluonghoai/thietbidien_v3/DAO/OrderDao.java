@@ -33,5 +33,6 @@ public interface OrderDao extends BaseDao<Order> {
 
     public List<Order> findAllByUserId(int id) throws SQLException, ClassNotFoundException;
 
+    public List<Order> findAllByStatusOrder1() throws SQLException, ClassNotFoundException;
 
-    }
+}

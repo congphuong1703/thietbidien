@@ -58,7 +58,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Ngày sinh</label>
-                                    <form:input path="dateOfBirth" id="dateOfBirth" type="text" class="form-control"
+                                    <form:input path="dateOfBirth" id="dateOfBirth" type="date" class="form-control"
                                                 placeholder="Ngày sinh"/>
                                 </div>
                             </div>

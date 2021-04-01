@@ -1,19 +1,21 @@
 package com.haluonghoai.thietbidien_v3.Models;
 
+import java.sql.Date;
+
 public class User {
     private int id;
     private String name;
     private String email;
     private String adress;
     private String phonenumber;
-    private String dateOfBirth;
+    private Date dateOfBirth;
     private String pass;
     private int idQuyen;
 
     public User() {
     }
 
-    public User(int id, String name, String email, String adress, String phonenumber, String dateOfBirth, String pass, int idQuyen) {
+    public User(int id, String name, String email, String adress, String phonenumber, Date dateOfBirth, String pass, int idQuyen) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -64,11 +66,11 @@ public class User {
         this.phonenumber = phonenumber;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

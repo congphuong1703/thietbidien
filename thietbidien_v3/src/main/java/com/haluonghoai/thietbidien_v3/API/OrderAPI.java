@@ -26,7 +26,10 @@ import javax.ws.rs.Consumes;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -134,14 +137,14 @@ public class OrderAPI {
         String rs = "";
         try {
             List<OrderDetails> orderDetailsList = orderDetailDao.seeDetails(order.getId());
-            if (order.getIdOrderstatus() == 1) {
+            if (order.getIdOrderstatus() == 5) {
                 for (OrderDetails orderDetails : orderDetailsList) {
                     Product product = productDao.findById(orderDetails.getIdProduct());
                     int amount = product.getAmount() + orderDetails.getAmount();
                     product.setAmount(amount);
                     productDao.update(product);
                 }
-            }else{
+            } else if (order.getIdOrderstatus() == 2) {
                 for (OrderDetails orderDetails : orderDetailsList) {
                     Product product = productDao.findById(orderDetails.getIdProduct());
                     int amount = product.getAmount() - orderDetails.getAmount();
@@ -161,8 +164,45 @@ public class OrderAPI {
     public ResponseEntity<String> add(@RequestBody OrderDTO orderDTO) {
         String rs = "";
         try {
+            Map<Integer, Integer> productMap = new HashMap<>();
             List<OrderDetails> orderDetailsList = orderDTO.getOrderDetailsList();
+
+            for (OrderDetails orderDetails : orderDetailsList) {
+                List<OrderDetails> orderDetailsListStatusOrder1 = orderDetailDao.findAllByProductIdAndStatusOrder1(orderDetails.getIdProduct());
+                for (OrderDetails orderDetailsExists : orderDetailsListStatusOrder1) {
+                    Product product = productDao.findById(orderDetailsExists.getIdProduct());
+                    if (productMap.containsKey(product.getIncreaseId())) {
+                        int number = productMap.get(product.getIncreaseId());
+                        number -= orderDetailsExists.getAmount();
+
+                        productMap.put(product.getIncreaseId(), number);
+                    } else {
+                        productMap.put(product.getIncreaseId(), product.getAmount());
+                    }
+                }
+            }
+
+            List<Product> products = new ArrayList<>();
+            for (Integer integer : productMap.keySet()) {
+                Product product = productDao.findById(integer);
+
+                if (productMap.get(integer) < 0) {
+                    rs = jsonResult.jsonSuccess(false);
+                    return ResponseEntity.ok(rs);
+                } else if (productMap.get(integer) == 0) {
+                    product.setStatus(false);
+                } else {
+                    product.setStatus(true);
+                }
+                products.add(product);
+            }
+
+            for (Product product : products) {
+                productDao.update(product);
+            }
+
             Order order = orderDTO.getOrder();
+            order.setIdOrderstatus(1);
             order.setTimecreate(new Date(System.currentTimeMillis()));
             Order newOrder = orderDao.insert(order);
 
@@ -170,10 +210,10 @@ public class OrderAPI {
                 orderDetails.setIdOrder(newOrder.getId());
                 orderDetailDao.insert(orderDetails);
             }
-            rs = jsonResult.jsonSuccess("Success");
+            rs = jsonResult.jsonSuccess(true);
         } catch (Exception e) {
             e.printStackTrace();
-            rs = jsonResult.jsonSuccess("Not Success");
+            rs = jsonResult.jsonSuccess(false);
         }
         return ResponseEntity.ok(rs);
     }

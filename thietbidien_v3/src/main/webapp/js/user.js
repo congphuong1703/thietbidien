@@ -32,9 +32,11 @@ $('#add').click(function () {
 
 function simpleValidation() {
     var name = $('#name');
-    var sdt = $('#sdt');
+    var dateOfBirth = $('#dateOfBirth');
     var email = $('#email');
     var pass = $('#pass');
+    var phonenumber = $('#phonenumber');
+    var adress = $('#adress');
 
 
     if (name.val().trim() === '') {
@@ -42,14 +44,6 @@ function simpleValidation() {
             name.val('');
         })
         name.css({'border-color': 'red', 'color': 'red'});
-        return false;
-    }
-
-    if (sdt.val() === '') {
-        sdt.focus(function () {
-            sdt.val('');
-        })
-        sdt.css({'border-color': 'red', 'color': 'red'});
         return false;
     }
 
@@ -67,6 +61,26 @@ function simpleValidation() {
         pass.css({'border-color': 'red', 'color': 'red'});
         return false;
     }
-    return  true;
+    if (dateOfBirth.val() === '') {
+        dateOfBirth.focus(function () {
+            dateOfBirth.val('');
+        })
+        dateOfBirth.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    } if (phonenumber.val() === '') {
+        phonenumber.focus(function () {
+            phonenumber.val('');
+        })
+        phonenumber.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+    if (adress.val() === '') {
+        adress.focus(function () {
+            adress.val('');
+        })
+        adress.css({'border-color': 'red', 'color': 'red'});
+        return false;
+    }
+    return true;
 
 }

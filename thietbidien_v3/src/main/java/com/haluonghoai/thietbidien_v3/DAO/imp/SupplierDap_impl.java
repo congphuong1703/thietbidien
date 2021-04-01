@@ -2,6 +2,7 @@ package com.haluonghoai.thietbidien_v3.DAO.imp;
 
 import com.haluonghoai.thietbidien_v3.DAO.SupplierDao;
 import com.haluonghoai.thietbidien_v3.Models.MyConnection;
+import com.haluonghoai.thietbidien_v3.Models.Product;
 import com.haluonghoai.thietbidien_v3.Models.Receipt;
 import com.haluonghoai.thietbidien_v3.Models.Supplier;
 
@@ -26,15 +27,14 @@ public class SupplierDap_impl implements SupplierDao {
     @Override
     public List<Supplier> findAll() throws SQLException, ClassNotFoundException {
         List<Supplier> list = new ArrayList<>();
-        String sql = "{call sp_select_nhacungcap}";
-        Connection connection = myConnection.connectDb();
-        CallableStatement sttm = connection.prepareCall(sql, ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-        ResultSet resultSet = sttm.executeQuery();
+        String sql = "select * from tblNhaCungCap";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
         if(resultSet.first()){
             do{
                 Supplier supplier = getObject(resultSet);
-                if(supplier != null) list.add(supplier);
-            }while(resultSet.next());
+                if(supplier!=null) list.add(supplier);
+            }while (resultSet.next());
         }
         return list;
     }

@@ -14,6 +14,7 @@ $('#add').click(function () {
     $('#idOrder').val($('#ma-don-hang').attr("value"));
     $('#amount').val(0);
     $('#idProduct option#-1').prop("selected", true);
+    $('#checkProduct').attr('hidden', true);
 })
 
 
@@ -40,10 +41,10 @@ function simpleValidation() {
     var amountProduct = $('#idProduct option:checked').attr("data-amount");
     if (amount.attr('value') > amountProduct || amount.attr('value') > 200000) {
         amount.focus(function () {
-            amount.attr('value',0);
+            amount.attr('value', 0);
         })
         amount.css({'border-color': 'red', 'color': 'red'});
-        alert('Sản phẩm không đủ!')
+        $('#checkProduct').removeAttr('hidden');
         return false;
     }
     return true;

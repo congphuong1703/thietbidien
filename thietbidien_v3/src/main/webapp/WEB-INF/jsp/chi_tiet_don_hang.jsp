@@ -13,14 +13,17 @@
          aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form:form modelAttribute="orderDetailsModel" action="/order/addOrderDetails" method="post" onsubmit="return simpleValidation()">
+                <div id="checkProduct" hidden="true" class="alert alert-danger">
+                    <strong>Danger!</strong> Sản phẩm không đủ.
+                </div>
+                <form:form modelAttribute="orderDetailsModel" action="/order/addOrderDetails" method="post"
+                           onsubmit="return simpleValidation()">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-
                     <div class="modal-body form-custom">
                         <div class="row">
                             <div class="col-md-4">
@@ -37,7 +40,8 @@
                                     <form:select path="idProduct" id="idProduct" class="form-control">
                                         <option selected value disabled id="-1">Sản phẩm</option>
                                         <c:forEach items="${products}" var="product">
-                                            <form:option value="${product.increaseId}" data-amount="${product.amount}" data-id="${product.increaseId}">${product.id}
+                                            <form:option value="${product.increaseId}" data-amount="${product.amount}"
+                                                         data-id="${product.increaseId}">${product.id}
                                                 || ${product.name}</form:option>
                                         </c:forEach>
                                     </form:select>

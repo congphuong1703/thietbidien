@@ -275,4 +275,20 @@ public class OrderDao_impl implements OrderDao {
         return list;
     }
 
+    @Override
+    public List<Order> findAllByStatusOrder1() throws SQLException, ClassNotFoundException {
+        List<Order> list = new ArrayList<>();
+        String sql = "select * from tblDonHang where iMatrangthai == 1";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                Order order = getObject(resultSet);
+                if (order != null) list.add(order);
+            } while (resultSet.next());
+        }
+        return list;
+    }
+
+
 }

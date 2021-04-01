@@ -50,6 +50,9 @@ function addReceipt() {
         ,
         success: function (res) {
             $('#notification').modal('show');
+        },
+        error : function(res){
+            alert("Lỗi đặt hàng");
         }
     })
 }
@@ -86,13 +89,12 @@ $('#btn-luu-lai').click(function () {
         "</tr>"
     )
 
+
 })
 
 $('#closeNotify').click(function () {
     window.location.reload();
 })
-
-
 
 
 function simpleValidation() {
@@ -120,7 +122,6 @@ function validateReceipt() {
         $('#select-ma-nha-cung-cap').css({'border-color': 'red'})
         return false;
     }
-
 
     return true;
 }

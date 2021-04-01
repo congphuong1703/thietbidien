@@ -10,12 +10,14 @@ function updateProduct(id) {
     $('#specification').val($('#' + id).attr('data-specification'));
     $('#guarantee').val($('#' + id).attr('data-guarantee'));
     $('#unit').val($('#' + id).attr('data-unit'));
-    $('#categoryId option[data-id=' + $('#' + id).attr('data-categoryId') + ']').attr('selected','selected');;
+    $('#categoryId option[data-id=' + $('#' + id).attr('data-categoryId') + ']').attr('selected', 'selected');
+    ;
     if ($('#status').val() === "true") {
         $('#status input#status2').prop('checked', true);
     } else {
         $('#status input#status1').prop('checked', true);
     }
+    $('#price').attr("readonly", true);
 }
 
 function deleteProduct(id) {
@@ -53,7 +55,7 @@ function simpleValidation() {
         idEle.focus(function () {
             idEle.val('');
         })
-        idEle.css({'border-color': 'red','color': 'red'});
+        idEle.css({'border-color': 'red', 'color': 'red'});
         return false;
     }
 
@@ -61,7 +63,7 @@ function simpleValidation() {
         category.focus(function () {
             category.val('');
         })
-        category.css({'border-color': 'red','color': 'red'});
+        category.css({'border-color': 'red', 'color': 'red'});
         return false;
     }
 
@@ -69,14 +71,14 @@ function simpleValidation() {
         nameEle.focus(function () {
             nameEle.val('');
         })
-        nameEle.css({'border-color': 'red','color': 'red'});
+        nameEle.css({'border-color': 'red', 'color': 'red'});
         return false;
     }
     if (imageEle.val() === '') {
         imageEle.focus(function () {
             imageEle.val('');
         })
-        imageEle.css({'border-color': 'red','color': 'red'});
+        imageEle.css({'border-color': 'red', 'color': 'red'});
         return false;
     }
 
@@ -84,7 +86,7 @@ function simpleValidation() {
         unitEle.focus(function () {
             unitEle.val('');
         })
-        unitEle.css({'border-color': 'red','color': 'red'});
+        unitEle.css({'border-color': 'red', 'color': 'red'});
         return false;
     }
 }
