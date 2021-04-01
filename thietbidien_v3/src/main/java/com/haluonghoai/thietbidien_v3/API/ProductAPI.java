@@ -1,9 +1,15 @@
 package com.haluonghoai.thietbidien_v3.API;
 
 import com.google.gson.Gson;
+import com.haluonghoai.thietbidien_v3.DAO.OrderDao;
+import com.haluonghoai.thietbidien_v3.DAO.OrderDetailDao;
 import com.haluonghoai.thietbidien_v3.DAO.ProductDao;
+import com.haluonghoai.thietbidien_v3.DAO.imp.OrderDao_impl;
+import com.haluonghoai.thietbidien_v3.DAO.imp.OrderDetailDao_Impl;
 import com.haluonghoai.thietbidien_v3.DAO.imp.ProductDao_impl;
 import com.haluonghoai.thietbidien_v3.Models.JsonResult;
+import com.haluonghoai.thietbidien_v3.Models.Order;
+import com.haluonghoai.thietbidien_v3.Models.OrderDetails;
 import com.haluonghoai.thietbidien_v3.Models.Product;
 import com.haluonghoai.thietbidien_v3.Services.ProductService;
 import com.haluonghoai.thietbidien_v3.Services.imp.ProductService_impl;
@@ -27,6 +33,8 @@ public class ProductAPI {
     private ProductService productService = new ProductService_impl();
 
     private ProductDao productDao = new ProductDao_impl();
+    private OrderDetailDao orderDetailDao = new OrderDetailDao_Impl();
+    private OrderDao orderDao = new OrderDao_impl();
 
     private JsonResult jsonResult = new JsonResult();
 
@@ -84,11 +92,16 @@ public class ProductAPI {
         }
         return ResponseEntity.ok(rs);
     }
+
     @GetMapping(value = "/find-by-id")
     protected ResponseEntity<String> searchProductById(@RequestParam("id") int idProduct) {
         String rs = "";
         try {
             Product product = productService.findProductById(idProduct);
+            if (product.getAmount() < 1) {
+                product.setStatus(false);
+                productDao.update(product);
+            }
             rs = jsonResult.jsonSuccess(product);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -143,6 +156,25 @@ public class ProductAPI {
         } catch (Exception ex) {
             ex.printStackTrace();
             rs = jsonResult.jsonFail("delete supplier fail");
+        }
+        return ResponseEntity.ok(rs);
+    }
+
+    @GetMapping(value = "/checkStock")
+    public ResponseEntity<String> checkStock(@RequestParam("id") int id) {
+        String rs = "";
+        try {
+            List<OrderDetails> orderDetailsList = orderDetailDao.findAllByProductIdAndStatusOrder1(id);
+            int amount = 0;
+            for (OrderDetails orderDetails : orderDetailsList) {
+                amount += orderDetails.getAmount();
+            }
+            Product product = productDao.findById(id);
+            amount -= product.getAmount();
+            rs = jsonResult.jsonSuccess(amount);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            rs = jsonResult.jsonFail("fail");
         }
         return ResponseEntity.ok(rs);
     }
