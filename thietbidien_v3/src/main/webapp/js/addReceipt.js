@@ -1,4 +1,5 @@
 var URLAPI = "http://localhost:8080/api/v1";
+var index = 0;
 
 function addReceipt() {
 
@@ -51,10 +52,13 @@ function addReceipt() {
         success: function (res) {
             $('#notification').modal('show');
         },
-        error : function(res){
+        error: function (res) {
             alert("Lỗi đặt hàng");
         }
     })
+
+    index = 0;
+
 }
 
 $('#btn-add-product').click(function () {
@@ -77,25 +81,55 @@ $('#btn-luu-lai').click(function () {
     if (!validData) {
         return;
     }
+    if (selectChecked.attr("data-check") != null || selectChecked.attr("data-check") != undefined) {
+        var indexElement = selectChecked.attr("data-check");
+        var listProduct = $('#receiptTable tr');
+        var elementProductDetail;
 
-    $('#receiptTable').append(
-        "<tr><td name=\"increaseId\" data-id=\"" + increaseId + "\" value=\"" + increaseId + "\">" + increaseId +
-        "</td><td name=\"idProduct\" data-id=\"" + idProduct + "\" value=\"" + idProduct + "\">" + idProduct +
-        "</td><td name=\"nameProduct\" data-nameProduct=\"" + nameProduct + "\" value=\"" + nameProduct + "\">" + nameProduct +
-        "</td><td name=\"number\" data-number=\"" + number + "\" value=\"" + number + "\">" + number +
-        "</td><td name=\"price\" data-price=\"" + price + "\" value=\"" + price + "\">" + price + "</td>" +
-        "<td name=\"total\" data-total=\"" + total + "\" value=\"" + total + "\">" + total + "</td><td>" +
-        "</tr>"
-    )
+        elementProductDetail = listProduct.eq(indexElement).children('td');
+        console.log(elementProductDetail);
+        console.log(elementProductDetail.eq(0).val());
+        elementProductDetail.eq(3).text(number);
+        elementProductDetail.eq(4).text(price);
+        elementProductDetail.eq(5).text(total);
+    } else {
 
-    $('#select-product option:checked').remove();
+        $('#receiptTable').append(
+            "<tr data-index=\"" + index + "\"><td name=\"increaseId\" data-id=\"" + increaseId + "\" value=\"" + increaseId + "\">" + increaseId +
+            "</td><td name=\"idProduct\" data-idProduct=\"" + idProduct + "\" value=\"" + idProduct + "\">" + idProduct +
+            "</td><td name=\"nameProduct\" data-nameProduct=\"" + nameProduct + "\" value=\"" + nameProduct + "\">" + nameProduct +
+            "</td><td name=\"number\" data-number=\"" + number + "\" value=\"" + number + "\">" + number +
+            "</td><td name=\"price\" data-price=\"" + price + "\" value=\"" + price + "\">" + price + "</td>" +
+            "<td name=\"total\" data-total=\"" + total + "\" value=\"" + total + "\">" + total + "</td>" +
+            "<td><button class=\"btn btn-warning\" data-id=\"" + increaseId + "\"" +
+            "data-number=\"" + number + "\" data-price=\"" + price + "\" type=\"button\"  data-toggle=\"modal\"\n" +
+            "data-target=\"#exampleModal\"  onclick=\"updateProduct(" + increaseId + ")\">Sửa</button></td>" +
+            "</tr>"
+        )
+        index++;
+    }
+    $('#select-product option:checked').attr("hidden", true);
+    $("#select-product").removeAttr("readonly");
 
     $('#input-number').val(0);
     $('#input-price').val(0);
     $('#select-product option#-1').prop("selected", true);
 
-
 })
+
+function updateProduct(id) {
+    $("#select-product option[data-increaseId=" + id + "]").attr("data-check", index - 1);
+    $("#select-product option[data-increaseId=" + id + "]").attr("hidden", false);
+    $("#select-product").attr("readonly", true);
+    $("#select-product option[data-increaseId=" + id + "]").prop("selected", true);
+    $('#input-number').val($('button[data-id='+id+']').attr("data-number"));
+    $('#input-price').val($('button[data-id='+id+']').attr("data-price"));
+}
+
+$('#btn-remove-product').click(function () {
+    $('#receiptTable').empty();
+})
+
 
 $('#closeNotify').click(function () {
     window.location.reload();
@@ -107,12 +141,12 @@ function simpleValidation() {
     var amount = $('#input-number').val();
     var price = $('#input-price').val();
 
-    if(amount)
+    if (amount)
 
-    if (conditionProduct) {
-        $('#select-product').css({'border-color': 'red'})
-        return false;
-    }
+        if (conditionProduct) {
+            $('#select-product').css({'border-color': 'red'})
+            return false;
+        }
 
     if (amount < 1) {
         $('#input-number').css({'border-color': 'red'})

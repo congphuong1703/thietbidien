@@ -33,7 +33,6 @@ public class ReceiptDetailController {
     @GetMapping(value = "/findById")
     public String goOrderDetail(@RequestParam("id") int id, ModelMap model) {
         try {
-            Map<String, Object> map = new HashMap<>();
             List<Map<String, Object>> list = new ArrayList<>();
             long total = 0;
 
@@ -43,6 +42,8 @@ public class ReceiptDetailController {
             Supplier supplier = supplierDao.findById(receipt.getIdSupplier());
 
             for (ReceiptDetails receiptDetails : receiptDetailsList) {
+                Map<String, Object> map = new HashMap<>();
+
                 Product product = productDao.findById(receiptDetails.getIdProduct());
                 long cost = (long) (receiptDetails.getAmount() * receiptDetails.getPrice());
 

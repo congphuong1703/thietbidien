@@ -61,11 +61,12 @@
                                             tiết</a>
                                     </td>
                                     <td>
-                                        <select class="form-control select-status"  name="${receipt.id}"
+                                        <select class="form-control select-status" name="${receipt.id}"
                                                 onchange="updateStatusReceipt(${receipt.id})">
                                             <option value selected disabled>Chọn</option>
-                                            <option value="0">Chưa nhập</option>
-                                            <option value="1">Đã nhập</option>
+                                            <c:if test="${receipt.statusEnter == false}">
+                                                <option value="1">Đã nhập</option>
+                                            </c:if>
                                         </select>
                                     </td>
                                 </tr>

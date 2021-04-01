@@ -97,9 +97,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-9">
                     <button id="btn-add-product" type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#exampleModal"><i class="fas fa-plus"></i> Thêm sản phẩm
+                    </button>
+                </div>
+                <div class="col-md-3">
+                    <button id="btn-remove-product" type="button" class="btn btn-danger"
+                           ><i class="fas fa-trash"></i> Xóa sản phẩm
                     </button>
                 </div>
             </div>
@@ -119,6 +124,7 @@
                                 <th scope="col">Số lượng</th>
                                 <th scope="col">Đơn giá</th>
                                 <th scope="col">Thành tiền</th>
+                                <th scope="col">Hành động</th>
                             </tr>
                             </thead>
                             <tbody id="receiptTable">
