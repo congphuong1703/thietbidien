@@ -80,6 +80,8 @@ public class OrderController {
             if (orderDetails1 == null) {
                 orderDetailDao.insert(orderDetails);
             } else {
+                int amount = orderDetails1.getAmount() + orderDetails.getAmount();
+                orderDetails.setAmount(amount);
                 orderDetailDao.update(orderDetails);
                 model.addAttribute("updateSuccess", true);
             }

@@ -72,7 +72,6 @@ $('#btn-luu-lai').click(function () {
     var price = $('#input-price').val();
     var total = number * price;
 
-
     var validData = simpleValidation();
 
     if (!validData) {
@@ -89,6 +88,12 @@ $('#btn-luu-lai').click(function () {
         "</tr>"
     )
 
+    $('#select-product option:checked').remove();
+
+    $('#input-number').val(0);
+    $('#input-price').val(0);
+    $('#select-product option#-1').prop("selected", true);
+
 
 })
 
@@ -99,9 +104,23 @@ $('#closeNotify').click(function () {
 
 function simpleValidation() {
     var conditionProduct = $('#select-product option#-1').prop('selected');
+    var amount = $('#input-number').val();
+    var price = $('#input-price').val();
+
+    if(amount)
 
     if (conditionProduct) {
         $('#select-product').css({'border-color': 'red'})
+        return false;
+    }
+
+    if (amount < 1) {
+        $('#input-number').css({'border-color': 'red'})
+        return false;
+    }
+
+    if (price < 1) {
+        $('#input-price').css({'border-color': 'red'})
         return false;
     }
 

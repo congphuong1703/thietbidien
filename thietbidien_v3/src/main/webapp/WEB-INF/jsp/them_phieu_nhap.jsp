@@ -56,7 +56,7 @@
                 </div>
                 <div class="modal-footer" >
                     <button type="button" class="btn btn-default" id="closeAdd" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal" id="btn-luu-lai">Lưu</button>
+                    <button type="button" class="btn btn-success" id="btn-luu-lai">Lưu</button>
                 </div>
             </div>
         </div>

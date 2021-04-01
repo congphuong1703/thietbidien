@@ -46,11 +46,9 @@ public class ReceiptAPI extends HttpServlet {
                     int amount = duplicateProduct.get(receiptDetails.getIdProduct()).getAmount();
                     amount += receiptDetails.getAmount();
                     receiptDetails.setAmount(amount);
-
-                    duplicateProduct.put(receiptDetails.getIdProduct(), receiptDetails);
-                } else {
-                    duplicateProduct.put(receiptDetails.getIdProduct(), receiptDetails);
                 }
+                duplicateProduct.put(receiptDetails.getIdProduct(), receiptDetails);
+
             }
 
             for(Integer integer : duplicateProduct.keySet()){
