@@ -93,7 +93,6 @@ $('#btn-luu-lai').click(function () {
         elementProductDetail.eq(4).text(price);
         elementProductDetail.eq(5).text(total);
     } else {
-
         $('#receiptTable').append(
             "<tr data-index=\"" + index + "\"><td name=\"increaseId\" data-id=\"" + increaseId + "\" value=\"" + increaseId + "\">" + increaseId +
             "</td><td name=\"idProduct\" data-idProduct=\"" + idProduct + "\" value=\"" + idProduct + "\">" + idProduct +
@@ -103,10 +102,11 @@ $('#btn-luu-lai').click(function () {
             "<td name=\"total\" data-total=\"" + total + "\" value=\"" + total + "\">" + total + "</td>" +
             "<td><button class=\"btn btn-warning\" data-id=\"" + increaseId + "\"" +
             "data-number=\"" + number + "\" data-price=\"" + price + "\" type=\"button\"  data-toggle=\"modal\"\n" +
-            "data-target=\"#exampleModal\"  onclick=\"updateProduct(" + increaseId + ")\">Sửa</button></td>" +
+            "data-target=\"#exampleModal\" data-index=\"" + index + "\" onclick=\"updateProduct(" + increaseId + ")\">Sửa</button></td>" +
             "</tr>"
         )
         index++;
+        console.log(index);
     }
     $('#select-product option:checked').attr("hidden", true);
     $("#select-product").removeAttr("readonly");
@@ -118,21 +118,28 @@ $('#btn-luu-lai').click(function () {
 })
 
 function updateProduct(id) {
-    $("#select-product option[data-increaseId=" + id + "]").attr("data-check", index - 1);
-    $("#select-product option[data-increaseId=" + id + "]").attr("hidden", false);
+    $("#select-product option[data-increaseId=" + id + "]").attr("data-check", $('button[data-id=' + id + ']').attr("data-index"));
+    console.log($('button[data-id=' + id + ']').attr("data-index"));
+    $("#select-product option[data-increaseId=" + id + "]").attr("hidden", "hidden");
     $("#select-product").attr("readonly", true);
     $("#select-product option[data-increaseId=" + id + "]").prop("selected", true);
-    $('#input-number').val($('button[data-id='+id+']').attr("data-number"));
-    $('#input-price').val($('button[data-id='+id+']').attr("data-price"));
+    $('#input-number').val($('button[data-id=' + id + ']').attr("data-number"));
+    $('#input-price').val($('button[data-id=' + id + ']').attr("data-price"));
 }
 
 $('#btn-remove-product').click(function () {
-    $('#receiptTable').empty();
+    window.location.reload();
 })
 
 
 $('#closeNotify').click(function () {
     window.location.reload();
+})
+$('#closeAdd').click(function () {
+    $("#select-product").removeAttr("readonly");
+})
+$('#closeModa').click(function () {
+    $("#select-product").removeAttr("readonly");
 })
 
 

@@ -39,6 +39,7 @@ public class ProductController {
     @GetMapping
     public String go(Model model) {
         try {
+
             model.addAttribute("products", productDao.findAll());
             model.addAttribute("categories", categoryDao.findAll());
             model.addAttribute("productModel", new Product());
