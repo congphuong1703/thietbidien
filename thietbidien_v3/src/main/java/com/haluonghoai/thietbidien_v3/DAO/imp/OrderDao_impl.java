@@ -177,12 +177,12 @@ public class OrderDao_impl implements OrderDao {
         String sql = "insert tblDonHang values (?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
         preparedStatement.setDate(1, (Date) order.getTimecreate());
-        preparedStatement.setBoolean(2, order.isStatusPaments());
-        preparedStatement.setString(3, order.getNote());
-        preparedStatement.setInt(4, order.getIdUser());
-        preparedStatement.setInt(5, order.getIdCustomer());
-        preparedStatement.setBoolean(6, order.isPayments());
-        preparedStatement.setInt(7, order.getIdOrderstatus());
+        preparedStatement.setString(2, order.getNote());
+        preparedStatement.setInt(3, order.getIdUser());
+        preparedStatement.setInt(4, order.getIdCustomer());
+        preparedStatement.setInt(5, order.getIdOrderstatus());
+        preparedStatement.setBoolean(6, order.isStatusPaments());
+        preparedStatement.setBoolean(7, order.isPayments());
         int rs = preparedStatement.executeUpdate();
         if (rs > 0) {
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
