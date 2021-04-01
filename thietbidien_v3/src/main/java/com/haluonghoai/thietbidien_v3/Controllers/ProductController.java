@@ -39,7 +39,12 @@ public class ProductController {
     @GetMapping
     public String go(Model model) {
         try {
-
+            for(Product product : productDao.findAll()){
+                if(product.getAmount() < 1){
+                    product.setStatus(false);
+                }
+                productDao.update(product);
+            }
             model.addAttribute("products", productDao.findAll());
             model.addAttribute("categories", categoryDao.findAll());
             model.addAttribute("productModel", new Product());
