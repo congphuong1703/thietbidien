@@ -163,6 +163,8 @@ public class OrderAPI {
     @PostMapping(value = "/addPurchase")
     public ResponseEntity<String> add(@RequestBody OrderDTO orderDTO) {
         String rs = "";
+        Map<String,Object> map = new HashMap<>();
+
         try {
             Map<Integer, Integer> productMap = new HashMap<>();
             List<OrderDetails> orderDetailsList = orderDTO.getOrderDetailsList();
@@ -187,7 +189,8 @@ public class OrderAPI {
                 Product product = productDao.findById(integer);
 
                 if (productMap.get(integer) < 0) {
-                    rs = jsonResult.jsonSuccess(false);
+                    map.put("check",false);
+                    rs = jsonResult.jsonSuccess(map);
                     return ResponseEntity.ok(rs);
                 } else if (productMap.get(integer) == 0) {
                     product.setStatus(false);
@@ -210,10 +213,14 @@ public class OrderAPI {
                 orderDetails.setIdOrder(newOrder.getId());
                 orderDetailDao.insert(orderDetails);
             }
-            rs = jsonResult.jsonSuccess(true);
+            map.put("order",order);
+            map.put("orderDetailsL",orderDetailsList);
+            map.put("check",true);
+            rs = jsonResult.jsonSuccess(map);
         } catch (Exception e) {
             e.printStackTrace();
-            rs = jsonResult.jsonSuccess(false);
+            map.put("check",false);
+            rs = jsonResult.jsonSuccess(map);
         }
         return ResponseEntity.ok(rs);
     }

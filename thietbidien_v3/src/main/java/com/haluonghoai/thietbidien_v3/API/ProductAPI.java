@@ -170,7 +170,7 @@ public class ProductAPI {
                 amount += orderDetails.getAmount();
             }
             Product product = productDao.findById(id);
-            amount -= product.getAmount();
+            amount = product.getAmount() - amount;
             rs = jsonResult.jsonSuccess(amount);
         } catch (Exception ex) {
             ex.printStackTrace();
