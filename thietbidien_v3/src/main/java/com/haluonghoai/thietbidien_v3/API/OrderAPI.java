@@ -214,7 +214,7 @@ public class OrderAPI {
                 orderDetailDao.insert(orderDetails);
             }
             map.put("order",order);
-            map.put("orderDetailsL",orderDetailsList);
+            map.put("orderDetails",orderDetailsList);
             map.put("check",true);
             rs = jsonResult.jsonSuccess(map);
         } catch (Exception e) {
