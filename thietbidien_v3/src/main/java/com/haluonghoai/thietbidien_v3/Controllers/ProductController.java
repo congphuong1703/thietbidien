@@ -39,9 +39,11 @@ public class ProductController {
     @GetMapping
     public String go(Model model) {
         try {
-            for(Product product : productDao.findAll()){
-                if(product.getAmount() < 1){
+            for (Product product : productDao.findAll()) {
+                if (product.getAmount() < 1) {
                     product.setStatus(false);
+                } else {
+                    product.setStatus(true);
                 }
                 productDao.update(product);
             }
@@ -67,6 +69,9 @@ public class ProductController {
                 productDao.update(product);
                 model.addAttribute("updateSuccess", true);
             }
+            Category category = categoryDao.findById(product.getCategoryId());
+            category.setStatus(true);
+            categoryDao.update(category);
         } catch (Exception e) {
             model.addAttribute("fail", true);
             e.printStackTrace();

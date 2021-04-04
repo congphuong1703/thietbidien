@@ -113,7 +113,9 @@
                                                 <option value="2">Xác nhận</option>
                                             </c:if>
                                             <c:if test="${order.idOrderstatus == 2}">
-                                                <option value="3">Đang giao</option>
+                                                <c:if test="${order.payments == false || order.statusPaments == true}">
+                                                    <option value="3">Đang giao</option>
+                                                </c:if>
                                             </c:if>
                                             <c:if test="${order.idOrderstatus == 3}">
                                                 <option value="4">Hoàn thành</option>

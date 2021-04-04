@@ -197,7 +197,7 @@ public class OrderDao_impl implements OrderDao {
     public boolean update(Order object) throws SQLException {
         boolean result = false;
         String sql = "update tblDonHang set dThoigiandat = ?, sGhichu = ?, iManguoidung = ?, iMakhachhang = ?," +
-                " iMatrangthai = ?, bTrangthaithanhtoan = ?, bHinhthucthanhtoan = ?";
+                " iMatrangthai = ?, bTrangthaithanhtoan = ?, bHinhthucthanhtoan = ? where iMadonhang = ?";
         PreparedStatement preparedStatement = myConnection.prepareUpdate(sql);
         preparedStatement.setDate(1, (Date) object.getTimecreate());
         preparedStatement.setString(2, object.getNote());
@@ -206,6 +206,8 @@ public class OrderDao_impl implements OrderDao {
         preparedStatement.setInt(5, object.getIdOrderstatus());
         preparedStatement.setBoolean(6, object.isStatusPaments());
         preparedStatement.setBoolean(7, object.isPayments());
+        preparedStatement.setInt(8, object.getId());
+
         int rs = preparedStatement.executeUpdate();
         if (rs > 0) result = true;
         return result;

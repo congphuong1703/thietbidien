@@ -109,4 +109,19 @@ public class CategoryDao_impl implements CategoryDao {
         banghi = resultSet.getInt(1);
         return banghi;
     }
+
+    @Override
+    public List<Category> checkStatus() throws SQLException, ClassNotFoundException {
+        List<Category> list = new ArrayList<>();
+        String sql = "select * from tblDanhMucSanPham where exists (select * from tblSanPham where tblSanPham.iMadanhmucsp = tblDanhMucSanPham.iMadanhmucsp)";
+        PreparedStatement preparedStatement = myConnection.prepare(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.first()) {
+            do {
+                Category category = getObject(resultSet);
+                if (category != null) list.add(category);
+            } while (resultSet.next());
+        }
+        return list;
+    }
 }

@@ -1,6 +1,8 @@
 package com.haluonghoai.thietbidien_v3.API;
 
 import com.google.gson.Gson;
+import com.haluonghoai.thietbidien_v3.DAO.CategoryDao;
+import com.haluonghoai.thietbidien_v3.DAO.imp.CategoryDao_impl;
 import com.haluonghoai.thietbidien_v3.Models.Category;
 import com.haluonghoai.thietbidien_v3.Models.JsonResult;
 import com.haluonghoai.thietbidien_v3.Services.CategoryService;
@@ -15,6 +17,7 @@ import java.util.List;
 public class CategoryAPI {
 
     private CategoryService categoryService = new CategoryService_impl();
+    private CategoryDao categoryDao = new CategoryDao_impl();
 
     private JsonResult jsonResult = new JsonResult();
 
@@ -35,7 +38,7 @@ public class CategoryAPI {
     public ResponseEntity<String> findAll() {
         String res = "";
         try {
-            List<Category> categoryList = categoryService.findAll();
+            List<Category> categoryList = categoryDao.checkStatus();
             res = jsonResult.jsonSuccess(categoryList);
         } catch (Exception e) {
             e.printStackTrace();

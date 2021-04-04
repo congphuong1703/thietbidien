@@ -124,7 +124,10 @@ public class OrderAPI {
     public ResponseEntity<String> updateStatusPayment(@RequestBody Order order) {
         String rs = "";
         try {
-            rs = jsonResult.jsonSuccess(orderDao.updateStatusPayment(order.isStatusPaments(), order.getId()));
+            Order newOrder = orderDao.findById(order.getId());
+            newOrder.setStatusPaments(order.isStatusPaments());
+            newOrder.setIdOrderstatus(4);
+            rs = jsonResult.jsonSuccess(orderDao.update(newOrder));
         } catch (Exception e) {
             e.printStackTrace();
             rs = jsonResult.jsonFail("update order fail");
