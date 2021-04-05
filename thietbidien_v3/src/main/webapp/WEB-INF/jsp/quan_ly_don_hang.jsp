@@ -120,7 +120,7 @@
                                             <c:if test="${order.idOrderstatus == 3}">
                                                 <option value="4">Hoàn thành</option>
                                             </c:if>
-                                            <c:if test="${order.idOrderstatus != 4 && order.statusPaments != falsek}">
+                                            <c:if test="${order.idOrderstatus != 4 && order.idOrderstatus != 3 && order.statusPaments != false}">
                                                 <option value="5">Đã hủy</option>
                                             </c:if>
                                         </select>

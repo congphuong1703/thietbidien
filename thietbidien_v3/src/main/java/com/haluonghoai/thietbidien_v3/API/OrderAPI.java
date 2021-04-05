@@ -126,7 +126,7 @@ public class OrderAPI {
         try {
             Order newOrder = orderDao.findById(order.getId());
             newOrder.setStatusPaments(order.isStatusPaments());
-            newOrder.setIdOrderstatus(4);
+            newOrder.setIdOrderstatus(3);
             rs = jsonResult.jsonSuccess(orderDao.update(newOrder));
         } catch (Exception e) {
             e.printStackTrace();
@@ -154,6 +154,8 @@ public class OrderAPI {
                     product.setAmount(amount);
                     productDao.update(product);
                 }
+            }else if(order.getIdOrderstatus() == 4){
+                order.setStatusPaments(true);
             }
             rs = jsonResult.jsonSuccess(orderDao.updateStatusOrder(order.getIdOrderstatus(), order.getId()));
         } catch (Exception e) {
