@@ -238,9 +238,10 @@ public class OrderAPI {
             if (order.isPayments() == false) {
                 order.setIdOrderstatus(4);
                 order.setStatusPaments(true);
-            }else{
+            } else {
 
             }
+            orderDao.update(order);
             rs = jsonResult.jsonSuccess(orderDao.update(order));
         } catch (Exception e) {
             e.printStackTrace();
