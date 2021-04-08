@@ -154,7 +154,7 @@ public class OrderAPI {
                     product.setAmount(amount);
                     productDao.update(product);
                 }
-            }else if(order.getIdOrderstatus() == 4){
+            } else if (order.getIdOrderstatus() == 4) {
                 order.setStatusPaments(true);
             }
             rs = jsonResult.jsonSuccess(orderDao.updateStatusOrder(order.getIdOrderstatus(), order.getId()));
@@ -168,7 +168,7 @@ public class OrderAPI {
     @PostMapping(value = "/addPurchase")
     public ResponseEntity<String> add(@RequestBody OrderDTO orderDTO) {
         String rs = "";
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
 
         try {
             Map<Integer, Integer> productMap = new HashMap<>();
@@ -194,7 +194,7 @@ public class OrderAPI {
                 Product product = productDao.findById(integer);
 
                 if (productMap.get(integer) < 0) {
-                    map.put("check",false);
+                    map.put("check", false);
                     rs = jsonResult.jsonSuccess(map);
                     return ResponseEntity.ok(rs);
                 } else if (productMap.get(integer) == 0) {
@@ -218,14 +218,34 @@ public class OrderAPI {
                 orderDetails.setIdOrder(newOrder.getId());
                 orderDetailDao.insert(orderDetails);
             }
-            map.put("order",order);
-            map.put("orderDetails",orderDetailsList);
-            map.put("check",true);
+            map.put("order", order);
+            map.put("orderDetails", orderDetailsList);
+            map.put("check", true);
             rs = jsonResult.jsonSuccess(map);
         } catch (Exception e) {
             e.printStackTrace();
-            map.put("check",false);
+            map.put("check", false);
             rs = jsonResult.jsonSuccess(map);
+        }
+        return ResponseEntity.ok(rs);
+    }
+
+    @GetMapping(value = "/updateStatusOrder")
+    public ResponseEntity<String> updateStatusFinishOrder(@QueryParam("idOrder") int id) {
+        String rs = "";
+        try {
+            Order order = orderDao.findById(id);
+            if (order.isPayments() == false) {
+                order.setIdOrderstatus(4);
+                order.setStatusPaments(true);
+            } else {
+
+            }
+            orderDao.update(order);
+            rs = jsonResult.jsonSuccess(orderDao.update(order));
+        } catch (Exception e) {
+            e.printStackTrace();
+            rs = jsonResult.jsonFail("update order fail");
         }
         return ResponseEntity.ok(rs);
     }
